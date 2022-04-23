@@ -1,0 +1,42 @@
+<?php 
+
+	class testController extends CI_Controller{
+
+		function __construct()
+		{
+			parent::__construct();
+			$autoload['libraries']=array('student');
+		}
+		public function index(){
+			$this->load->model('testModel');
+			$query['data']=$this->testModel->viewData();
+			$this->load->view('testView',$query);
+		}
+		public function addData(){
+			$this->load->model('testModel');
+			$this->testModel->addData($data);
+		}
+		public function editDataView(){
+			$this->load->model('testModel');
+			$roll_no=$this->input->get('rollno');
+			$query['data']=$this->testModel->editDataView($roll_no);
+			$this->load->view('testEditView',$query);
+		}
+		public function editData(){
+			$this->load->model('testModel');
+			$data=$this->input->post();
+			$old_roll_no=$data['old_roll_no'];
+			$edited_data=array(
+				'student_roll_no'=>$data['roll_no'],
+				'student_name'=>$data['name'],
+				'student_class'=>$data['class'],
+				'student_section'=>$data['section']
+			);
+			$this->testModel->editData($edited_data,$old_roll_no);
+		}
+		public function deleteData(){
+			$this->load->model('testModel');
+			$this->testModel->deleteData($data);
+		}
+	}
+ ?>

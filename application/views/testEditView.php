@@ -6,7 +6,7 @@
 	<title>Edit Details</title>
 </head>
 <body>
-	<form method="post" action="http://localhost/TestProject/index.php/testController/editData">
+	<form method="post" action="http://localhost/CodeIgniter/index.php/testController/editData">
 		<table>
 			<?php 
 				foreach($data->result() as $row){ ?>
@@ -23,7 +23,7 @@
 			?>			
 		</table>
 		<br><br>
-		<button type="submit" name="edit">UPDATE</button>
+		<button type="submit" name="update">UPDATE</button>
 	</form>
 </body>
 </html>

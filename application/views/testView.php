@@ -7,7 +7,7 @@
 	}
 </style>
 <h3>Student Details</h3>
-<a href="http://localhost/TestProject/index.php/testController/addData"><button>Add New Student</button></a>
+<a href="http://localhost/CodeIgniter/index.php/testController/addDataView"><button>Add New Student</button></a>
 <br><br>
 <table>
 	<tr>
@@ -25,8 +25,8 @@
 		        <td><?php echo $row->student_name;?></td>  
 		        <td><?php echo $row->student_class;?></td>
 		        <td><?php echo $row->student_section;?></td>
-		        <td><a href="http://localhost/TestProject/index.php/testController/editDataView?rollno=<?php echo $row->student_roll_no ; ?>"><button name="edit">EDIT</button></a>
-		        	<a href="http://localhost/TestProject/index.php/testController/deleteData<?php $row->student_roll_no; ?>"><button name="delete">DELETE</button></a></td>
+		        <td><a href="http://localhost/CodeIgniter/index.php/testController/editDataView?rollno=<?php echo $row->student_roll_no ; ?>"><button name="edit">EDIT</button></a>
+		        	<a href="http://localhost/CodeIgniter/index.php/testController/deleteDataView?rollno=<?php echo $row->student_roll_no; ?>"><button name="delete">DELETE</button></a></td>
             </tr>  
          <?php }  
          ?>

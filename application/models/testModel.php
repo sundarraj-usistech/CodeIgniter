@@ -7,13 +7,14 @@
 			$query=$this->db->get("student_details"); 
 			return $query;
 		}
-		public function addData($data){
-			if ($this->db->insert("student_details",$data)) {
+		public function addData($new_data){
+			$query=$this->db->insert("student_details",$new_data);
+			if ($query==true){
 				echo "Successfully Added";
-			}	
+			}
 			else{
-				echo "Insert Failed";
-			}	 	
+				echo "Add User Failed";
+			}
 		}
 		public function editDataView($roll_no){
 			$query=$this->db->get_where("student_details",array('student_roll_no'=>$roll_no));
@@ -29,8 +30,13 @@
 				echo "Update Failed";
 			}
 		}
-		public function deleteData($data){
-			if ($this->db->delete("student_details","student_roll_no = '$data'")){
+		public function deleteDataView($roll_no){
+			$query=$this->db->get_where("student_details",array('student_roll_no'=>$roll_no));
+			return $query;
+		}
+		public function deleteData($roll_no){
+			$query=$this->db->delete("student_details" , array('student_roll_no'=>$roll_no));
+			if ($query==true){
 				echo "Successfully Deleted";
 			}
 			else{

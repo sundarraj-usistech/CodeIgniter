@@ -3,6 +3,17 @@
 		public function __construct(){
 			parent::__construct();
 		}
+		// public function fetch_departments($limit, $start) {
+	 //        $this->db->limit($limit, $start);
+	 //        $query = $this->db->get("Departments");
+	 //        if ($query->num_rows() > 0) {
+	 //           foreach ($query->result() as $row) {
+	 //               $data[] = $row;
+	 //        }
+	 //        	return $data;
+	 //        }
+	 //      	return false;
+  //  		}
 		public function viewData(){
 			$query=$this->db->get("student_details"); 
 			return $query;

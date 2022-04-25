@@ -6,6 +6,7 @@
 		{
 			parent::__construct();
 			$autoload['libraries']=array('student');
+			$this->load->helper('url');
 		}
 		public function index(){
 			$this->load->model('testModel');
@@ -24,9 +25,13 @@
 				'student_class'=>$data['class'],
 				'student_section'=>$data['section']
 			);
-			$this->testModel->addData($new_data);
+			$flag=$this->testModel->addData($new_data);
+			if ($flag) {
+				
+				redirect('http://localhost/CodeIgniter/index.php/testController/');
+			}
 		}
-		public function editDataView(){
+		public function editDataView()	{
 			$this->load->model('testModel');
 			$roll_no=$this->input->get('rollno');
 			$query['data']=$this->testModel->editDataView($roll_no);
@@ -42,7 +47,11 @@
 				'student_class'=>$data['class'],
 				'student_section'=>$data['section']
 			);
-			$this->testModel->editData($edited_data,$old_roll_no);
+			$flag=$this->testModel->editData($edited_data,$old_roll_no);
+			if ($flag) {
+				// $this->load->helper('url');
+				redirect('http://localhost/CodeIgniter/index.php/testController/');
+			}
 		}
 		public function deleteDataView(){
 			$this->load->model('testModel');
@@ -54,7 +63,11 @@
 			$this->load->model('testModel');
 			$data=$this->input->post();
 			$roll_no=$data['roll_no'];
-			$this->testModel->deleteData($roll_no);
+			$flag=$this->testModel->deleteData($roll_no);
+			if ($flag) {
+				// $this->load->helper('url');
+				redirect('http://localhost/CodeIgniter/index.php/testController/');
+			}
 		}
 	}
  ?>

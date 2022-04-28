@@ -32,7 +32,7 @@
 	<form method="get" action="http://localhost/CodeIgniter/index.php/testController/index">
 			<label>Number of Rows to display</label>
 			<input type="number" name="page">
-			<button name="submit" class="btn btn-success">SELECT</button>
+			<button  type="submit" name="submitrows" class="btn btn-success">SELECT</button>
 	</form>
 	<form method="post" action="http://localhost/CodeIgniter/index.php/testController/sortTable">
 		<label>Choose a Sorting Method</label>
@@ -47,8 +47,17 @@
 		</select>
 		<button type="submit" name="submitsort" class="btn btn-success">SUBMIT</button>
 	</form>
+	<form method="post" action="http://localhost/CodeIgniter/index.php/testController/">
+		<label>Choose a Filter Method</label>
+		<select name="filter">
+			<option></option>
+			<option value="filterbyclass">Class</option>
+			<option value="filterbysection">section</option>
+		</select>
+		<button type="submit" name="submitfilter" class="btn btn-success">SUBMIT</button>
+	</form>
 </div>
-<table width="20%" align="center" id="student_details" class="table table-bordered table-striped table-hover">
+<table width="100%" align="center" id="student_details" class="table table-bordered table-striped table-hover">
 	<tr>
 		<th>Roll No</th>
 		<th>Name</th>

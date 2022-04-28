@@ -46,12 +46,12 @@
 			return $query->num_rows();
 			$this->db->count_all_results();
 		}
-		public function pagination($limit, $offset){
-			$this->db->limit($limit);
-			$this->db->offset($offset);
-			$query=$this->db->get("student_details"); 
-			return $query;
-		}
+		// public function pagination($limit, $offset){
+		// 	$this->db->limit($limit);
+		// 	$this->db->offset($offset);
+		// 	$query=$this->db->get("student_details"); 
+		// 	return $query;
+		// }
 		public function sortRollNoAsc(){
 			$this->db->order_by('student_roll_no');
 			$query=$this->db->get("student_details"); 
@@ -82,6 +82,12 @@
 			$query=$this->db->get("student_details"); 
 			return $query;			
 		}
+		// public function filterByClass(){
+		// 	$this->
+		// }
+		// public function filterBySection(){
+		// 	$this->
+		// }
 	}
  ?>
  

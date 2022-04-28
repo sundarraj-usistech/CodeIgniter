@@ -63,28 +63,28 @@
 				redirect('http://localhost/CodeIgniter/index.php/testController/');
 			}
 		}
-		public function pagination(){
-			$data=$this->input->get();
-			if ($data) {
-				$perPage=$data['page'];
-			}
-			else{
-				$perPage=5;
-			}
-			if($this->uri->segment(3)){
-				$page=$this->uri->segment(3);
-			}
-			else{
-				$page=0;
-			}
-			$config = array();
-			$config['base_url']=base_url()."index.php/testController/index";
-			$config['total_rows']=$this->testModel->countRows();
-			$config['per_page']=$perPage;
-			$config['uri_segment']=3;
-			$this->pagination->initialize($config);
-			$query['data']=$this->testModel->viewData($config['per_page'],$page);
-		}
+		// public function pagination(){
+		// 	$data=$this->input->get();
+		// 	if ($data) {
+		// 		$perPage=$data['page'];
+		// 	}
+		// 	else{
+		// 		$perPage=5;
+		// 	}
+		// 	if($this->uri->segment(3)){
+		// 		$page=$this->uri->segment(3);
+		// 	}
+		// 	else{
+		// 		$page=0;
+		// 	}
+		// 	$config = array();
+		// 	$config['base_url']=base_url()."index.php/testController/index";
+		// 	$config['total_rows']=$this->testModel->countRows();
+		// 	$config['per_page']=$perPage;
+		// 	$config['uri_segment']=3;
+		// 	$this->pagination->initialize($config);
+		// 	$query['data']=$this->testModel->viewData($config['per_page'],$page);
+		// }
 		public function sortTable(){
 			$data=$this->input->post();
 			$sortOption=$data['sort'];
@@ -112,6 +112,19 @@
 				$query['data']=$this->testModel->sortClassDesc();
 				$this->load->view('testView',$query);	
 			}
+			// public function filter(){
+			// 	$data=$this->input->post();
+			// 	$filterOption=$data['filter'];
+			// 	if ($filterOption=='filterbyclass') {
+			// 		$query['data']=$this->testModel->();
+			// 		$this->load->view('testView',$query);
+			// 	}
+			// 	elseif ($filterOption=='filterbysection') {
+			// 		$query['data']=$this->testModel->();
+			// 		$this->load->view('testView',$query);
+			// 	}
+
+			// }
 		}
 	}
  ?>

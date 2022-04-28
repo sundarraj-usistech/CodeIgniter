@@ -11,37 +11,7 @@
 			$this->load->library('pagination');
 		}
 		public function index(){
-			$data=this->input->post();
-			if (this->input->post()) {
-				$perPage=$data['page'];
-			}
-			else{
-				$perPage=5;
-			}
-
-			$config = array();
-			$config['base_url']=base_url()."index.php/testController/index";
-			$config['total_rows']=$this->testModel->countRows();
-			$config['per_page']=5;
-			$config['uri_segment']=$perPage;
-			// $config['full_tag_open']='<p>';
-			// $config['full_tag_close']='</p>';
-			// $config['first_link'] = 'First';
-			// $config['first_tag_open'] = '<div>';
-			// $config['first_tag_close'] = '</div>';
-			// $config['last_link'] = 'Last';
-			// $config['last_tag_open'] = '<div>';
-			// $config['last_tag_close'] = '<div>';
-			// $config['use_page_numbers']=true;
-			$this->pagination->initialize($config);
-			if($this->uri->segment(3)){
-				$page=$this->uri->segment(3);
-			}
-			else{
-				$page=0;
-			}
-			// $page = ($this->uri->segment(3))? $this->uri->segment(3) : 0;
-			$query['data']=$this->testModel->viewData($config['per_page'],$page);
+			$query['data']=$this->testModel->viewData();
 			$this->load->view('testView',$query);
 		}
 	 	public function addDataView(){                              
@@ -91,6 +61,56 @@
 			$flag=$this->testModel->deleteData($roll_no);
 			if ($flag) {
 				redirect('http://localhost/CodeIgniter/index.php/testController/');
+			}
+		}
+		public function pagination(){
+			$data=$this->input->get();
+			if ($data) {
+				$perPage=$data['page'];
+			}
+			else{
+				$perPage=5;
+			}
+			if($this->uri->segment(3)){
+				$page=$this->uri->segment(3);
+			}
+			else{
+				$page=0;
+			}
+			$config = array();
+			$config['base_url']=base_url()."index.php/testController/index";
+			$config['total_rows']=$this->testModel->countRows();
+			$config['per_page']=$perPage;
+			$config['uri_segment']=3;
+			$this->pagination->initialize($config);
+			$query['data']=$this->testModel->viewData($config['per_page'],$page);
+		}
+		public function sortTable(){
+			$data=$this->input->post();
+			$sortOption=$data['sort'];
+			if ($sortOption=='sortrollnoasc') {
+				$query['data']=$this->testModel->sortRollNoAsc();
+				$this->load->view('testView',$query);
+			}
+			elseif ($sortOption=='sortrollnodesc'){
+				$query['data']=$this->testModel->sortRollNoDesc();
+				$this->load->view('testView',$query);	
+			}
+			elseif ($sortOption=='sortnameasc'){
+				$query['data']=$this->testModel->sortNameAsc();
+				$this->load->view('testView',$query);	
+			}
+			elseif ($sortOption=='sortnamedesc'){
+				$query['data']=$this->testModel->sortNameDesc();
+				$this->load->view('testView',$query);	
+			}
+			elseif ($sortOption=='sortclassasc'){
+				$query['data']=$this->testModel->sortClassAsc();
+				$this->load->view('testView',$query);	
+			}
+			elseif ($sortOption=='sortclassdesc'){
+				$query['data']=$this->testModel->sortClassDesc();
+				$this->load->view('testView',$query);	
 			}
 		}
 	}

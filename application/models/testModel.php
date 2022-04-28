@@ -3,9 +3,7 @@
 		public function __construct(){
 			parent::__construct();
 		}
-		public function viewData($limit, $offset){
-			$this->db->limit($limit);
-			$this->db->offset($offset);
+		public function viewData(){
 			$query=$this->db->get("student_details"); 
 			return $query;
 		}
@@ -47,6 +45,42 @@
 			$query=$this->db->get('student_details');
 			return $query->num_rows();
 			$this->db->count_all_results();
+		}
+		public function pagination($limit, $offset){
+			$this->db->limit($limit);
+			$this->db->offset($offset);
+			$query=$this->db->get("student_details"); 
+			return $query;
+		}
+		public function sortRollNoAsc(){
+			$this->db->order_by('student_roll_no');
+			$query=$this->db->get("student_details"); 
+			return $query;			
+		}
+		public function sortRollNoDesc(){
+			$this->db->order_by('student_roll_no','DESC');
+			$query=$this->db->get("student_details"); 
+			return $query;			
+		}
+		public function sortNameAsc(){
+			$this->db->order_by('student_name');
+			$query=$this->db->get("student_details"); 
+			return $query;			
+		}
+		public function sortNameDesc(){
+			$this->db->order_by('student_name','DESC');
+			$query=$this->db->get("student_details"); 
+			return $query;			
+		}
+		public function sortClassAsc(){
+			$this->db->order_by('student_class');
+			$query=$this->db->get("student_details"); 
+			return $query;			
+		}
+		public function sortClassDesc(){
+			$this->db->order_by('student_class','DESC');
+			$query=$this->db->get("student_details"); 
+			return $query;			
 		}
 	}
  ?>

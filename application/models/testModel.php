@@ -3,18 +3,9 @@
 		public function __construct(){
 			parent::__construct();
 		}
-		// public function fetch_departments($limit, $start) {
-	 //        $this->db->limit($limit, $start);
-	 //        $query = $this->db->get("Departments");
-	 //        if ($query->num_rows() > 0) {
-	 //           foreach ($query->result() as $row) {
-	 //               $data[] = $row;
-	 //        }
-	 //        	return $data;
-	 //        }
-	 //      	return false;
-  //  		}
-		public function viewData(){
+		public function viewData($limit, $offset){
+			$this->db->limit($limit);
+			$this->db->offset($offset);
 			$query=$this->db->get("student_details"); 
 			return $query;
 		}
@@ -51,6 +42,11 @@
 			else{
 				return false;
 			}
+		}
+		public function countRows(){
+			$query=$this->db->get('student_details');
+			return $query->num_rows();
+			$this->db->count_all_results();
 		}
 	}
  ?>

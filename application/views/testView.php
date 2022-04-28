@@ -1,15 +1,26 @@
 <style type="text/css">
 	table,th,td{
-		border: 1px solid black;
+		border: solid black;
 	}
 	td{
 		text-align: center;
+	}
+	.method{
+		display: flex;
+		justify-content: space-between;
 	}
 </style>
 <h3>Student Details</h3>
 <a href="http://localhost/CodeIgniter/index.php/testController/addDataView"><button>Add New Student</button></a>
 <br><br>
-<table>
+<div class="method">
+	<form method="post" action="http://localhost/CodeIgniter/index.php/testController/pagination">
+			<label>Number of Rows to display</label>
+			<input type="number" name="page">
+			<button type name="submit">SELECT</button>
+	</form>
+</div>
+<table width="50%" align="center">
 	<tr>
 		<th>Roll No</th>
 		<th>Name</th>
@@ -31,3 +42,5 @@
          <?php }  
          ?>
 </table>
+<br>
+<div align="center"><?php echo $this->pagination->create_links(); ?></div>

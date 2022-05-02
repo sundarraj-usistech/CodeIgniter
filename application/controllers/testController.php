@@ -12,6 +12,41 @@
 		}
 		public function index(){
 			$query['data']=$this->testModel->viewData();
+			$perPage=3;
+			if($this->uri->segment(3)){
+				$page=$this->uri->segment(3);
+			}
+			else{
+				$page=0;
+			}
+			$config = array();
+			$config['base_url']=base_url()."index.php/testController/index";
+			$config['total_rows']=$this->testModel->countRows();
+			$config['per_page']=$perPage;
+			$config['uri_segment']=3;
+			
+			//Bootstrap configs
+ 				$config['full_tag_open'] = '<ul class="pagination justify-content-center">';        
+			    $config['full_tag_close'] = '</ul>';        
+			    $config['first_link'] = 'First';        
+			    $config['last_link'] = 'Last';        
+			    $config['first_tag_open'] = '<li class="page-item"><span class="page-link">';        
+			    $config['first_tag_close'] = '</span></li>';        
+			    $config['prev_link'] = 'Previous';        
+			    $config['prev_tag_open'] = '<li class="page-item"><span class="page-link">';        
+			    $config['prev_tag_close'] = '</span></li>';        
+			    $config['next_link'] = 'Next';        
+			    $config['next_tag_open'] = '<li class="page-item"><span class="page-link">';        
+			    $config['next_tag_close'] = '</span></li>';        
+			    $config['last_tag_open'] = '<li class="page-item"><span class="page-link">';        
+			    $config['last_tag_close'] = '</span></li>';        
+			    $config['cur_tag_open'] = '<li class="page-item active"><a class="page-link">';        
+			    $config['cur_tag_close'] = '</a></li>';        
+			    $config['num_tag_open'] = '<li class="page-item"><span class="page-link">';        
+			    $config['num_tag_close'] = '</span></li>';
+
+			$this->pagination->initialize($config);
+			$query['data']=$this->testModel->pagination($config['per_page'],$page);
 			$this->load->view('testView',$query);
 		}
 	 	public function addDataView(){                              
@@ -63,28 +98,6 @@
 				redirect('http://localhost/CodeIgniter/index.php/testController/');
 			}
 		}
-		// public function pagination(){
-		// 	$data=$this->input->get();
-		// 	if ($data) {
-		// 		$perPage=$data['page'];
-		// 	}
-		// 	else{
-		// 		$perPage=5;
-		// 	}
-		// 	if($this->uri->segment(3)){
-		// 		$page=$this->uri->segment(3);
-		// 	}
-		// 	else{
-		// 		$page=0;
-		// 	}
-		// 	$config = array();
-		// 	$config['base_url']=base_url()."index.php/testController/index";
-		// 	$config['total_rows']=$this->testModel->countRows();
-		// 	$config['per_page']=$perPage;
-		// 	$config['uri_segment']=3;
-		// 	$this->pagination->initialize($config);
-		// 	$query['data']=$this->testModel->viewData($config['per_page'],$page);
-		// }
 		public function sortTable(){
 			$data=$this->input->post();
 			$sortOption=$data['sort'];
@@ -112,19 +125,6 @@
 				$query['data']=$this->testModel->sortClassDesc();
 				$this->load->view('testView',$query);	
 			}
-			// public function filter(){
-			// 	$data=$this->input->post();
-			// 	$filterOption=$data['filter'];
-			// 	if ($filterOption=='filterbyclass') {
-			// 		$query['data']=$this->testModel->();
-			// 		$this->load->view('testView',$query);
-			// 	}
-			// 	elseif ($filterOption=='filterbysection') {
-			// 		$query['data']=$this->testModel->();
-			// 		$this->load->view('testView',$query);
-			// 	}
-
-			// }
 		}
 	}
  ?>

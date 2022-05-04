@@ -85,6 +85,20 @@
 			$query=$this->db->get("student_details"); 
 			return $query;			
 		}
+		public function fileUploadView($roll_no){
+			$query=$this->db->get_where("student_details",array('student_roll_no'=>$roll_no));
+			return $query;
+		}
+		public function fileUpload($roll_no,$docName){
+			$this->db->set('student_document',$docName);
+			$this->db->where('student_roll_no',$roll_no);
+			if ($this->db->update('student_details')){
+				return true;
+			}
+			else{
+				return false;
+			}
+		}
 	}
  ?>
  

@@ -9,6 +9,7 @@
 			$this->load->helper('url');
 			$this->load->model('testModel');
 			$this->load->library('pagination');
+			$this->load->library('upload');
 		}
 		public function index(){
 			if($data=$this->input->get()){
@@ -30,7 +31,8 @@
 			$config['per_page']=$perPage;
 			$config['uri_segment']=3;
 			
-			//Bootstrap configs
+			//Bootstrap configs for pagination
+
  				$config['full_tag_open'] = '<ul class="pagination justify-content-center">';        
 			    $config['full_tag_close'] = '</ul>';        
 			    $config['first_link'] = 'First';        
@@ -67,7 +69,6 @@
 			);
 			$flag=$this->testModel->addData($new_data);
 			if ($flag) {
-				
 				redirect('http://localhost/CodeIgniter/index.php/testController/');
 			}
 		}
@@ -130,6 +131,38 @@
 				$query['data']=$this->testModel->sortClassDesc();
 				$this->load->view('testView',$query);	
 			}
+		}
+		public function fileUploadView(){
+			$roll_no=$this->input->get('rollno');
+			$query['data']=$this->testModel->fileUploadView($roll_no);
+			$this->load->view('testFileUploadView',$query);
+		}
+		public function fileUpload(){
+			$data=$this->input->post();
+			$fileName=$_FILES['file']['name'];
+            $tempName=explode(".", $fileName);
+			$newFileName=round(microtime(true)) . '.' . end($tempName);
+			$config['upload_path']='./student_document/';
+            $config['allowed_types']='doc|docx|pdf';
+            $config['max_size']=2000; // PHP installation has its own limit, as specified in the php.ini file. Usually 2 MB (or 2048 KB) by default.
+			$config['file_name']=$data['name'].$newFileName;
+			$this->upload->initialize($config); 
+			$docName=$config['file_name'];
+			$roll_no=$data['roll_no'];    
+			if ($this->upload->do_upload('file')){
+            	$data = array('upload_data' => $this->upload->data());
+            	$flag=$this->testModel->fileUpload($roll_no,$docName);
+            	if ($flag) {
+            		redirect('http://localhost/CodeIgniter/index.php/testController/');
+            	}
+            	else{
+            		echo "Upload Error";
+            	}  
+            }
+            else{
+                echo $this->upload->display_errors();
+                die();
+            }		 	
 		}
 	}
  ?>

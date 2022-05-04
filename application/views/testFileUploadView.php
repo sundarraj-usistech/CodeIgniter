@@ -7,10 +7,10 @@
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-	<title>Delete Details</title>
+	<title>File Upload Details</title>
 </head>
 <body>
-	<form method="post" action="http://localhost/CodeIgniter/index.php/testController/deleteData">
+	<form method="post" action="http://localhost/CodeIgniter/index.php/testController/fileUpload" enctype="multipart/form-data">
 		<table class="table table-bordered">
 			<?php 
 				foreach($data->result() as $row){ ?>
@@ -23,11 +23,12 @@
 					<tr><td><label>Section</label></td>
 					<td><input type="text" name="section" value="<?php echo $row->student_section ?>" readonly></td></tr>
 		<?php	}
-			?>			
+			?>	
+			<tr><td><label>Choose the file to Upload</label></td>
+			<td><input type="file" name="file"></td></tr>		
 		</table>
 		<br>
-		<h4>Confirm delete</h4>
-		<button type="submit" name="delete" class="btn btn-danger">DELETE</button>
+		<button type="submit" class="btn btn-info">UPLOAD</button>
 	</form>
 </body>
 </html>

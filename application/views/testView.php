@@ -75,7 +75,8 @@
 		        <td><?php echo $row->student_name;?></td>  
 		        <td><?php echo $row->student_class;?></td>
 		        <td><?php echo $row->student_section;?></td>
-		        <td><a href="http://localhost/CodeIgniter/index.php/testController/editDataView?rollno=<?php echo $row->student_roll_no ; ?>"><button name="edit" class="btn btn-warning">EDIT</button></a>
+		        <td><a href="http://localhost/CodeIgniter/index.php/testController/fileUploadView?rollno=<?php echo $row->student_roll_no ; ?>"><button name="fileupload" class="btn btn-info">FILE UPLOAD</button></a>
+		        	<a href="http://localhost/CodeIgniter/index.php/testController/editDataView?rollno=<?php echo $row->student_roll_no ; ?>"><button name="edit" class="btn btn-warning">EDIT</button></a>
 		        	<a href="http://localhost/CodeIgniter/index.php/testController/deleteDataView?rollno=<?php echo $row->student_roll_no; ?>"><button name="delete" class="btn btn-danger">DELETE</button></a></td>
             </tr>  
          <?php }  

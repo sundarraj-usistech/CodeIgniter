@@ -71,7 +71,7 @@
          foreach ($data->result() as $row)  
          {  
             ?><tr>  
-		        <td><?php echo $row->student_roll_no;?></td>  
+		        <td><?php echo $row->student_roll_no;?></td> 
 		        <td><?php echo $row->student_name;?></td>  
 		        <td><?php echo $row->student_class;?></td>
 		        <td><?php echo $row->student_section;?></td>

@@ -1,4 +1,4 @@
-<?php 
+ <?php 
 
 	class testController extends CI_Controller{
 
@@ -11,8 +11,13 @@
 			$this->load->library('pagination');
 		}
 		public function index(){
+			if($data=$this->input->get()){
+				$perPage=$data['page'];	
+			}
+			else{
+				$perPage=5;
+			}
 			$query['data']=$this->testModel->viewData();
-			$perPage=3;
 			if($this->uri->segment(3)){
 				$page=$this->uri->segment(3);
 			}

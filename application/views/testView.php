@@ -31,11 +31,11 @@
 <a href="http://localhost/CodeIgniter/index.php/testController/addDataView"><button class="btn btn-primary">Add New Student</button></a>
 <br><br>
 <div class="method">
-	<!-- <form method="get" action="http://localhost/CodeIgniter/index.php/testController/pagination">
+	<form method="get" action="http://localhost/CodeIgniter/index.php/testController/index">
 			<label>Number of Rows to display</label>
 			<input type="number" name="page">
 			<button  type="submit" name="submitrows" class="btn btn-success">SELECT</button>
-	</form> -->
+	</form>
 	<form method="post" action="http://localhost/CodeIgniter/index.php/testController/sortTable">
 		<label>Choose a Sorting Method</label>
 		<select name="sort">

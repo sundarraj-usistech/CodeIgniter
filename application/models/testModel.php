@@ -46,6 +46,9 @@
 			return $query->num_rows();
 			$this->db->count_all_results();
 		}
+		public function firstRecord($currentPage, $perPage){
+			return ($currentPage-1)*$perPage;
+		}
 		public function pagination($limit, $offset){
 			$this->db->limit($limit);
 			$this->db->offset($offset);

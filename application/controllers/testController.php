@@ -12,13 +12,13 @@
 			$this->load->library('upload');
 		}
 		public function index(){
-			if($data=$this->input->get()){
-				$perPage=$data['page'];	
+			$data=$this->input->post();
+			if($data){
+				$perPage=$data['per_page'];	
 			}
 			else{
 				$perPage=5;
 			}
-			$query['data']=$this->testModel->viewData();
 			if($this->uri->segment(3)){
 				$page=$this->uri->segment(3);
 			}
@@ -30,9 +30,8 @@
 			$config['total_rows']=$this->testModel->countRows();
 			$config['per_page']=$perPage;
 			$config['uri_segment']=3;
-			
-			//Bootstrap configs for pagination
 
+			//Bootstrap configs for pagination---------------------------------------------
  				$config['full_tag_open'] = '<ul class="pagination justify-content-center">';        
 			    $config['full_tag_close'] = '</ul>';        
 			    $config['first_link'] = 'First';        
@@ -51,6 +50,7 @@
 			    $config['cur_tag_close'] = '</a></li>';        
 			    $config['num_tag_open'] = '<li class="page-item"><span class="page-link">';        
 			    $config['num_tag_close'] = '</span></li>';
+			//-----------------------------------------------------------------------------
 
 			$this->pagination->initialize($config);
 			$query['data']=$this->testModel->pagination($config['per_page'],$page);
@@ -163,6 +163,43 @@
                 echo $this->upload->display_errors();
                 die();
             }		 	
+		}
+		public function imageUploadView(){
+			$roll_no=$this->input->get('rollno');
+			$query['data']=$this->testModel->imageUploadView($roll_no);
+			$this->load->view('testImageUploadView',$query);
+		}
+		public function imageUpload(){
+			$data=$this->input->post();
+			$imageName=$_FILES['image']['name'];
+            $tempName=explode(".", $imageName);
+			$newImageName=round(microtime(true)) . '.' . end($tempName);
+			$config['upload_path']='./student_image/';
+            $config['allowed_types']='jpeg|jpg|png';
+            $config['max_size']=2000;// PHP installation has its own limit, as specified in the php.ini file. Usually 2 MB (or 2048 KB) by default. (In this machine also the max limit is 2mb)
+			$config['file_name']=$data['name'].$newImageName;
+			$this->upload->initialize($config); 
+			$imgName=$config['file_name'];
+			$roll_no=$data['roll_no'];    
+			if ($this->upload->do_upload('image')){
+            	$data = array('upload_data' => $this->upload->data());
+            	$flag=$this->testModel->imageUpload($roll_no,$imgName);
+            	if ($flag) {
+            		redirect('http://localhost/CodeIgniter/index.php/testController/');
+            	}
+            	else{
+            		echo "Upload Error";
+            	}  
+            }
+            else{
+                echo $this->upload->display_errors();
+                die();
+            }		 	
+		}
+		public function viewAllDetails(){
+			$roll_no=$this->input->get('rollno');
+			$query['data']=$this->testModel->viewAllDetails($roll_no);
+			$this->load->view('testViewAllDetails',$query);
 		}
 	}
  ?>

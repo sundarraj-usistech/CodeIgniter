@@ -24,19 +24,33 @@
 			display: flex;
 			justify-content: space-between;
 		}
+		.btn-custom1 {
+    		color: #212529;
+    		background-color: #adb5bd;
+    		border-color: #adb5bd;
+		}
+		.btn-custom2 {
+    		color: #212529;
+    		background-color: #b3d7ff;
+    		border-color: #b3d7ff;
+		}
 	</style>
 </body>
 </html>
 <h3>Student Details</h3>
-<a href="http://localhost/CodeIgniter/index.php/testController/addDataView"><button class="btn btn-primary">Add New Student</button></a>
+<a href="http://localhost/CodeIgniter/index.php/testController/addDataView"><button class="btn btn-custom1">Add New Student</button></a>
 <br><br>
-<div class="method">
-	<form method="get" action="http://localhost/CodeIgniter/index.php/testController/index">
+<!-- <div class="method">
+	<form method="post" action="http://localhost/CodeIgniter/index.php/testController/index">
 			<label>Number of Rows to display</label>
-			<input type="number" name="page">
+			<select name="per_page">
+				<option>5</option>
+				<option>10</option>
+				<option>15</option>
+			</select>
 			<button  type="submit" name="submitrows" class="btn btn-success">SELECT</button>
-	</form>
-	<form method="post" action="http://localhost/CodeIgniter/index.php/testController/sortTable">
+	</form> -->
+<!-- 	<form method="post" action="http://localhost/CodeIgniter/index.php/testController/sortTable">
 		<label>Choose a Sorting Method</label>
 		<select name="sort">
 			<option></option>
@@ -48,7 +62,7 @@
 			<option value="sortclassdesc">Sort by Class in descending</option>
 		</select>
 		<button type="submit" name="submitsort" class="btn btn-success">SUBMIT</button>
-	</form>
+	</form> -->
 	<!-- <form method="post" action="http://localhost/CodeIgniter/index.php/testController/">
 		<label>Choose a Filter Method</label>
 		<select name="filter">
@@ -66,6 +80,7 @@
 		<th>Class</th>
 		<th>Section</th>
 		<th>Action</th>
+		<th>UPLOAD</th>
 	</tr>
 		<?php  
          foreach ($data->result() as $row)  
@@ -75,9 +90,11 @@
 		        <td><?php echo $row->student_name;?></td>  
 		        <td><?php echo $row->student_class;?></td>
 		        <td><?php echo $row->student_section;?></td>
-		        <td><a href="http://localhost/CodeIgniter/index.php/testController/fileUploadView?rollno=<?php echo $row->student_roll_no ; ?>"><button name="fileupload" class="btn btn-info">FILE UPLOAD</button></a>
+		        <td><a href="http://localhost/CodeIgniter/index.php/testController/viewAllDetails?rollno=<?php echo $row->student_roll_no ;	?>"><button name="view" class="btn btn-primary">VIEW</button></a>
 		        	<a href="http://localhost/CodeIgniter/index.php/testController/editDataView?rollno=<?php echo $row->student_roll_no ; ?>"><button name="edit" class="btn btn-warning">EDIT</button></a>
 		        	<a href="http://localhost/CodeIgniter/index.php/testController/deleteDataView?rollno=<?php echo $row->student_roll_no; ?>"><button name="delete" class="btn btn-danger">DELETE</button></a></td>
+		        	<td><a href="http://localhost/CodeIgniter/index.php/testController/fileUploadView?rollno=<?php echo $row->student_roll_no ; ?>"><button name="fileupload" class="btn btn-info">FILE</button></a>
+		        		<a href="http://localhost/CodeIgniter/index.php/testController/imageUploadView?rollno=<?php echo $row->student_roll_no ; ?>"><button name="imageupload" class="btn btn-custom2">IMAGE</button></td>
             </tr>  
          <?php }  
          ?>

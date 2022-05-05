@@ -24,7 +24,7 @@
 					<td><input type="text" name="section" value="<?php echo $row->student_section ?>" readonly></td></tr>
 		<?php	}
 			?>	
-			<tr><td><label>Choose the file to Upload</label></td>
+			<tr><td><label>Choose the File to Upload</label></td>
 			<td><input type="file" name="file"></td></tr>		
 		</table>
 		<br>

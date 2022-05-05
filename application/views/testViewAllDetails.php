@@ -7,13 +7,10 @@
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-	<title>Delete Details</title>
+	<title>View Details</title>
 </head>
 <body>
-	<div class="alert alert-danger">
-    	<strong>You are about to Delete this Person's Details !</strong>
-  	</div>
-	<form method="post" action="http://localhost/CodeIgniter/index.php/testController/deleteData">
+	<form method="post" action="">
 		<table class="table table-bordered">
 			<?php 
 				foreach($data->result() as $row){ ?>
@@ -25,11 +22,14 @@
 					<td><input type="text" name="class" value="<?php echo $row->student_class ?>" readonly></td></tr>
 					<tr><td><label>Section</label></td>
 					<td><input type="text" name="section" value="<?php echo $row->student_section ?>" readonly></td></tr>
+					<tr><td><label>Document</label></td>
+					<td><input type="text" name="file" value="<?php echo $row->student_document ?>" readonly><br><br><a href="\CodeIgniter\student_document\<?php echo $row->student_document; ?>" target="_blank"><span class="btn btn-primary">VIEW</span></a></td></tr>
+					<tr><td><label>Image</label></td>
+					<td><input type="text" name="image" value="<?php echo $row->student_image ?>" readonly><br><br><a href="\CodeIgniter\student_image\<?php echo $row->student_image; ?>" target="_blank"><span class="btn btn-primary">VIEW</span></a></td></tr>
+
 		<?php	}
 			?>			
 		</table>
-		<br>
-		<button type="submit" name="delete" class="btn btn-danger">DELETE</button>
 	</form>
 </body>
 </html>

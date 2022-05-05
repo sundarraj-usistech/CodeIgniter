@@ -3,10 +3,10 @@
 		public function __construct(){
 			parent::__construct();
 		}
-		public function viewData(){
-			$query=$this->db->get("student_details"); 
-			return $query;
-		}
+		// public function viewData(){
+		// 	$query=$this->db->get("student_details"); 
+		// 	return $query;
+		// }
 		public function addData($new_data){
 			if ($this->db->insert("student_details",$new_data)){
 				return true;
@@ -46,9 +46,9 @@
 			return $query->num_rows();
 			$this->db->count_all_results();
 		}
-		public function firstRecord($currentPage, $perPage){
-			return ($currentPage-1)*$perPage;
-		}
+		// public function firstRecord($currentPage, $perPage){
+		// 	return ($currentPage-1)*$perPage;
+		// }
 		public function pagination($limit, $offset){
 			$this->db->limit($limit);
 			$this->db->offset($offset);
@@ -98,6 +98,24 @@
 			else{
 				return false;
 			}
+		}
+		public function imageUploadView($roll_no){
+			$query=$this->db->get_where("student_details",array('student_roll_no'=>$roll_no));
+			return $query;
+		}
+		public function imageUpload($roll_no,$imgName){
+			$this->db->set('student_image',$imgName);
+			$this->db->where('student_roll_no',$roll_no);
+			if ($this->db->update('student_details')){
+				return true;
+			}
+			else{
+				return false;
+			}
+		}
+		public function viewAllDetails($roll_no){
+			$query=$this->db->get_where("student_details",array('student_roll_no'=>$roll_no));
+			return $query;
 		}
 	}
  ?>

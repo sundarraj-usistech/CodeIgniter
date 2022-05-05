@@ -9,7 +9,17 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 	<title>Add Details</title>
 </head>
+<style type="text/css">
+	.btn-custom1 {
+    		color: #212529;
+    		background-color: #adb5bd;
+    		border-color: #adb5bd;
+	}
+</style>
 <body>
+	<div class="alert alert-info">
+    	<strong>You are about to create a New Person's Details !</strong>
+  	</div>
 	<form method="post" action="http://localhost/CodeIgniter/index.php/testController/addData">
 		<table class="table table-bordered">
 					<tr><td><label>Roll Number</label></td>
@@ -22,7 +32,7 @@
 					<td><input type="text" name="section"></td></tr>	
 		</table>
 		<br>
-		<button type="submit" name="add" class="btn btn-primary">ADD</button>
+		<button type="submit" name="add" class="btn btn-custom1">ADD</button>
 	</form>
 </body>
 </html>

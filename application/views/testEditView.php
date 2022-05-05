@@ -10,6 +10,9 @@
 	<title>Edit Details</title>
 </head>
 <body>
+	<div class="alert alert-warning">
+    	<strong>You are about to Edit this Person's Details !</strong>
+  	</div>
 	<form method="post" action="http://localhost/CodeIgniter/index.php/testController/editData">
 		<table class="table table-bordered">
 			<?php 

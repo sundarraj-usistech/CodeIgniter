@@ -7,13 +7,17 @@
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-	<title>Delete Details</title>
+	<title>Image Upload Details</title>
 </head>
+<style type="text/css">
+	.btn-custom2 {
+    		color: #212529;
+    		background-color: #b3d7ff;
+    		border-color: #b3d7ff;
+		}
+</style>
 <body>
-	<div class="alert alert-danger">
-    	<strong>You are about to Delete this Person's Details !</strong>
-  	</div>
-	<form method="post" action="http://localhost/CodeIgniter/index.php/testController/deleteData">
+	<form method="post" action="http://localhost/CodeIgniter/index.php/testController/imageUpload" enctype="multipart/form-data">
 		<table class="table table-bordered">
 			<?php 
 				foreach($data->result() as $row){ ?>
@@ -26,10 +30,12 @@
 					<tr><td><label>Section</label></td>
 					<td><input type="text" name="section" value="<?php echo $row->student_section ?>" readonly></td></tr>
 		<?php	}
-			?>			
+			?>	
+			<tr><td><label>Choose the Image to Upload</label></td>
+			<td><input type="file" name="image"></td></tr>		
 		</table>
 		<br>
-		<button type="submit" name="delete" class="btn btn-danger">DELETE</button>
+		<button type="submit" class="btn btn-custom2">UPLOAD</button>
 	</form>
 </body>
 </html>

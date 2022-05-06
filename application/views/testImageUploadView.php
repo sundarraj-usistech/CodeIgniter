@@ -15,6 +15,11 @@
     		background-color: #b3d7ff;
     		border-color: #b3d7ff;
 		}
+		.btn-custom3 {
+    		color: #212529;
+    		background-color: #adb5bd;
+    		border-color: #adb5bd;
+		}
 </style>
 <body>
 	<form method="post" action="http://localhost/CodeIgniter/index.php/testController/imageUpload" enctype="multipart/form-data">
@@ -36,6 +41,9 @@
 		</table>
 		<br>
 		<button type="submit" class="btn btn-custom2">UPLOAD</button>
+	</form>
+	<form action="http://localhost/CodeIgniter/index.php/testController/">
+		<button type="submit" name="home" class="btn btn-custom3">HOME</button>
 	</form>
 </body>
 </html>

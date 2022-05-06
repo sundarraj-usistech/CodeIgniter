@@ -10,6 +10,13 @@
 	<title>File Upload Details</title>
 </head>
 <body>
+	<style type="text/css">
+		.btn-custom3 {
+    		color: #212529;
+    		background-color: #adb5bd;
+    		border-color: #adb5bd;
+		}
+	</style>
 	<form method="post" action="http://localhost/CodeIgniter/index.php/testController/fileUpload" enctype="multipart/form-data">
 		<table class="table table-bordered">
 			<?php 
@@ -29,6 +36,9 @@
 		</table>
 		<br>
 		<button type="submit" class="btn btn-info">UPLOAD</button>
+	</form>
+	<form action="http://localhost/CodeIgniter/index.php/testController/">
+		<button type="submit" name="home" class="btn btn-custom3">HOME</button>
 	</form>
 </body>
 </html>

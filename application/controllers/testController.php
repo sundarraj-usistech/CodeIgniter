@@ -1,15 +1,16 @@
  <?php 
-	 	error_reporting(0);
+	 	
 	class testController extends CI_Controller{
 
 		function __construct()
 		{
 			parent::__construct();
-			$autoload['libraries']=array('student');
-			$this->load->helper('url');
+			$this->load->database('student');
 			$this->load->model('testModel');
+			$this->load->helper('url');
 			$this->load->library('pagination');
 			$this->load->library('upload');
+			error_reporting(0);
 		}
 		public function index(){
 			$data=$this->input->post();
@@ -53,7 +54,7 @@
 			//-----------------------------------------------------------------------------
 
 			$this->pagination->initialize($config);
-			$query['data']=$this->testModel->Pagination($config['per_page'],$page);
+			$query['data']=$this->testModel->pagination($config['per_page'],$page);
 			$this->load->view('testView',$query);
 		}
 	 	public function addDataView(){                              

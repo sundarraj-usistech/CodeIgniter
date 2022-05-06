@@ -10,6 +10,13 @@
 	<title>Delete Details</title>
 </head>
 <body>
+	<style type="text/css">
+		.btn-custom3 {
+    		color: #212529;
+    		background-color: #adb5bd;
+    		border-color: #adb5bd;
+		}
+	</style>
 	<div class="alert alert-danger">
     	<strong>You are about to Delete this Person's Details !</strong>
   	</div>
@@ -30,6 +37,9 @@
 		</table>
 		<br>
 		<button type="submit" name="delete" class="btn btn-danger">DELETE</button>
+	</form>
+	<form action="http://localhost/CodeIgniter/index.php/testController/">
+		<button type="submit" name="home" class="btn btn-custom3">HOME</button>
 	</form>
 </body>
 </html>

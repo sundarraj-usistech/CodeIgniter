@@ -15,6 +15,11 @@
     		background-color: #adb5bd;
     		border-color: #adb5bd;
 	}
+	.btn-custom3 {
+    		color: #212529;
+    		background-color: #adb5bd;
+    		border-color: #adb5bd;
+		}
 </style>
 <body>
 	<div class="alert alert-info">
@@ -33,6 +38,9 @@
 		</table>
 		<br>
 		<button type="submit" name="add" class="btn btn-custom1">ADD</button>
+	</form>
+	<form action="http://localhost/CodeIgniter/index.php/testController/">
+		<button type="submit" name="home" class="btn btn-custom3">HOME</button>
 	</form>
 </body>
 </html>

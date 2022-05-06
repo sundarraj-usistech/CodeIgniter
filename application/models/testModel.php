@@ -117,6 +117,13 @@
 			$query=$this->db->get_where("student_details",array('student_roll_no'=>$roll_no));
 			return $query;
 		}
+		public function searchData($keyword){
+			$this->db->select('*');
+			$this->db->from('student_details');
+			$this->db->like('student_name',$keyword);
+			$query=$this->db->get();
+			return $query;
+		}
 	}
  ?>
  

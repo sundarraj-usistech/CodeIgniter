@@ -1,5 +1,5 @@
  <?php 
-
+	 	error_reporting(0);
 	class testController extends CI_Controller{
 
 		function __construct()
@@ -53,7 +53,7 @@
 			//-----------------------------------------------------------------------------
 
 			$this->pagination->initialize($config);
-			$query['data']=$this->testModel->pagination($config['per_page'],$page);
+			$query['data']=$this->testModel->Pagination($config['per_page'],$page);
 			$this->load->view('testView',$query);
 		}
 	 	public function addDataView(){                              
@@ -146,6 +146,7 @@
             $config['allowed_types']='doc|docx|pdf';
             $config['max_size']=2000; // PHP installation has its own limit, as specified in the php.ini file. Usually 2 MB (or 2048 KB) by default.
 			$config['file_name']=$data['name'].$newFileName;
+			$config['remove_spaces']= FALSE;
 			$this->upload->initialize($config); 
 			$docName=$config['file_name'];
 			$roll_no=$data['roll_no'];    
@@ -161,7 +162,6 @@
             }
             else{
                 echo $this->upload->display_errors();
-                die();
             }		 	
 		}
 		public function imageUploadView(){
@@ -178,6 +178,7 @@
             $config['allowed_types']='jpeg|jpg|png';
             $config['max_size']=2000;// PHP installation has its own limit, as specified in the php.ini file. Usually 2 MB (or 2048 KB) by default. (In this machine also the max limit is 2mb)
 			$config['file_name']=$data['name'].$newImageName;
+			$config['remove_spaces']= FALSE;
 			$this->upload->initialize($config); 
 			$imgName=$config['file_name'];
 			$roll_no=$data['roll_no'];    
@@ -193,13 +194,17 @@
             }
             else{
                 echo $this->upload->display_errors();
-                die();
             }		 	
 		}
 		public function viewAllDetails(){
 			$roll_no=$this->input->get('rollno');
 			$query['data']=$this->testModel->viewAllDetails($roll_no);
 			$this->load->view('testViewAllDetails',$query);
+		}
+		public function searchData(){
+			$keyword=$this->input->post('keyword');
+			$query['data']=$this->testModel->searchData($keyword);
+			$this->load->view('testView',$query);
 		}
 	}
  ?>

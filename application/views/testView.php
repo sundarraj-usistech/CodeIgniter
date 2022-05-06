@@ -34,14 +34,19 @@
     		background-color: #b3d7ff;
     		border-color: #b3d7ff;
 		}
+		.btn-custom3 {
+    		color: #212529;
+    		background-color: #adb5bd;
+    		border-color: #adb5bd;
+		}
 	</style>
 </body>
 </html>
 <h3>Student Details</h3>
 <a href="http://localhost/CodeIgniter/index.php/testController/addDataView"><button class="btn btn-custom1">Add New Student</button></a>
 <br><br>
-<!-- <div class="method">
-	<form method="post" action="http://localhost/CodeIgniter/index.php/testController/index">
+<div class="method">
+	<!-- <form method="post" action="http://localhost/CodeIgniter/index.php/testController/index">
 			<label>Number of Rows to display</label>
 			<select name="per_page">
 				<option>5</option>
@@ -63,16 +68,15 @@
 		</select>
 		<button type="submit" name="submitsort" class="btn btn-success">SUBMIT</button>
 	</form> -->
-	<!-- <form method="post" action="http://localhost/CodeIgniter/index.php/testController/">
-		<label>Choose a Filter Method</label>
-		<select name="filter">
-			<option></option>
-			<option value="filterbyclass">Class</option>
-			<option value="filterbysection">section</option>
-		</select>
-		<button type="submit" name="submitfilter" class="btn btn-success">SUBMIT</button>
-	</form> -->
+	<form method="post" action="http://localhost/CodeIgniter/index.php/testController/searchData">
+		<input type="text" name="keyword" placeholder="Enter the name ">
+		<button type="submit" name="submitfilter" class="btn btn-custom1">SEARCH</button>
+	</form>
+	<form action="http://localhost/CodeIgniter/index.php/testController/">
+		<button type="submit" name="home" class="btn btn-custom3">HOME</button>
+	</form>
 </div>
+<br>
 <table width="100%" align="center" id="student_details" class="table table-bordered table-striped table-hover">
 	<tr>
 		<th>Roll No</th>

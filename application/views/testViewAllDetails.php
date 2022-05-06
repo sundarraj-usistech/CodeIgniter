@@ -10,6 +10,13 @@
 	<title>View Details</title>
 </head>
 <body>
+	<style type="text/css">
+		.btn-custom3 {
+    		color: #212529;
+    		background-color: #adb5bd;
+    		border-color: #adb5bd;
+		}
+	</style>
 	<form method="post" action="">
 		<table class="table table-bordered">
 			<?php 
@@ -30,6 +37,9 @@
 		<?php	}
 			?>			
 		</table>
+	</form>
+	<form action="http://localhost/CodeIgniter/index.php/testController/">
+		<button type="submit" name="home" class="btn btn-custom3">HOME</button>
 	</form>
 </body>
 </html>

@@ -111,34 +111,34 @@
 				redirect(base_url()."index.php/testController/index");
 			}
 		}
-		public function sortTable(){
-			$data=$this->input->post();
-			$sortOption=$data['sort'];
-			if ($sortOption=='sortrollnoasc') {
-				$query['data']=$this->testModel->sortRollNoAsc();
-				$this->load->view('testView',$query);
-			}
-			elseif ($sortOption=='sortrollnodesc'){
-				$query['data']=$this->testModel->sortRollNoDesc();
-				$this->load->view('testView',$query);	
-			}
-			elseif ($sortOption=='sortnameasc'){
-				$query['data']=$this->testModel->sortNameAsc();
-				$this->load->view('testView',$query);	
-			}
-			elseif ($sortOption=='sortnamedesc'){
-				$query['data']=$this->testModel->sortNameDesc();
-				$this->load->view('testView',$query);	
-			}
-			elseif ($sortOption=='sortclassasc'){
-				$query['data']=$this->testModel->sortClassAsc();
-				$this->load->view('testView',$query);	
-			}
-			elseif ($sortOption=='sortclassdesc'){
-				$query['data']=$this->testModel->sortClassDesc();
-				$this->load->view('testView',$query);	
-			}
-		}
+		// public function sortTable(){
+		// 	$data=$this->input->post();
+		// 	$sortOption=$data['sort'];
+		// 	if ($sortOption=='sortrollnoasc') {
+		// 		$query['data']=$this->testModel->sortRollNoAsc();
+		// 		$this->load->view('testView',$query);
+		// 	}
+		// 	elseif ($sortOption=='sortrollnodesc'){
+		// 		$query['data']=$this->testModel->sortRollNoDesc();
+		// 		$this->load->view('testView',$query);	
+		// 	}
+		// 	elseif ($sortOption=='sortnameasc'){
+		// 		$query['data']=$this->testModel->sortNameAsc();
+		// 		$this->load->view('testView',$query);	
+		// 	}
+		// 	elseif ($sortOption=='sortnamedesc'){
+		// 		$query['data']=$this->testModel->sortNameDesc();
+		// 		$this->load->view('testView',$query);	
+		// 	}
+		// 	elseif ($sortOption=='sortclassasc'){
+		// 		$query['data']=$this->testModel->sortClassAsc();
+		// 		$this->load->view('testView',$query);	
+		// 	}
+		// 	elseif ($sortOption=='sortclassdesc'){
+		// 		$query['data']=$this->testModel->sortClassDesc();
+		// 		$this->load->view('testView',$query);	
+		// 	}
+		// }
 		public function fileUploadView(){
 			$roll_no=$this->input->get('rollno');
 			$query['data']=$this->testModel->fileUploadView($roll_no);
@@ -231,6 +231,9 @@
 		public function logout(){
 			$this->session->unset_userdata(array('username'=>$username));
 			redirect(base_url()."index.php/testController/loginView");
+		}
+		public function signupView(){
+			$this->load->view('signupView');
 		}
 	}
  ?>

@@ -42,7 +42,10 @@
 </body>
 </html>
 <h3>Student Details</h3>
-<a href=base_url()."index.php/testController/index"><button class="btn btn-custom1">Add New Student</button></a>
+<div class="method">
+	<a href="<?= base_url(); ?>index.php/testController/index"><button class="btn btn-custom1">Add New Student</button></a>
+	<a href="<?= base_url(); ?>index.php/testController/logout"><button class="btn btn-custom1">LOGOUT</button></a>
+</div>
 <br><br>
 <div class="method">
 	<!-- <form method="post" action="http://localhost/CodeIgniter/index.php/testController/index">
@@ -71,18 +74,18 @@
 		<input type="text" name="keyword" placeholder="Enter the name ">
 		<button type="submit" name="submitfilter" class="btn btn-success">SEARCH</button>
 	</form>
-	<form action="http://localhost/CodeIgniter/index.php/testController/">
+	<form action="<?= base_url(); ?>index.php/testController/index">
 		<button type="submit" name="home" class="btn btn-custom3">HOME</button>
 	</form>
 </div>
 <br>
 <table width="100%" align="center" id="student_details" class="table table-bordered table-striped table-hover">
 	<tr>
-		<th>Roll No</th>
-		<th>Name</th>
-		<th>Class</th>
-		<th>Section</th>
-		<th>Action</th>
+		<th>ROLL NUMBER</th>
+		<th>NAME</th>
+		<th>CLASS</th>
+		<th>SECTION</th>
+		<th>ACTION</th>
 		<th>UPLOAD</th>
 	</tr>
 		<?php  

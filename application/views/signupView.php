@@ -7,7 +7,7 @@
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-	<title>Login</title>
+	<title>Sign Up</title>
 </head>
 <body>
 	<style type="text/css">
@@ -32,17 +32,18 @@
 			$data="";
 		}
 	?>
-	<form method="post" action="<?= base_url(); ?>index.php/testController/loginCheck">
+	<form method="post" action="<?= base_url(); ?>index.php/testController/signupCheck">
 		<table class="table table-bordered">
 					<tr><td><label>UserName</label></td>
 					<td><input type="text" name="username" required></td></tr>
 					<tr><td><label>Password</label></td>
-					<td><input type="password" name="password" required></td></tr>	
+					<td><input type="password" name="password" required></td></tr>
+					<tr><td><label>Confirm Password</label></td>
+					<td><input type="password" name="password" required></td></tr>
 		</table>
 		<div class="method">
-			<button type="submit" name="login" class="btn btn-success">LOGIN</button>
+			<button type="submit" name="login" class="btn btn-success">SIGNUP</button>
 	</form>
 		</div>
-		<p>Don't have an Account?.. SignUp Here &nbsp <a href="<?= base_url(); ?>index.php/testController/signupView"><button type="submit" name="signup" class="btn btn-primary">SIGNUP</button></a></p>
 </body>
 </html>

@@ -48,36 +48,36 @@
 			$query=$this->db->get("student_details");
 			return $query;
 		}
-		public function sortRollNoAsc(){
-			$this->db->order_by('student_roll_no');
-			$query=$this->db->get("student_details"); 
-			return $query;			
-		}
-		public function sortRollNoDesc(){
-			$this->db->order_by('student_roll_no','DESC');
-			$query=$this->db->get("student_details"); 
-			return $query;			
-		}
-		public function sortNameAsc(){
-			$this->db->order_by('student_name');
-			$query=$this->db->get("student_details"); 
-			return $query;			
-		}
-		public function sortNameDesc(){
-			$this->db->order_by('student_name','DESC');
-			$query=$this->db->get("student_details"); 
-			return $query;			
-		}
-		public function sortClassAsc(){
-			$this->db->order_by('student_class');
-			$query=$this->db->get("student_details"); 
-			return $query;			
-		}
-		public function sortClassDesc(){
-			$this->db->order_by('student_class','DESC');
-			$query=$this->db->get("student_details"); 
-			return $query;			
-		}
+		// public function sortRollNoAsc(){
+		// 	$this->db->order_by('student_roll_no');
+		// 	$query=$this->db->get("student_details"); 
+		// 	return $query;			
+		// }
+		// public function sortRollNoDesc(){
+		// 	$this->db->order_by('student_roll_no','DESC');
+		// 	$query=$this->db->get("student_details"); 
+		// 	return $query;			
+		// }
+		// public function sortNameAsc(){
+		// 	$this->db->order_by('student_name');
+		// 	$query=$this->db->get("student_details"); 
+		// 	return $query;			
+		// }
+		// public function sortNameDesc(){
+		// 	$this->db->order_by('student_name','DESC');
+		// 	$query=$this->db->get("student_details"); 
+		// 	return $query;			
+		// }
+		// public function sortClassAsc(){
+		// 	$this->db->order_by('student_class');
+		// 	$query=$this->db->get("student_details"); 
+		// 	return $query;			
+		// }
+		// public function sortClassDesc(){
+		// 	$this->db->order_by('student_class','DESC');
+		// 	$query=$this->db->get("student_details"); 
+		// 	return $query;			
+		// }
 		public function fileUploadView($roll_no){
 			$query=$this->db->get_where("student_details",array('student_roll_no'=>$roll_no));
 			return $query;

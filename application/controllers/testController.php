@@ -8,8 +8,10 @@
 			$this->load->database('student');
 			$this->load->model('testModel');
 			$this->load->helper('url');
+			$this->load->helper('form');
 			$this->load->library('pagination');
 			$this->load->library('upload');
+			$this->load->library('form_validation');
 			error_reporting(0);
 		}
 		public function index(){
@@ -59,6 +61,10 @@
 		}
 	 	public function addDataView(){                              
 			$this->load->view('testAddView');
+			$this->form_validation->set_rules('roll_no', 'Roll Number', 'required');
+			$this->form_validation->set_rules('name', 'Name', 'required');
+			$this->form_validation->set_rules('class', 'Class', 'required');
+			$this->form_validation->set_rules('section', 'Section', 'required');
 		}
 		public function addData(){
 			$data=$this->input->post();
@@ -70,7 +76,7 @@
 			);
 			$flag=$this->testModel->addData($new_data);
 			if ($flag) {
-				redirect('http://localhost/CodeIgniter/index.php/testController/');
+				redirect(base_url()."index.php/testController/index");
 			}
 		}
 		public function editDataView()	{
@@ -89,7 +95,7 @@
 			);
 			$flag=$this->testModel->editData($edited_data,$old_roll_no);
 			if ($flag) {
-				redirect('http://localhost/CodeIgniter/index.php/testController/');
+				redirect(base_url()."index.php/testController/index");
 			}
 		}
 		public function deleteDataView(){
@@ -102,7 +108,7 @@
 			$roll_no=$data['roll_no'];
 			$flag=$this->testModel->deleteData($roll_no);
 			if ($flag) {
-				redirect('http://localhost/CodeIgniter/index.php/testController/');
+				redirect(base_url()."index.php/testController/index");
 			}
 		}
 		public function sortTable(){
@@ -155,7 +161,7 @@
             	$data = array('upload_data' => $this->upload->data());
             	$flag=$this->testModel->fileUpload($roll_no,$docName);
             	if ($flag) {
-            		redirect('http://localhost/CodeIgniter/index.php/testController/');
+            		redirect(base_url()."index.php/testController/index");
             	}
             	else{
             		echo "Upload Error";
@@ -187,7 +193,7 @@
             	$data = array('upload_data' => $this->upload->data());
             	$flag=$this->testModel->imageUpload($roll_no,$imgName);
             	if ($flag) {
-            		redirect('http://localhost/CodeIgniter/index.php/testController/');
+            		redirect(base_url()."index.php/testController/index");
             	}
             	else{
             		echo "Upload Error";
@@ -206,6 +212,25 @@
 			$keyword=$this->input->post('keyword');
 			$query['data']=$this->testModel->searchData($keyword);
 			$this->load->view('testView',$query);
+		}
+		public function loginView(){
+			$this->load->view('loginView');
+		}
+		public function loginCheck(){
+			$data=$this->input->post();
+			$flag=$this->testModel->loginCheck($data);
+			if ($flag) {
+				$this->session->set_userdata(array('username'=>$username));
+				redirect(base_url()."index.php/testController/index");
+			}
+			else{
+				$error['data']="Your Account is invalid";
+				$this->load->view('loginView',$error);
+			}
+		}
+		public function logout(){
+			$this->session->unset_userdata(array('username'=>$username));
+			redirect(base_url()."index.php/testController/loginView");
 		}
 	}
  ?>

@@ -7,13 +7,12 @@
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-	<title>Add Details</title>
 </head>
 <style type="text/css">
 	.btn-custom1 {
     		color: #212529;
-    		background-color: #adb5bd;
-    		border-color: #adb5bd;
+    		background-color: #6b8504a3;
+    		border-color: #6b8504a3;
 	}
 	.btn-custom3 {
     		color: #212529;
@@ -25,22 +24,23 @@
 	<div class="alert alert-info">
     	<strong>You are about to create a New Person's Details !</strong>
   	</div>
-	<form method="post" action="http://localhost/CodeIgniter/index.php/testController/addData">
+	<form method="post" action="<?= base_url(); ?>index.php/testController/addData">
+		<?php echo validation_errors(); ?>  
+        <?php echo form_open('form'); ?>  
 		<table class="table table-bordered">
 					<tr><td><label>Roll Number</label></td>
-					<td><input type="text" name="roll_no"></td></tr>
+					<td><input type="text" name="roll_no" ></td></tr>
 					<tr><td><label>Name</label></td>
-					<td><input type="text" name="name"></td></tr>
+					<td><input type="text" name="name" ></td></tr>
 					<tr><td><label>Class</label></td>
-					<td><input type="text" name="class"></td></tr>
+					<td><input type="text" name="class" ></td></tr>
 					<tr><td><label>Section</label></td>
-					<td><input type="text" name="section"></td></tr>	
+					<td><input type="text" name="section" ></td></tr>	
 		</table>
 		<br>
-		<button type="submit" name="add" class="btn btn-custom1">ADD</button>
-	</form>
-	<form action="http://localhost/CodeIgniter/index.php/testController/">
-		<button type="submit" name="home" class="btn btn-custom3">HOME</button>
+		<div>
+			<button type="submit" name="add" class="btn btn-custom1">ADD</button>
+		</div>
 	</form>
 </body>
 </html>

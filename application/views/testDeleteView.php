@@ -20,7 +20,7 @@
 	<div class="alert alert-danger">
     	<strong>You are about to Delete this Person's Details !</strong>
   	</div>
-	<form method="post" action="http://localhost/CodeIgniter/index.php/testController/deleteData">
+	<form method="post" action="<?= base_url(); ?>index.php/testController/deleteData">
 		<table class="table table-bordered">
 			<?php 
 				foreach($data->result() as $row){ ?>
@@ -36,10 +36,10 @@
 			?>			
 		</table>
 		<br>
-		<button type="submit" name="delete" class="btn btn-danger">DELETE</button>
-	</form>
-	<form action="http://localhost/CodeIgniter/index.php/testController/">
-		<button type="submit" name="home" class="btn btn-custom3">HOME</button>
+		<div>
+			<button type="submit" name="delete" class="btn btn-danger">DELETE</button>
+
+		</div>
 	</form>
 </body>
 </html>

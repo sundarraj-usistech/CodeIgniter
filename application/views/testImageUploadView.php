@@ -22,7 +22,7 @@
 		}
 </style>
 <body>
-	<form method="post" action="http://localhost/CodeIgniter/index.php/testController/imageUpload" enctype="multipart/form-data">
+	<form method="post" action="<?= base_url(); ?>index.php/testController/imageUpload" enctype="multipart/form-data">
 		<table class="table table-bordered">
 			<?php 
 				foreach($data->result() as $row){ ?>
@@ -37,13 +37,12 @@
 		<?php	}
 			?>	
 			<tr><td><label>Choose the Image to Upload</label></td>
-			<td><input type="file" name="image"></td></tr>		
+			<td><input type="file" name="image" required></td></tr>		
 		</table>
 		<br>
-		<button type="submit" class="btn btn-custom2">UPLOAD</button>
-	</form>
-	<form action="http://localhost/CodeIgniter/index.php/testController/">
-		<button type="submit" name="home" class="btn btn-custom3">HOME</button>
+		<div>
+			<button type="submit" class="btn btn-custom2">UPLOAD</button>
+		</div>
 	</form>
 </body>
 </html>

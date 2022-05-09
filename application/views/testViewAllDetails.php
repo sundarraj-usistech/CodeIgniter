@@ -38,7 +38,7 @@
 			?>			
 		</table>
 	</form>
-	<form action="http://localhost/CodeIgniter/index.php/testController/">
+	<form action="<?= base_url(); ?>index.php/testController/index">
 		<button type="submit" name="home" class="btn btn-custom3">HOME</button>
 	</form>
 </body>

@@ -3,10 +3,6 @@
 		public function __construct(){
 			parent::__construct();
 		}
-		// public function viewData(){
-		// 	$query=$this->db->get("student_details"); 
-		// 	return $query;
-		// }
 		public function addData($new_data){
 			if ($this->db->insert("student_details",$new_data)){
 				return true;
@@ -46,9 +42,6 @@
 			return $query->num_rows();
 			$this->db->count_all_results();
 		}
-		// public function firstRecord($currentPage, $perPage){
-		// 	return ($currentPage-1)*$perPage;
-		// }
 		public function pagination($limit, $offset){
 			$this->db->limit($limit);
 			$this->db->offset($offset);
@@ -123,6 +116,16 @@
 			$this->db->like('student_name',$keyword);
 			$query=$this->db->get();
 			return $query;
+		}
+		public function loginCheck($data){
+			$username=$data['username'];
+			$password=$data['password'];
+			if ($username=='testuser' && $password=='Test@1234') {
+				return true;
+			}
+			else{
+				return false;
+			}
 		}
 	}
  ?>

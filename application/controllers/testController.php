@@ -183,7 +183,7 @@
 			$newImageName=round(microtime(true)) . '.' . end($tempName);
 			$config['upload_path']='./student_image/';
             $config['allowed_types']='jpeg|jpg|png';
-            $config['max_size']=2000;// PHP installation has its own limit, as specified in the php.ini file. Usually 2 MB (or 2048 KB) by default. (In this machine also the max limit is 2mb)
+            $config['max_size']=2000;// PHP installation has its own limit, as specified in the php.ini file. Usually 2 MB (or 2048 KB) by default.
 			$config['file_name']=$data['name'].$newImageName;
 			$config['remove_spaces']= FALSE;
 			$this->upload->initialize($config); 

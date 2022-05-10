@@ -211,6 +211,7 @@
 		public function searchData(){
 			$keyword=$this->input->post('keyword');
 			$query['data']=$this->testModel->searchData($keyword);
+			$query['flag']=true;
 			$this->load->view('testView',$query);
 		}
 		public function loginView(){
@@ -224,7 +225,7 @@
 				redirect(base_url()."index.php/testController/index");
 			}
 			else{
-				$error['data']="Your Account is invalid";
+				$error['data']="Your Account is invalid / Incorrect Password";
 				$this->load->view('loginView',$error);
 			}
 		}
@@ -234,6 +235,23 @@
 		}
 		public function signupView(){
 			$this->load->view('signupView');
+		}
+		public function signupInsert(){
+			$data=$this->input->post();
+			$insertData=array(
+				'username'=>$data['username'],
+				'password'=>$data['password']
+			);
+			if($data['password']==$data['confirmpassword']){
+				$flag=$this->testModel->signupInsert($insertData);
+				if ($flag) {
+					redirect(base_url()."index.php/testController/index");
+				}
+			}
+			else{
+				$error['data']="Password Mismatch";
+				$this->load->view('signupView',$error);
+			}
 		}
 	}
  ?>

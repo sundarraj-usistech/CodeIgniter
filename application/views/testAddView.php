@@ -19,28 +19,38 @@
     		background-color: #adb5bd;
     		border-color: #adb5bd;
 		}
+		.border-hide{
+			outline: none;
+			border: none;
+			background-color: #f7f7f775;
+		}
+		.container{
+			width: 50%;
+		}
 </style>
 <body>
-	<div class="alert alert-info">
+	<div class="container">
+		<div class="alert alert-info mt-5">
     	<strong>You are about to create a New Person's Details !</strong>
   	</div>
 	<form method="post" action="<?= base_url(); ?>index.php/testController/addData">
 		<?php echo validation_errors(); ?>  
         <?php echo form_open('form'); ?>  
-		<table class="table table-bordered">
+		<table class="table">
 					<tr><td><label>Roll Number</label></td>
-					<td><input type="text" name="roll_no" ></td></tr>
+					<td><input class="border-hide" type="text" name="roll_no" ></td></tr>
 					<tr><td><label>Name</label></td>
-					<td><input type="text" name="name" ></td></tr>
+					<td><input class="border-hide" type="text" name="name" ></td></tr>
 					<tr><td><label>Class</label></td>
-					<td><input type="text" name="class" ></td></tr>
+					<td><input class="border-hide" type="text" name="class" ></td></tr>
 					<tr><td><label>Section</label></td>
-					<td><input type="text" name="section" ></td></tr>	
+					<td><input class="border-hide" type="text" name="section" ></td></tr>	
 		</table>
 		<br>
 		<div>
 			<button type="submit" name="add" class="btn btn-custom1">ADD</button>
 		</div>
 	</form>
+	</div>
 </body>
 </html>

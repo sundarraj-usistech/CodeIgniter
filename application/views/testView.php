@@ -4,7 +4,8 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
@@ -39,71 +40,81 @@
     		border-color: #adb5bd;
 		}
 	</style>
+	<div class="container">
+				<h3 class="mt-5">Student Details</h3>
+		<br>
+		<div class="method">
+			<a href="<?= base_url(); ?>index.php/testController/addDataView"><button class="btn btn-custom1">Add New Student</button></a>
+			<a href="<?= base_url(); ?>index.php/testController/logout"><button class="btn btn-custom1">LOGOUT</button></a>
+		</div>
+		<br><br>
+		<div class="method">
+			<!-- <form method="post" action="http://localhost/CodeIgniter/index.php/testController/index">
+					<label>Number of Rows to display</label>
+					<select name="per_page">
+						<option>5</option>
+						<option>10</option>
+						<option>15</option>
+					</select>
+					<button  type="submit" name="submitrows" class="btn btn-success">SELECT</button>
+			</form> -->
+		<!-- 	<form method="post" action="http://localhost/CodeIgniter/index.php/testController/sortTable">
+				<label>Choose a Sorting Method</label>
+				<select name="sort">
+					<option></option>
+					<option value="sortrollnoasc">Sort by Roll Number in ascending</option>
+					<option value="sortrollnodesc">Sort by Roll Number in descending</option>
+					<option value="sortnameasc">Sort by Name in ascending</option>
+					<option value="sortnamedesc">Sort by Name in descending</option>
+					<option value="sortclassasc">Sort by Class in ascending</option>
+					<option value="sortclassdesc">Sort by Class in descending</option>
+				</select>
+				<button type="submit" name="submitsort" class="btn btn-success">SUBMIT</button>
+			</form> -->
+			<form method="post" action="<?= base_url(); ?>index.php/testController/searchData">
+				<input type="text" name="keyword" placeholder="Enter the name ">
+				<button type="submit" name="submitfilter" class="btn btn-success">SEARCH</button>
+			</form>
+			<?php 
+			if ($flag) {
+				?>
+				<form action="<?= base_url(); ?>index.php/testController/index">
+					<button type="submit" name="home" class="btn btn-custom3">HOME</button>
+				</form><?php	
+			}
+			?>
+		</div>
+		<br>
+		<table width="100%" align="center" id="student_details" class="table table-border table-striped table-hover">
+			<tr>
+				<th>ROLL NUMBER</th>
+				<th>NAME</th>
+				<th>CLASS</th>
+				<th>SECTION</th>
+				<th>ACTION</th>
+				<th>UPLOAD</th>
+			</tr>
+				<?php  
+		         foreach ($data->result() as $row)  
+		         {  
+		            ?><tr>  
+				        <td><?php echo $row->student_roll_no;?></td> 
+				        <td><?php echo $row->student_name;?></td>  
+				        <td><?php echo $row->student_class;?></td>
+				        <td><?php echo $row->student_section;?></td>
+				        <td><a href="http://localhost/CodeIgniter/index.php/testController/viewAllDetails?rollno=<?php echo $row->student_roll_no ;	?>"><button name="view" class="btn btn-primary">VIEW</button></a>
+				        	<a href="http://localhost/CodeIgniter/index.php/testController/editDataView?rollno=<?php echo $row->student_roll_no ; ?>"><button name="edit" class="btn btn-warning">EDIT</button></a>
+				        	<a href="http://localhost/CodeIgniter/index.php/testController/deleteDataView?rollno=<?php echo $row->student_roll_no; ?>"><button name="delete" class="btn btn-danger">DELETE</button></a></td>
+				        	<td><a href="http://localhost/CodeIgniter/index.php/testController/fileUploadView?rollno=<?php echo $row->student_roll_no ; ?>"><button name="fileupload" class="btn btn-info">FILE</button></a>
+				        		<a href="http://localhost/CodeIgniter/index.php/testController/imageUploadView?rollno=<?php echo $row->student_roll_no ; ?>"><button name="imageupload" class="btn btn-custom2">IMAGE</button></td>
+		            </tr>  
+		         <?php }  
+		         ?>
+		</table>
+		<br>
+		<div align="center"><?php echo $this->pagination->create_links(); ?></div>
+	</div>
+
 </body>
 </html>
-<h3>Student Details</h3>
-<div class="method">
-	<a href="<?= base_url(); ?>index.php/testController/index"><button class="btn btn-custom1">Add New Student</button></a>
-	<a href="<?= base_url(); ?>index.php/testController/logout"><button class="btn btn-custom1">LOGOUT</button></a>
-</div>
-<br><br>
-<div class="method">
-	<!-- <form method="post" action="http://localhost/CodeIgniter/index.php/testController/index">
-			<label>Number of Rows to display</label>
-			<select name="per_page">
-				<option>5</option>
-				<option>10</option>
-				<option>15</option>
-			</select>
-			<button  type="submit" name="submitrows" class="btn btn-success">SELECT</button>
-	</form> -->
-<!-- 	<form method="post" action="http://localhost/CodeIgniter/index.php/testController/sortTable">
-		<label>Choose a Sorting Method</label>
-		<select name="sort">
-			<option></option>
-			<option value="sortrollnoasc">Sort by Roll Number in ascending</option>
-			<option value="sortrollnodesc">Sort by Roll Number in descending</option>
-			<option value="sortnameasc">Sort by Name in ascending</option>
-			<option value="sortnamedesc">Sort by Name in descending</option>
-			<option value="sortclassasc">Sort by Class in ascending</option>
-			<option value="sortclassdesc">Sort by Class in descending</option>
-		</select>
-		<button type="submit" name="submitsort" class="btn btn-success">SUBMIT</button>
-	</form> -->
-	<form method="post" action="<?= base_url(); ?>index.php/testController/searchData">
-		<input type="text" name="keyword" placeholder="Enter the name ">
-		<button type="submit" name="submitfilter" class="btn btn-success">SEARCH</button>
-	</form>
-	<form action="<?= base_url(); ?>index.php/testController/index">
-		<button type="submit" name="home" class="btn btn-custom3">HOME</button>
-	</form>
-</div>
-<br>
-<table width="100%" align="center" id="student_details" class="table table-bordered table-striped table-hover">
-	<tr>
-		<th>ROLL NUMBER</th>
-		<th>NAME</th>
-		<th>CLASS</th>
-		<th>SECTION</th>
-		<th>ACTION</th>
-		<th>UPLOAD</th>
-	</tr>
-		<?php  
-         foreach ($data->result() as $row)  
-         {  
-            ?><tr>  
-		        <td><?php echo $row->student_roll_no;?></td> 
-		        <td><?php echo $row->student_name;?></td>  
-		        <td><?php echo $row->student_class;?></td>
-		        <td><?php echo $row->student_section;?></td>
-		        <td><a href="http://localhost/CodeIgniter/index.php/testController/viewAllDetails?rollno=<?php echo $row->student_roll_no ;	?>"><button name="view" class="btn btn-primary">VIEW</button></a>
-		        	<a href="http://localhost/CodeIgniter/index.php/testController/editDataView?rollno=<?php echo $row->student_roll_no ; ?>"><button name="edit" class="btn btn-warning">EDIT</button></a>
-		        	<a href="http://localhost/CodeIgniter/index.php/testController/deleteDataView?rollno=<?php echo $row->student_roll_no; ?>"><button name="delete" class="btn btn-danger">DELETE</button></a></td>
-		        	<td><a href="http://localhost/CodeIgniter/index.php/testController/fileUploadView?rollno=<?php echo $row->student_roll_no ; ?>"><button name="fileupload" class="btn btn-info">FILE</button></a>
-		        		<a href="http://localhost/CodeIgniter/index.php/testController/imageUploadView?rollno=<?php echo $row->student_roll_no ; ?>"><button name="imageupload" class="btn btn-custom2">IMAGE</button></td>
-            </tr>  
-         <?php }  
-         ?>
-</table>
-<br>
-<div align="center"><?php echo $this->pagination->create_links(); ?></div>
+

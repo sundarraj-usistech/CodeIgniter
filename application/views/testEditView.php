@@ -11,35 +11,50 @@
 </head>
 <body>
 	<style type="text/css">
+		td {
+  			text-align: center;
+ 			vertical-align: middle;
+		}
 		.btn-custom3 {
     		color: #212529;
     		background-color: #adb5bd;
     		border-color: #adb5bd;
 		}
+		.border-hide{
+			outline: none;
+			border: none;
+			background-color: #f7f7f775;
+		}
+		.container{
+			width: 30%;
+		}
 	</style>
-	<div class="alert alert-warning">
-    	<strong>You are about to Edit this Person's Details !</strong>
-  	</div>
-	<form method="post" action="<?= base_url(); ?>index.php/testController/editData">
-		<table class="table table-bordered">
-			<?php 
-				foreach($data->result() as $row){ ?>
-					<tr><td><input type="hidden" name="old_roll_no" value="<?php echo $row->student_roll_no ?>" readonly ></td></tr>
-					<tr><td><label>Roll Number</label></td>
-					<td><input type="text" name="roll_no" value="<?php echo $row->student_roll_no ?>" required></td></tr>
-					<tr><td><label>Name</label></td>
-					<td><input type="text" name="name" value="<?php echo $row->student_name ?>" required></td></tr>
-					<tr><td><label>Class</label></td>
-					<td><input type="text" name="class" value="<?php echo $row->student_class ?>" required></td></tr>
-					<tr><td><label>Section</label></td>
-					<td><input type="text" name="section" value="<?php echo $row->student_section ?>" required></td></tr>
-		<?php	}
-			?>			
-		</table>
-		<br>
-		<div>
-			<button type="submit" name="update" class="btn btn-warning">UPDATE</button>
-		</div>
-	</form>
+	<div class="container">
+		<div class="alert alert-warning mt-5">
+    		<strong>You are about to Edit this Person's Details !</strong>
+  		</div>
+		<form method="post" action="<?= base_url(); ?>index.php/testController/editData">
+			<table class="table table-borderless" align="center">
+				<?php 
+					foreach($data->result() as $row){ ?>
+						<tr><td><input class="border-hide" type="hidden" name="old_roll_no" value="<?php echo $row->student_roll_no ?>" readonly ></td></tr>
+						<tr><td><label>Roll Number</label></td>
+						<td><input class="border-hide" type="text" name="roll_no" value="<?php echo $row->student_roll_no ?>" required></td></tr>
+						<tr><td><label>Name</label></td>
+						<td><input class="border-hide" type="text" name="name" value="<?php echo $row->student_name ?>" required></td></tr>
+						<tr><td><label>Class</label></td>
+						<td><input class="border-hide" type="text" name="class" value="<?php echo $row->student_class ?>" required></td></tr>
+						<tr><td><label>Section</label></td>
+						<td><input class="border-hide" type="text" name="section" value="<?php echo $row->student_section ?>" required></td></tr>
+			<?php	}
+				?>			
+			</table>
+			<br>
+			<div align="center">
+				<button type="submit" name="update" class="btn btn-warning">UPDATE</button>
+			</div>
+		</form>
+	</div>
+	
 </body>
 </html>

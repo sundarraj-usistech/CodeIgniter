@@ -32,14 +32,14 @@
 			$data="";
 		}
 	?>
-	<form method="post" action="<?= base_url(); ?>index.php/testController/signupCheck">
+	<form method="post" action="<?= base_url(); ?>index.php/testController/signupInsert">
 		<table class="table table-bordered">
 					<tr><td><label>UserName</label></td>
 					<td><input type="text" name="username" required></td></tr>
 					<tr><td><label>Password</label></td>
 					<td><input type="password" name="password" required></td></tr>
 					<tr><td><label>Confirm Password</label></td>
-					<td><input type="password" name="password" required></td></tr>
+					<td><input type="password" name="confirmpassword" required></td></tr>
 		</table>
 		<div class="method">
 			<button type="submit" name="login" class="btn btn-success">SIGNUP</button>

@@ -120,7 +120,16 @@
 		public function loginCheck($data){
 			$username=$data['username'];
 			$password=$data['password'];
-			if ($username=='testuser' && $password=='Test@1234') {
+			$query=$this->db->get_where("users",array('username'=>$username,'password'=>$password));
+			if ($query->num_rows()==1) {
+				return true;
+			}
+			else{
+				return false;
+			}
+		}
+		public function signupInsert($insertData){
+			if ($this->db->insert("users",$insertData)){
 				return true;
 			}
 			else{

@@ -218,14 +218,22 @@
 			$this->load->view('loginView');
 		}
 		public function loginCheck(){
-			$data=$this->input->post();
+			$enteredData=$this->input->post();
+			$data=array(
+				'username'=>$enteredData['username'],
+				'password'=>$enteredData['password']
+			);
 			$flag=$this->testModel->loginCheck($data);
-			if ($flag) {
+			if ($flag=='a') {
 				$this->session->set_userdata(array('username'=>$username));
 				redirect(base_url()."index.php/testController/index");
 			}
-			else{
-				$error['data']="Your Account is invalid / Incorrect Password";
+			else if($flag=='b'){
+				$error['data']="Incorrect Password";
+				$this->load->view('loginView',$error);
+			}
+			else{ 
+				$error['data']="This Account does not exist";
 				$this->load->view('loginView',$error);
 			}
 		}

@@ -15,6 +15,7 @@
 			error_reporting(0);
 		}
 		public function index(){
+
 			$data=$this->input->post();
 			if($data){
 				$perPage=$data['per_page'];	
@@ -212,7 +213,13 @@
 			$keyword=$this->input->post('keyword');
 			$query['data']=$this->testModel->searchData($keyword);
 			$query['flag']=true;
-			$this->load->view('testView',$query);
+			if ($query['data']=='false') {
+				$query['err_msg']="No Data Found";
+				$this->load->view('testView',$query);
+			}
+			else{
+				$this->load->view('testView',$query);
+			}
 		}
 		public function loginView(){
 			$this->load->view('loginView');

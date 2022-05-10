@@ -115,7 +115,14 @@
 			$this->db->from('student_details');
 			$this->db->like('student_name',$keyword);
 			$query=$this->db->get();
-			return $query;
+			$rows=$query->row_array();
+			if ($rows) {
+				return $query;
+			}
+			else{
+				return 'false';
+			}
+				
 		}
 		public function loginCheck($data){
 			$username=$data['username'];

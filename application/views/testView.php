@@ -85,6 +85,18 @@
 			?>
 		</div>
 		<br>
+		<?php
+				if (isset($err_msg)) {
+			?>		<div class="alert alert-danger">
+		    			<strong><?php echo $err_msg; 
+		    				die();
+		    		?></strong>
+		  			</div>
+			<?php	}
+				else{
+					$msg="";
+				}
+			?>
 		<table width="100%" align="center" id="student_details" class="table table-border table-striped table-hover">
 			<tr>
 				<th>ROLL NUMBER</th>

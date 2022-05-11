@@ -81,6 +81,7 @@
 						<input type="text" name="keyword" placeholder="Enter the text here " required>
 						<button type="submit" name="submitfilter" class="btn btn-success">SEARCH</button>
 					</form>
+					<a href="<?= base_url(); ?>index.php/testController/pdfDownload"><button>PDF</button></a>
 					<?php 
 					if ($flag) {
 					?>

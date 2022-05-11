@@ -69,7 +69,7 @@
 				<button type="submit" name="submitsort" class="btn btn-success">SUBMIT</button>
 			</form> -->
 			<form method="post" action="<?= base_url(); ?>index.php/testController/searchData">
-				<input type="text" name="keyword" placeholder="Enter the name ">
+				<input type="text" name="keyword" placeholder="Enter the name " required>
 				<button type="submit" name="submitfilter" class="btn btn-success">SEARCH</button>
 			</form>
 			<?php 

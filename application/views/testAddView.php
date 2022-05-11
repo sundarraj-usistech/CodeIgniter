@@ -58,7 +58,6 @@
 				<button type="submit" name="add" class="btn btn-custom1">ADD</button>
 			</div>
 		</form>
-		<a href="javascript:window.history.go(-1);"><button name="back" class="btn btn-dark">BACK</button></a>
 	</div>
 </body>
 </html>

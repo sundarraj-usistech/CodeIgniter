@@ -83,11 +83,11 @@
 					</form>
 					<?php 
 					if ($flag) {
-						?>
+					?>
 	  					<a href="javascript:window.history.go(-1);"><button name="back" class="btn btn-dark">BACK</button></a>
 	  			<?php	
 					}
-					?>
+				?>
 				</div>
 				<br>
 				<?php

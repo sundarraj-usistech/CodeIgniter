@@ -48,12 +48,11 @@
 						<td><input class="border-hide" type="password" name="confirmpassword" required></td></tr>
 			</table>
 			<div align="center">
-				<button type="submit" name="login" class="btn btn-success">SIGNUP</button>
+				<button type="submit" name="login" class="btn btn-primary">SIGNUP</button>
 			</div>
 		</form>
-			<div>
-				<a href="javascript:window.history.go(-1);"><button name="back" class="btn btn-dark">BACK</button></a>
-			</div>
+		<br>
+		<p align="center"><b>Existing User &nbsp? &nbsp Login Here &nbsp</b><a href="<?= base_url(); ?>index.php/testController/loginView"><button type="submit" name="login" class="btn btn-success">LOGIN</button></a></p>
 	</div>
 </body>
 </html>

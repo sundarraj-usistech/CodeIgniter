@@ -23,13 +23,13 @@
 		}
 		.btn-custom1 {
     		color: #212529;
-    		background-color: #6b8504a3;
-    		border-color: #6b8504a3;
+    		background-color: #fd7e14;
+    		border-color: #fd7e14;
 		}
 		.btn-custom2 {
     		color: #212529;
-    		background-color: #b3d7ff;
-    		border-color: #b3d7ff;
+    		background-color: #3ddf9494;
+    		border-color: #3ddf9494;
 		}
 		.btn-custom3 {
     		color: #212529;
@@ -51,7 +51,7 @@
 				<br>
 				<div class="method">
 					<a href="<?= base_url(); ?>index.php/testController/addDataView"><button class="btn btn-custom1">Add New Student</button></a>
-					<a href="<?= base_url(); ?>index.php/testController/logout"><button class="btn btn-custom1">LOGOUT</button></a>
+					<a href="<?= base_url(); ?>index.php/testController/logout"><button class="btn btn-custom3">LOGOUT</button></a>
 				</div>
 				<br><br>
 				<div class="method">
@@ -133,6 +133,8 @@
 				</div>
 				<div align="center">
 					<a href="<?= base_url(); ?>index.php/testController/loginView"><button name="login" class="btn btn-success">LOGIN</button></a>
+					<br>
+					<b>New User &nbsp? &nbsp SignUp Here &nbsp</b><a href="<?= base_url(); ?>index.php/testController/signupView"><button type="submit" name="signup" class="btn btn-primary">SIGNUP</button></a>
 				</div>
 			</div>
 <?php 	} ?>	

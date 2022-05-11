@@ -15,8 +15,8 @@
 	}
 	.btn-custom1 {
     		color: #212529;
-    		background-color: #6b8504a3;
-    		border-color: #6b8504a3;
+    		background-color: #fd7e14;
+    		border-color: #fd7e14;
 	}
 	.btn-custom3 {
     		color: #212529;
@@ -38,8 +38,8 @@
 		<div class="alert alert-info mt-5" align="center">
     		<strong>You are about to create a New User Details !</strong>
   		</div>
-  		<div align="left">
-	  		<button><a href="javascript:window.history.go(-1);" title="BACK"><i class="fa-solid fa-arrow-left-long">&nbspBACK</i></a></button>
+  		<div align="right">
+	  		<a href="javascript:window.history.go(-1);"><button name="back" class="btn btn-dark">BACK</button></a>
 	  	</div>
 		<form method="post" action="<?= base_url(); ?>index.php/testController/addData">
 			<?php echo validation_errors(); ?>  

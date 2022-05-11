@@ -14,8 +14,8 @@
 	}
 	.btn-custom2 {
     		color: #212529;
-    		background-color: #b3d7ff;
-    		border-color: #b3d7ff;
+    		background-color: #3ddf9494;
+    		border-color: #3ddf9494;
 	}
 	.btn-custom3 {
 		color: #212529;
@@ -28,12 +28,12 @@
 			background-color: #f7f7f775;
 	}
 	.container{
-		width: 50%;
+		width: 30%;
 	}
 </style>
 <body>
 	<div class="container">
-		<div align="right">
+		<div align="right" class="mt-5">
 	  		<a href="javascript:window.history.go(-1);"><button name="back" class="btn btn-dark">BACK</button></a>
 	  	</div>
 		<form method="post" action="<?= base_url(); ?>index.php/testController/imageUpload" enctype="multipart/form-data">

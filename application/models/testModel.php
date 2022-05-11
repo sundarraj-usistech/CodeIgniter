@@ -114,6 +114,9 @@
 			$this->db->select('*');
 			$this->db->from('student_details');
 			$this->db->like('student_name',$keyword);
+			$this->db->or_like('student_roll_no',$keyword);
+			$this->db->or_like('student_class',$keyword);
+			$this->db->or_like('student_section',$keyword);
 			$query=$this->db->get();
 			$rows=$query->row_array();
 			if ($rows) {

@@ -50,7 +50,7 @@
 		</table>
 	</form>
 		<div align="center">
-			<form action="<?= base_url(); ?>index.php/testController/index">
+			<form action="<?= base_url(); ?>index.php/testController/view">
 				<button type="submit" name="home" class="btn btn-custom3">HOME</button>
 			</form>	
 		</div>

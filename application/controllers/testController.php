@@ -12,9 +12,13 @@
 			$this->load->library('pagination');
 			$this->load->library('upload');
 			$this->load->library('form_validation');
+			$this->load->library('session');
 			error_reporting(0);
 		}
 		public function index(){
+			$this->load->view('loginView');
+		}
+		public function view(){
 
 			$data=$this->input->post();
 			if($data){
@@ -30,7 +34,7 @@
 				$page=0;
 			}
 			$config = array();
-			$config['base_url']=base_url()."index.php/testController/index";
+			$config['base_url']=base_url()."index.php/testController/view";
 			$config['total_rows']=$this->testModel->countRows();
 			$config['per_page']=$perPage;
 			$config['uri_segment']=3;
@@ -77,7 +81,7 @@
 			);
 			$flag=$this->testModel->addData($new_data);
 			if ($flag) {
-				redirect(base_url()."index.php/testController/index");
+				redirect(base_url()."index.php/testController/view");
 			}
 		}
 		public function editDataView()	{
@@ -96,7 +100,7 @@
 			);
 			$flag=$this->testModel->editData($edited_data,$old_roll_no);
 			if ($flag) {
-				redirect(base_url()."index.php/testController/index");
+				redirect(base_url()."index.php/testController/view");
 			}
 		}
 		public function deleteDataView(){
@@ -109,7 +113,7 @@
 			$roll_no=$data['roll_no'];
 			$flag=$this->testModel->deleteData($roll_no);
 			if ($flag) {
-				redirect(base_url()."index.php/testController/index");
+				redirect(base_url()."index.php/testController/view");
 			}
 		}
 		// public function sortTable(){
@@ -162,7 +166,7 @@
             	$data = array('upload_data' => $this->upload->data());
             	$flag=$this->testModel->fileUpload($roll_no,$docName);
             	if ($flag) {
-            		redirect(base_url()."index.php/testController/index");
+            		redirect(base_url()."index.php/testController/view");
             	}
             	else{
             		echo "Upload Error";
@@ -194,7 +198,7 @@
             	$data = array('upload_data' => $this->upload->data());
             	$flag=$this->testModel->imageUpload($roll_no,$imgName);
             	if ($flag) {
-            		redirect(base_url()."index.php/testController/index");
+            		redirect(base_url()."index.php/testController/view");
             	}
             	else{
             		echo "Upload Error";
@@ -232,8 +236,8 @@
 			);
 			$flag=$this->testModel->loginCheck($data);
 			if ($flag=='a') {
-				$this->session->set_userdata(array('username'=>$username));
-				redirect(base_url()."index.php/testController/index");
+				$this->session->set_userdata('username',$enteredData['username']); 
+				redirect(base_url()."index.php/testController/view?name=".$enteredData['username']);
 			}
 			else if($flag=='b'){
 				$error['data']="Incorrect Password";
@@ -245,7 +249,7 @@
 			}
 		}
 		public function logout(){
-			$this->session->unset_userdata(array('username'=>$username));
+			$this->session->unset_userdata('username',$username);
 			redirect(base_url()."index.php/testController/loginView");
 		}
 		public function signupView(){
@@ -260,7 +264,8 @@
 			if($data['password']==$data['confirmpassword']){
 				$flag=$this->testModel->signupInsert($insertData);
 				if ($flag) {
-					redirect(base_url()."index.php/testController/index");
+					$this->session->set_userdata('username',$data['username']);
+					redirect(base_url()."index.php/testController/view?name=".$data['username']);
 				}
 			}
 			else{

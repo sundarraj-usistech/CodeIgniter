@@ -46,7 +46,7 @@
 				<h3 class="mt-5">Student Details</h3>
 				<br>
 				<div align="right">
-					Logged in as <b> <?php echo $this->session->userdata('username'); ?> </b>
+					Logged in as &nbsp<b> <?php echo $this->session->userdata('username'); ?> </b>
 				</div>
 				<br>
 				<div class="method">

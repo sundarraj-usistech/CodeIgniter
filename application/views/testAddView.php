@@ -37,6 +37,9 @@
 		<div class="alert alert-info mt-5" align="center">
     		<strong>You are about to create a New User Details !</strong>
   		</div>
+  		<div align="right">
+	  		<a href="javascript:window.history.go(-1);"><button name="back" class="btn btn-dark">BACK</button></a>
+	  	</div>
 		<form method="post" action="<?= base_url(); ?>index.php/testController/addData">
 			<?php echo validation_errors(); ?>  
 	        <?php echo form_open('form'); ?>  
@@ -55,6 +58,7 @@
 				<button type="submit" name="add" class="btn btn-custom1">ADD</button>
 			</div>
 		</form>
+		<a href="javascript:window.history.go(-1);"><button name="back" class="btn btn-dark">BACK</button></a>
 	</div>
 </body>
 </html>

@@ -84,9 +84,8 @@
 					<?php 
 					if ($flag) {
 						?>
-						<form action="<?= base_url(); ?>index.php/testController/view">
-							<button type="submit" name="home" class="btn btn-custom3">HOME</button>
-						</form><?php	
+	  					<a href="javascript:window.history.go(-1);"><button name="back" class="btn btn-dark">BACK</button></a>
+	  			<?php	
 					}
 					?>
 				</div>

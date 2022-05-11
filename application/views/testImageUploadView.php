@@ -48,7 +48,7 @@
 		<?php	}
 			?>	
 			<tr><td><label>Image to Upload</label></td>
-			<td><input class="border-hide" type="file" name="image" required></td></tr>		
+			<td><input class="border-hide" type="file" name="image" align="center" required></td></tr>		
 		</table>
 		<br>
 		<div align="center">

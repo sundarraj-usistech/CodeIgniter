@@ -70,7 +70,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | The $query_builder variables lets you determine whether or not to load
 | the query builder class.
 */
-$active_group = 'student';
+$active_group = 'CodeIgniter';
 $query_builder = TRUE;
 
 $db['default'] = array(
@@ -94,11 +94,11 @@ $db['default'] = array(
 	'failover' => array(),
 	'save_queries' => TRUE
 );
-$db['student'] = array(
+$db['CodeIgniter'] = array(
 	'dsn'	=> '',
 	'hostname' => 'localhost',
 	'username' => 'root',
-	'password' => 'root1',
+	'password' => '',
 	'database' => 'student',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',

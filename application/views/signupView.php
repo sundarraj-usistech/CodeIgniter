@@ -30,7 +30,7 @@
 	<div class="container">
 		<?php
 			if (isset($data)) {
-		?>		<div class="alert alert-warning mt-5">
+		?>		<div class="alert alert-warning mt-5" align="center">
 	    			<strong><?php echo $data; ?></strong>
 	  			</div>
 		<?php	}

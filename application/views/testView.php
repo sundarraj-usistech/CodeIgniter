@@ -40,95 +40,102 @@
 			width: 50%;
 		}
 	</style>
-	<div class="container">
+	<?php 
+		if ($this->session->userdata('username')) { ?>
+			<div class="container">
 				<h3 class="mt-5">Student Details</h3>
-		<br>
-		<div align="right">
-		<?php 
-			if ($this->session->userdata('username')) { ?>
-				<p>Logged in as <b> <?php echo $this->session->userdata('username'); ?> </b></p>
-		<?php	}
-				else{ ?>
-					<p class="fw-bold">Not Logged in..</p>
-			<?php } ?>
-		</div>
-		<br>
-		<div class="method">
-			<a href="<?= base_url(); ?>index.php/testController/addDataView"><button class="btn btn-custom1">Add New Student</button></a>
-			<a href="<?= base_url(); ?>index.php/testController/logout"><button class="btn btn-custom1">LOGOUT</button></a>
-		</div>
-		<br><br>
-		<div class="method">
-			<!-- <form method="post" action="http://localhost/CodeIgniter/index.php/testController/index">
-					<label>Number of Rows to display</label>
-					<select name="per_page">
-						<option>5</option>
-						<option>10</option>
-						<option>15</option>
-					</select>
-					<button  type="submit" name="submitrows" class="btn btn-success">SELECT</button>
-			</form> -->
-	   <!-- <form method="post" action="http://localhost/CodeIgniter/index.php/testController/sortTable">
-				<label>Choose a Sorting Method</label>
-				<select name="sort">
-					<option></option>
-					<option value="sortrollnoasc">Sort by Roll Number in ascending</option>
-					<option value="sortrollnodesc">Sort by Roll Number in descending</option>
-					<option value="sortnameasc">Sort by Name in ascending</option>
-					<option value="sortnamedesc">Sort by Name in descending</option>
-					<option value="sortclassasc">Sort by Class in ascending</option>
-					<option value="sortclassdesc">Sort by Class in descending</option>
-				</select>
-				<button type="submit" name="submitsort" class="btn btn-success">SUBMIT</button>
-			</form> -->
-			<form method="post" action="<?= base_url(); ?>index.php/testController/searchData">
-				<input type="text" name="keyword" placeholder="Enter the name " required>
-				<button type="submit" name="submitfilter" class="btn btn-success">SEARCH</button>
-			</form>
-			<?php 
-			if ($flag) {
-				?>
-				<form action="<?= base_url(); ?>index.php/testController/view">
-					<button type="submit" name="home" class="btn btn-custom3">HOME</button>
-				</form><?php	
-			}
-			?>
-		</div>
-		<br>
-		<?php
-				if (isset($err_msg)) {
-			?>		<div class="alert alert-danger mt-5">
-		    			<strong><?php echo $err_msg; 
-		    				die();
-		    		?></strong>
-		  			</div>
-			<?php	}
-				else{
-					$msg="";
-				}
-			?>
-		<table align="center" id="student_details" class="table table-border table-striped table-hover">
-			<tr>
-				<th>NAME</th>
-				<th>ACTION</th>
-				<th>UPLOAD</th>
-			</tr>
-				<?php  
-		         foreach ($data->result() as $row)  
-		         {  
-		            ?><tr>
-				        <td><?php echo $row->student_name;?></td>  
-				        <td><a href="<?= base_url(); ?>index.php/testController/viewAllDetails?rollno=<?php echo $row->student_roll_no ; ?>"><button name="view" class="btn btn-primary">VIEW</button></a>
-				        	<a href="<?= base_url(); ?>index.php/testController/editDataView?rollno=<?php echo $row->student_roll_no ; ?>"><button name="edit" class="btn btn-warning">EDIT</button></a>
-				        	<a href="<?= base_url(); ?>index.php/testController/deleteDataView?rollno=<?php echo $row->student_roll_no; ?>"><button name="delete" class="btn btn-danger">DELETE</button></a></td>
-				        	<td><a href="<?= base_url(); ?>index.php/testController/fileUploadView?rollno=<?php echo $row->student_roll_no ; ?>"><button name="fileupload" class="btn btn-info">FILE</button></a>
-				        		<a href="<?= base_url(); ?>index.php/testController/imageUploadView?rollno=<?php echo $row->student_roll_no ; ?>"><button name="imageupload" class="btn btn-custom2">IMAGE</button></td>
-		            </tr>  
-		         <?php }  
-		         ?>
-		</table>
-		<br>
-		<div align="center"><?php echo $this->pagination->create_links(); ?></div>
+				<br>
+				<div align="right">
+					Logged in as <b> <?php echo $this->session->userdata('username'); ?> </b>
+				</div>
+				<br>
+				<div class="method">
+					<a href="<?= base_url(); ?>index.php/testController/addDataView"><button class="btn btn-custom1">Add New Student</button></a>
+					<a href="<?= base_url(); ?>index.php/testController/logout"><button class="btn btn-custom1">LOGOUT</button></a>
+				</div>
+				<br><br>
+				<div class="method">
+					<!-- <form method="post" action="http://localhost/CodeIgniter/index.php/testController/index">
+							<label>Number of Rows to display</label>
+							<select name="per_page">
+								<option>5</option>
+								<option>10</option>
+								<option>15</option>
+							</select>
+							<button  type="submit" name="submitrows" class="btn btn-success">SELECT</button>
+					</form> -->
+			   <!-- <form method="post" action="http://localhost/CodeIgniter/index.php/testController/sortTable">
+						<label>Choose a Sorting Method</label>
+						<select name="sort">
+							<option></option>
+							<option value="sortrollnoasc">Sort by Roll Number in ascending</option>
+							<option value="sortrollnodesc">Sort by Roll Number in descending</option>
+							<option value="sortnameasc">Sort by Name in ascending</option>
+							<option value="sortnamedesc">Sort by Name in descending</option>
+							<option value="sortclassasc">Sort by Class in ascending</option>
+							<option value="sortclassdesc">Sort by Class in descending</option>
+						</select>
+						<button type="submit" name="submitsort" class="btn btn-success">SUBMIT</button>
+					</form> -->
+					<form method="post" action="<?= base_url(); ?>index.php/testController/searchData">
+						<input type="text" name="keyword" placeholder="Enter the name " required>
+						<button type="submit" name="submitfilter" class="btn btn-success">SEARCH</button>
+					</form>
+					<?php 
+					if ($flag) {
+						?>
+						<form action="<?= base_url(); ?>index.php/testController/view">
+							<button type="submit" name="home" class="btn btn-custom3">HOME</button>
+						</form><?php	
+					}
+					?>
+				</div>
+				<br>
+				<?php
+						if (isset($err_msg)) {
+					?>		<div class="alert alert-danger mt-5" align="center">
+				    			<strong><?php echo $err_msg; 
+				    				die();
+				    		?></strong>
+				  			</div>
+					<?php	}
+						else{
+							$msg="";
+						}
+					?>
+				<table align="center" id="student_details" class="table table-border table-striped table-hover">
+					<tr>
+						<th>NAME</th>
+						<th>ACTION</th>
+						<th>UPLOAD</th>
+					</tr>
+						<?php  
+				         foreach ($data->result() as $row)  
+				         {  
+				            ?><tr>
+						        <td><?php echo $row->student_name;?></td>  
+						        <td><a href="<?= base_url(); ?>index.php/testController/viewAllDetails?rollno=<?php echo $row->student_roll_no ; ?>"><button name="view" class="btn btn-primary">VIEW</button></a>
+						        	<a href="<?= base_url(); ?>index.php/testController/editDataView?rollno=<?php echo $row->student_roll_no ; ?>"><button name="edit" class="btn btn-warning">EDIT</button></a>
+						        	<a href="<?= base_url(); ?>index.php/testController/deleteDataView?rollno=<?php echo $row->student_roll_no; ?>"><button name="delete" class="btn btn-danger">DELETE</button></a></td>
+						        	<td><a href="<?= base_url(); ?>index.php/testController/fileUploadView?rollno=<?php echo $row->student_roll_no ; ?>"><button name="fileupload" class="btn btn-info">FILE</button></a>
+						        		<a href="<?= base_url(); ?>index.php/testController/imageUploadView?rollno=<?php echo $row->student_roll_no ; ?>"><button name="imageupload" class="btn btn-custom2">IMAGE</button></td>
+				            </tr>  
+				         <?php }  
+				         ?>
+				</table>
+				<br>
+				<div align="center"><?php echo $this->pagination->create_links(); ?></div>
+<?php	}
+		else{ ?>
+			<div class="container" align="center">
+				<div class="alert alert-danger mt-5">
+					<strong><?php echo "Not Logged in..!"?></strong>
+				</div>
+				<div align="center">
+					<a href="<?= base_url(); ?>index.php/testController/loginView"><button name="login" class="btn btn-success">LOGIN</button></a>
+				</div>
+			</div>
+<?php 	} ?>	
 	</div>
 
 </body>

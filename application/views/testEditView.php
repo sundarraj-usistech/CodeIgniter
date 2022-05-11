@@ -28,7 +28,7 @@
 		}
 	</style>
 	<div class="container">
-		<div class="alert alert-warning mt-5">
+		<div class="alert alert-warning mt-5" align="center">
     		<strong>You are about to Edit this Person's Details !</strong>
   		</div>
 		<form method="post" action="<?= base_url(); ?>index.php/testController/editData">

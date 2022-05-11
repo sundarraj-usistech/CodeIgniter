@@ -28,7 +28,7 @@
 		}
 	</style>
 	<div class="container">
-		<div class="alert alert-danger mt-5">
+		<div class="alert alert-danger mt-5" align="center">
     		<strong>You are about to Delete this Person's Details !</strong>
 	  	</div>
 		<form method="post" action="<?= base_url(); ?>index.php/testController/deleteData">

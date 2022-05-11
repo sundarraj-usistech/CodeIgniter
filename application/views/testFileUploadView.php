@@ -43,7 +43,7 @@
 		<?php	}
 			?>	
 			<tr><td><label>File to Upload</label></td>
-			<td><input class="border-hide" type="file" name="file" required></td></tr>		
+			<td><input class="border-hide" type="file" name="file" align="center" required></td></tr>		
 		</table>
 		<br>
 		<div align="center">

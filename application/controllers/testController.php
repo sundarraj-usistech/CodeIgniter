@@ -19,7 +19,6 @@
 			$this->load->view('loginView');
 		}
 		public function view(){
-
 			$data=$this->input->post();
 			if($data){
 				$perPage=$data['per_page'];	
@@ -237,7 +236,7 @@
 			$flag=$this->testModel->loginCheck($data);
 			if ($flag=='a') {
 				$this->session->set_userdata('username',$enteredData['username']); 
-				redirect(base_url()."index.php/testController/view?name=".$enteredData['username']);
+				redirect(base_url()."index.php/testController/view");
 			}
 			else if($flag=='b'){
 				$error['data']="Incorrect Password";
@@ -265,7 +264,7 @@
 				$flag=$this->testModel->signupInsert($insertData);
 				if ($flag) {
 					$this->session->set_userdata('username',$data['username']);
-					redirect(base_url()."index.php/testController/view?name=".$data['username']);
+					redirect(base_url()."index.php/testController/view?name=".$sessionData['username']);
 				}
 			}
 			else{

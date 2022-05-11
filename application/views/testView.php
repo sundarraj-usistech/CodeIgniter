@@ -36,15 +36,17 @@
     		background-color: #adb5bd;
     		border-color: #adb5bd;
 		}
+		.container{
+			width: 50%;
+		}
 	</style>
 	<div class="container">
 				<h3 class="mt-5">Student Details</h3>
 		<br>
 		<div align="right">
 		<?php 
-			$name=$this->input->get('name');
-			if (isset($name)) { ?>
-				<p>Logged in as <b> <?php echo $name; ?> </b></p>
+			if ($this->session->userdata('username')) { ?>
+				<p>Logged in as <b> <?php echo $this->session->userdata('username'); ?> </b></p>
 		<?php	}
 				else{ ?>
 					<p class="fw-bold">Not Logged in..</p>
@@ -66,7 +68,7 @@
 					</select>
 					<button  type="submit" name="submitrows" class="btn btn-success">SELECT</button>
 			</form> -->
-		<!-- 	<form method="post" action="http://localhost/CodeIgniter/index.php/testController/sortTable">
+	   <!-- <form method="post" action="http://localhost/CodeIgniter/index.php/testController/sortTable">
 				<label>Choose a Sorting Method</label>
 				<select name="sort">
 					<option></option>
@@ -107,22 +109,16 @@
 			?>
 		<table align="center" id="student_details" class="table table-border table-striped table-hover">
 			<tr>
-				<th>ROLL NUMBER</th>
 				<th>NAME</th>
-				<th>CLASS</th>
-				<th>SECTION</th>
 				<th>ACTION</th>
 				<th>UPLOAD</th>
 			</tr>
 				<?php  
 		         foreach ($data->result() as $row)  
 		         {  
-		            ?><tr>  
-				        <td><?php echo $row->student_roll_no;?></td> 
+		            ?><tr>
 				        <td><?php echo $row->student_name;?></td>  
-				        <td><?php echo $row->student_class;?></td>
-				        <td><?php echo $row->student_section;?></td>
-				        <td><a href="<?= base_url(); ?>index.php/testController/viewAllDetails?rollno=<?php echo $row->student_roll_no ;	?>"><button name="view" class="btn btn-primary">VIEW</button></a>
+				        <td><a href="<?= base_url(); ?>index.php/testController/viewAllDetails?rollno=<?php echo $row->student_roll_no ; ?>"><button name="view" class="btn btn-primary">VIEW</button></a>
 				        	<a href="<?= base_url(); ?>index.php/testController/editDataView?rollno=<?php echo $row->student_roll_no ; ?>"><button name="edit" class="btn btn-warning">EDIT</button></a>
 				        	<a href="<?= base_url(); ?>index.php/testController/deleteDataView?rollno=<?php echo $row->student_roll_no; ?>"><button name="delete" class="btn btn-danger">DELETE</button></a></td>
 				        	<td><a href="<?= base_url(); ?>index.php/testController/fileUploadView?rollno=<?php echo $row->student_roll_no ; ?>"><button name="fileupload" class="btn btn-info">FILE</button></a>

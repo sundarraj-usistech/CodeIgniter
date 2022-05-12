@@ -272,30 +272,18 @@
 				$this->load->view('signupView',$error);
 			}
 		}
-		function pdfDownload(){
-	        $this->load->library('pdf');
-	        // $query=$this->db->get('student_details');
-	        $html = $this->load->view('pdfView');
-	        $this->pdf->createPDF($html, 'mypdf', false);
-	    // // $this->load->view('welcome_message');
-        
-     //    // Get output html
-     //    $html = $this->output->get_output();
-        
-     //    // Load pdf library
-     //    $this->load->library('pdf');
-        
-     //    // Load HTML content
-     //    $this->dompdf->loadHtml($html);
-        
-     //    // (Optional) Setup the paper size and orientation
-     //    $this->dompdf->setPaper('A4', 'landscape');
-        
-     //    // Render the HTML as PDF
-     //    $this->dompdf->render();
-        
-     //    // Output the generated PDF (1 = download and 0 = preview)
-     //    $this->dompdf->stream("welcome.pdf", array("Attachment"=>0));
-    	}
+		function GeneratePdf(){
+		$query['data']=$this->testModel->pdfView();
+		$this->load->view('pdfView',$query);
+		
+		$html = $this->output->get_output();
+        		// Load pdf library
+		$this->load->library('pdf');
+		$this->pdf->loadHtml($html);
+		$this->pdf->setPaper('A4', 'landscape');
+		$this->pdf->render();
+		// Output the generated PDF (1 = download and 0 = preview)
+		$this->pdf->stream("html_contents.pdf", array("Attachment"=> 0));		
+	}
 	}
  ?>

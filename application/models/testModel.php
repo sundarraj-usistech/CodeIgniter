@@ -154,6 +154,10 @@
 				return false;
 			}
 		}
+		public function pdfView(){
+			$query=$this->db->get('student_details');
+			return $query;
+		}
 	}
  ?>
  

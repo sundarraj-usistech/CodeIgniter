@@ -36,6 +36,11 @@
     		background-color: #adb5bd;
     		border-color: #adb5bd;
 		}
+		.btn-custom4{
+			color: #212529;
+    		background-color: #dc3535ed;
+    		border-color: #dc3535ed;
+		}
 		.container{
 			width: 50%;
 		}
@@ -81,7 +86,7 @@
 						<input type="text" name="keyword" placeholder="Enter the text here " required>
 						<button type="submit" name="submitfilter" class="btn btn-success">SEARCH</button>
 					</form>
-					<a href="<?= base_url(); ?>index.php/testController/pdfDownload"><button>PDF</button></a>
+					<a target="_blank" href="<?= base_url(); ?>index.php/testController/GeneratePdf"><button name="pdf" class="btn btn-custom4">PDF</button></a>
 					<?php 
 					if ($flag) {
 					?>

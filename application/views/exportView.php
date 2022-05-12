@@ -16,6 +16,12 @@
         th,td{
             text-align: center;
         }
+        th{
+            height: 50px;
+        }
+        td{
+            height: 40px;
+        }
     </style>
             <h3>Student Details</h3>
             <table align="center" id="student_details" class="table table-border table-striped table-hover" width="100%">
@@ -34,8 +40,8 @@
                             <td><?php echo $row->student_name;?></td>  
                             <td><?php echo $row->student_class;?></td>
                             <td><?php echo $row->student_section;?></td>
-                            <td><a href="/CodeIgniter/student_document/<?php echo $row->student_document; ?>" target="_blank"><?php echo $row->student_document;?></a></td>
-                            <td><a href="/CodeIgniter/student_image/<?php echo $row->student_image; ?>" target="_blank"><?php echo $row->student_image;?></a></td>
+                            <td><a href="/CodeIgniter/student_document/<?php echo $row->student_document; ?>" target="_blank" style="text-decoration: none;"><?php echo $row->student_document;?></a></td>
+                            <td><a href="/CodeIgniter/student_image/<?php echo $row->student_image; ?>" target="_blank" style="text-decoration: none;"><?php echo $row->student_image;?></a></td>
                         </tr>  
                      <?php }  
                      ?>

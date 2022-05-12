@@ -50,7 +50,7 @@
 		</form>
 			</div>
 			<br>
-			<p align="center"><b>New User &nbsp? &nbsp SignUp Here &nbsp</b><a href="<?= base_url(); ?>index.php/testController/signupView"><button type="submit" name="signup" class="btn btn-primary">SIGNUP</button></a></p>
+			<p align="center"><b>New User &nbsp? &nbsp SignUp Here &nbsp</b><a href="<?= base_url(); ?>index.php/testController/signupView" style="text-decoration: none;"><button type="submit" name="signup" class="btn btn-primary">SIGNUP</button></a></p>
 	</div>
 </body>
 </html>

@@ -290,8 +290,6 @@
 		}
 		public function GenerateExcel(){
 			if ($this->session->userdata('username')) { 	
-				echo "hello";
-				exit();
 				$query['data']=$this->testModel->exportView();
 				$this->load->view('exportView',$query);
 				$this->load->library('Excel');

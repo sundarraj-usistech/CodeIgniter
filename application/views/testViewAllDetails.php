@@ -41,10 +41,27 @@
 					<tr><td><label>Section</label></td>
 					<td><input class="border-hide" type="text" name="section" value="<?php echo $row->student_section ?>" readonly></td></tr>
 					<tr><td><label>Document</label></td>
-					<td><input  class="border-hide"type="text" name="file" value="<?php echo $row->student_document ?>" readonly><a href="\CodeIgniter\student_document\<?php echo $row->student_document; ?>" target="_blank"><span class="btn btn-primary">VIEW</span></a></td></tr>
+					<td>
+						<?php
+							if ($row->student_document==null) { ?>
+								<input  class="border-hide"type="text" name="file" value="<?php echo "No Document found" ?>" readonly>
+					<?php	}
+							else{ ?>
+								<input  class="border-hide"type="text" name="file" value="<?php echo $row->student_document ?>" readonly><a href="\CodeIgniter\student_document\<?php echo $row->student_document; ?>" target="_blank"><span class="btn btn-primary">VIEW</span></a>
+					<?php	}
+						?>
+					</td></tr>
 					<tr><td><label>Image</label></td>
-					<td><input class="border-hide" type="text" name="image" value="<?php echo $row->student_image ?>" readonly><a href="\CodeIgniter\student_image\<?php echo $row->student_image; ?>" target="_blank"><span class="btn btn-primary">VIEW</span></a></td></tr>
-
+					<td>
+						<?php
+							if ($row->student_image==null) { ?>
+								<input  class="border-hide"type="text" name="image" value="<?php echo "No Image found" ?>" readonly>
+					<?php	}
+							else{ ?>
+								<input  class="border-hide"type="text" name="image" value="<?php echo $row->student_image ?>" readonly><a href="\CodeIgniter\student_image\<?php echo $row->student_image; ?>" target="_blank"><span class="btn btn-primary">VIEW</span></a>
+					<?php	}
+						?>
+					<td></tr>
 		<?php	}
 			?>			
 		</table>

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,7 +40,7 @@
     		<strong>You are about to create a New User Details !</strong>
   		</div>
   		<div align="right">
-	  		<a href="javascript:window.history.go(-1);"><button name="back" class="btn btn-dark">BACK</button></a>
+	  		<a href="javascript:window.history.go(-1);" style="text-decoration: none;"><button name="back" class="btn btn-dark">BACK</button></a>
 	  	</div>
 	  	<!-- <nav class="pb-5" style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
 	      <ol class="breadcrumb">
@@ -52,13 +53,13 @@
 	        <?php echo form_open('form'); ?>  
 			<table class="table table-borderless mt-5" align="center">
 						<tr><td><label>Roll Number</label></td>
-						<td><input class="border-hide" type="text" name="roll_no" ></td></tr>
+						<td><input class="border-hide" type="text" name="roll_no" required></td></tr>
 						<tr><td><label>Name</label></td>
-						<td><input class="border-hide" type="text" name="name" ></td></tr>
+						<td><input class="border-hide" type="text" name="name" required></td></tr>
 						<tr><td><label>Class</label></td>
-						<td><input class="border-hide" type="text" name="class" ></td></tr>
+						<td><input class="border-hide" type="text" name="class" required></td></tr>
 						<tr><td><label>Section</label></td>
-						<td><input class="border-hide" type="text" name="section" ></td></tr>	
+						<td><input class="border-hide" type="text" name="section" required></td></tr>	
 			</table>
 			<br>
 			<div align="center">

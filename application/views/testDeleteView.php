@@ -32,7 +32,7 @@
     		<strong>You are about to Delete this Person's Details !</strong>
 	  	</div>
 	  	<div align="right">
-	  		<a href="javascript:window.history.go(-1);"><button name="back" class="btn btn-dark">BACK</button></a>
+	  		<a href="javascript:window.history.go(-1);" style="text-decoration: none;"><button name="back" class="btn btn-dark">BACK</button></a>
 	  	</div>
 		<form method="post" action="<?= base_url(); ?>index.php/testController/deleteData">
 			<table class="table table-borderless mt-5" align="center">

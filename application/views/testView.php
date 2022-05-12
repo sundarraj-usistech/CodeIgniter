@@ -55,8 +55,8 @@
 				</div>
 				<br>
 				<div class="method">
-					<a href="<?= base_url(); ?>index.php/testController/addDataView"><button class="btn btn-custom1">Add New Student</button></a>
-					<a href="<?= base_url(); ?>index.php/testController/logout"><button class="btn btn-custom3">LOGOUT</button></a>
+					<a href="<?= base_url(); ?>index.php/testController/addDataView" style="text-decoration: none;"><button class="btn btn-custom1">Add New Student</button></a>
+					<a href="<?= base_url(); ?>index.php/testController/logout" style="text-decoration: none;"><button class="btn btn-custom3">LOGOUT</button></a>
 				</div>
 				<br><br>
 				<div class="method">
@@ -86,11 +86,17 @@
 						<input type="text" name="keyword" placeholder="Enter the text here " required>
 						<button type="submit" name="submitfilter" class="btn btn-success">SEARCH</button>
 					</form>
-					<a target="_blank" href="<?= base_url(); ?>index.php/testController/GeneratePdf"><button name="pdf" class="btn btn-custom4">PDF</button></a>
+					<?php 
+					if ($flag==null) {
+					?>
+						<a target="_blank" href="<?= base_url(); ?>index.php/testController/GeneratePdf" style="text-decoration: none;"><button name="pdf" class="btn btn-custom4">PDF</button></a>
+					<?php	
+					}
+					?>
 					<?php 
 					if ($flag) {
 					?>
-	  					<a href="javascript:window.history.go(-1);"><button name="back" class="btn btn-dark">BACK</button></a>
+	  					<a href="javascript:window.history.go(-1);" style="text-decoration: none;"><button name="back" class="btn btn-dark">BACK</button></a>
 	  			<?php	
 					}
 				?>
@@ -119,11 +125,11 @@
 				         {  
 				            ?><tr>
 						        <td><?php echo $row->student_name;?></td>  
-						        <td><a href="<?= base_url(); ?>index.php/testController/viewAllDetails?rollno=<?php echo $row->student_roll_no ; ?>"><button name="view" class="btn btn-primary">VIEW</button></a>
-						        	<a href="<?= base_url(); ?>index.php/testController/editDataView?rollno=<?php echo $row->student_roll_no ; ?>"><button name="edit" class="btn btn-warning">EDIT</button></a>
-						        	<a href="<?= base_url(); ?>index.php/testController/deleteDataView?rollno=<?php echo $row->student_roll_no; ?>"><button name="delete" class="btn btn-danger">DELETE</button></a></td>
-						        	<td><a href="<?= base_url(); ?>index.php/testController/fileUploadView?rollno=<?php echo $row->student_roll_no ; ?>"><button name="fileupload" class="btn btn-info">FILE</button></a>
-						        		<a href="<?= base_url(); ?>index.php/testController/imageUploadView?rollno=<?php echo $row->student_roll_no ; ?>"><button name="imageupload" class="btn btn-custom2">IMAGE</button></td>
+						        <td><a href="<?= base_url(); ?>index.php/testController/viewAllDetails?rollno=<?php echo $row->student_roll_no ; ?>" style="text-decoration: none;"><button name="view" class="btn btn-primary">VIEW</button></a>
+						        	<a href="<?= base_url(); ?>index.php/testController/editDataView?rollno=<?php echo $row->student_roll_no ; ?>" style="text-decoration: none;"><button name="edit" class="btn btn-warning">EDIT</button></a>
+						        	<a href="<?= base_url(); ?>index.php/testController/deleteDataView?rollno=<?php echo $row->student_roll_no; ?>" style="text-decoration: none;"><button name="delete" class="btn btn-danger">DELETE</button></a></td>
+						        	<td><a href="<?= base_url(); ?>index.php/testController/fileUploadView?rollno=<?php echo $row->student_roll_no ; ?>" style="text-decoration: none;"><button name="fileupload" class="btn btn-info">FILE</button></a>
+						        		<a href="<?= base_url(); ?>index.php/testController/imageUploadView?rollno=<?php echo $row->student_roll_no ; ?>" style="text-decoration: none;"><button name="imageupload" class="btn btn-custom2">IMAGE</button></td>
 				            </tr>  
 				         <?php }  
 				         ?>
@@ -134,12 +140,12 @@
 		else{ ?>
 			<div class="container" align="center">
 				<div class="alert alert-danger mt-5">
-					<strong><?php echo "Not Logged in..!"?></strong>
+					<strong><?php echo "Not Logged in !"?></strong>
 				</div>
 				<div align="center">
-					<a href="<?= base_url(); ?>index.php/testController/loginView"><button name="login" class="btn btn-success">LOGIN</button></a>
+					<a href="<?= base_url(); ?>index.php/testController/loginView" style="text-decoration: none;"><button name="login" class="btn btn-success">LOGIN</button></a>
 					<br>
-					<b>New User &nbsp? &nbsp SignUp Here &nbsp</b><a href="<?= base_url(); ?>index.php/testController/signupView"><button type="submit" name="signup" class="btn btn-primary">SIGNUP</button></a>
+					<b>New User &nbsp? &nbsp SignUp Here &nbsp</b><a href="<?= base_url(); ?>index.php/testController/signupView" style="text-decoration: none;"><button type="submit" name="signup" class="btn btn-primary">SIGNUP</button></a>
 				</div>
 			</div>
 <?php 	} ?>	

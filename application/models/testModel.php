@@ -155,7 +155,7 @@
 			}
 		}
 		public function exportView(){
-			$query=$this->db->get('student_details');
+			$query=$this->db->get("student_details");
 			return $query;
 		}
 	}

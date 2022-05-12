@@ -1,5 +1,4 @@
  <?php 
-	 	
 	class testController extends CI_Controller{
 
 		function __construct()
@@ -272,32 +271,56 @@
 				$this->load->view('signupView',$error);
 			}
 		}
-		function GeneratePdf(){
-			$query['data']=$this->testModel->exportView();
-			$this->load->view('exportView',$query);
-			$html = $this->output->get_output();
-	        		// Load pdf library
-			$this->load->library('pdf');
-			$this->pdf->loadHtml($html);
-			$this->pdf->setPaper('A4', 'landscape');
-			$this->pdf->render();
-			// Output the generated PDF (1 = download and 0 = preview)
-			$this->pdf->stream("html_contents.pdf", array("Attachment"=> 0));		
+		public function GeneratePdf(){
+			if ($this->session->userdata('username')) { 
+				$query['data']=$this->testModel->exportView();
+				$this->load->view('exportView',$query);
+				$html = $this->output->get_output();
+		        // Load pdf library
+				$this->load->library('pdf');
+				$this->pdf->loadHtml($html);
+				$this->pdf->setPaper('A4', 'landscape');
+				$this->pdf->render();
+				// Output the generated PDF (1 = download and 0 = preview)
+				$this->pdf->stream("html_contents.pdf", array("Attachment"=> 0));
+			}
+			else{
+				$this->load->view('testView');
+			}		
 		}
-		function GenerateExcel(){
-			$query['data']=$this->testModel->exportView();
-			$this->load->view('exportView',$query);
-			// Put the html into a temporary file
-			$tmpfile = time().'.html';
-			file_put_contents($tmpfile, $html);
-			// Read the contents of the file into PHPExcel Reader class
-			$reader = new PHPExcel_Reader_HTML; 
-			$content = $reader->load($tmpfile); 
-			// Pass to writer and output as needed
-			$objWriter = PHPExcel_IOFactory::createWriter($content, 'Excel2007');
-			$objWriter->save('excelfile.xlsx');
-			// Delete temporary file
-			unlink($tmpfile);
+		public function GenerateExcel(){
+			if ($this->session->userdata('username')) { 	
+				echo "hello";
+				exit();
+				$query['data']=$this->testModel->exportView();
+				$this->load->view('exportView',$query);
+				$this->load->library('Excel');
+				$object=new PHPExcel();
+				$object->setActiveSheetIndex(0);
+				$tableColumns=array("Roll Number","Name","Class","Section","Document","Image");
+				$column=0;
+				foreach($table_columns as $field){
+					$object->getActiveSheet()->setCellValueByColumnAndRow($column, 1, $field);
+					$column++;
+				}
+				$excel_row=2;
+				foreach($studentData as $row){
+					$object->getActiveSheet()->setCellValueByColumnAndRow(0,$excel_row,$row->student_roll_no);
+					$object->getActiveSheet()->setCellValueByColumnAndRow(1,$excel_row,$row->student_name);
+					$object->getActiveSheet()->setCellValueByColumnAndRow(2,$excel_row,$row->student_class);
+					$object->getActiveSheet()->setCellValueByColumnAndRow(3,$excel_row,$row->student_section);
+					$object->getActiveSheet()->setCellValueByColumnAndRow(4,$excel_row,$row->student_document);
+					$object->getActiveSheet()->setCellValueByColumnAndRow(5,$excel_row,$row->student_image);
+					$excel_row++;
+				}
+				$object_writer=PHPExcel_IOFactory::createWriter($object,'Excel2007');
+				header('Content-Type:application/vnd.ms-excel');
+				header('Content-Disposition:attachment;fileName="Student Details.xlsx"');
+				$object_writer->save('php://output');
+			}
+			else{
+				$this->load->view('testView');
+			}
 		}
 	}
  ?>

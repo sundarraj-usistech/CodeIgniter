@@ -16,10 +16,6 @@
         th,td{
             text-align: center;
         }
-
-        /*.container{
-            width: 50%;
-        }*/
     </style>
             <h3>Student Details</h3>
             <table align="center" id="student_details" class="table table-border table-striped table-hover" width="100%">
@@ -44,6 +40,5 @@
                      <?php }  
                      ?>
             </table>
-
 </body>
 </html>

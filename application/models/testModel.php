@@ -154,7 +154,7 @@
 				return false;
 			}
 		}
-		public function pdfView(){
+		public function exportView(){
 			$query=$this->db->get('student_details');
 			return $query;
 		}

@@ -11,6 +11,7 @@
     <style type="text/css">
         table,th,td{
             border: 1px solid black;
+            border-collapse: collapse;
         }
         th,td{
             text-align: center;
@@ -31,15 +32,14 @@
                     <th>IMAGE</th>
                 </tr>
                     <?php  
-                     foreach ($data->result() as $row)  
-                     {  
+                     foreach ($data->result() as $row){  
                         ?><tr>
                             <td><?php echo $row->student_roll_no;?></td>
                             <td><?php echo $row->student_name;?></td>  
                             <td><?php echo $row->student_class;?></td>
                             <td><?php echo $row->student_section;?></td>
-                            <td><a href="\CodeIgniter\student_document<?php echo $row->student_document; ?>" target="_blank"><?php echo $row->student_document;?></a></td>
-                            <td><a href="\CodeIgniter\student_image\<?php echo $row->student_image; ?>" target="_blank"><?php echo $row->student_image;?></a></td>
+                            <td><a href="/CodeIgniter/student_document/<?php echo $row->student_document; ?>" target="_blank"><?php echo $row->student_document;?></a></td>
+                            <td><a href="/CodeIgniter/student_image/<?php echo $row->student_image; ?>" target="_blank"><?php echo $row->student_image;?></a></td>
                         </tr>  
                      <?php }  
                      ?>

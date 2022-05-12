@@ -273,17 +273,31 @@
 			}
 		}
 		function GeneratePdf(){
-		$query['data']=$this->testModel->pdfView();
-		$this->load->view('pdfView',$query);
-		
-		$html = $this->output->get_output();
-        		// Load pdf library
-		$this->load->library('pdf');
-		$this->pdf->loadHtml($html);
-		$this->pdf->setPaper('A4', 'landscape');
-		$this->pdf->render();
-		// Output the generated PDF (1 = download and 0 = preview)
-		$this->pdf->stream("html_contents.pdf", array("Attachment"=> 0));		
-	}
+			$query['data']=$this->testModel->exportView();
+			$this->load->view('exportView',$query);
+			$html = $this->output->get_output();
+	        		// Load pdf library
+			$this->load->library('pdf');
+			$this->pdf->loadHtml($html);
+			$this->pdf->setPaper('A4', 'landscape');
+			$this->pdf->render();
+			// Output the generated PDF (1 = download and 0 = preview)
+			$this->pdf->stream("html_contents.pdf", array("Attachment"=> 0));		
+		}
+		function GenerateExcel(){
+			$query['data']=$this->testModel->exportView();
+			$this->load->view('exportView',$query);
+			// Put the html into a temporary file
+			$tmpfile = time().'.html';
+			file_put_contents($tmpfile, $html);
+			// Read the contents of the file into PHPExcel Reader class
+			$reader = new PHPExcel_Reader_HTML; 
+			$content = $reader->load($tmpfile); 
+			// Pass to writer and output as needed
+			$objWriter = PHPExcel_IOFactory::createWriter($content, 'Excel2007');
+			$objWriter->save('excelfile.xlsx');
+			// Delete temporary file
+			unlink($tmpfile);
+		}
 	}
  ?>

@@ -38,14 +38,14 @@
 		<div class="alert alert-info mt-5" align="center">
     		<strong>You are about to create a New User Details !</strong>
   		</div>
-  		<!-- <div align="right">
+  		<div align="right">
 	  		<a href="javascript:window.history.go(-1);"><button name="back" class="btn btn-dark">BACK</button></a>
-	  	</div> -->
-	  	<nav class="pb-5" style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
+	  	</div>
+	  	<!-- <nav class="pb-5" style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
 	      <ol class="breadcrumb">
 	        <li class="breadcrumb-item"><a class="fw-bold text-dark" href="<?= base_url(); ?>index.php/testController/view">HOME</a></li>
 	        <li class="breadcrumb-item active" aria-current="page">Add Details</li>
-	      </ol>
+	      </ol> -->
 	    </nav>
 		<form method="post" action="<?= base_url(); ?>index.php/testController/addData">
 			<?php echo validation_errors(); ?>  

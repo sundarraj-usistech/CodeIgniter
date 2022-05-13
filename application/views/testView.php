@@ -6,6 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<title>Students Details</title>
 </head>
 <body>
@@ -51,7 +52,7 @@
 				<h3 class="mt-5">Student Details</h3>
 				<br>
 				<div align="right">
-					Logged in as &nbsp<b> <?php echo $this->session->userdata('username'); ?> </b>
+					Logged in as <b> <?php echo $this->session->userdata('username'); ?> </b>
 				</div>
 				<br>
 				<div class="method">
@@ -84,15 +85,11 @@
 					</form> -->
 					<form method="post" action="<?= base_url(); ?>index.php/testController/searchData">
 						<input type="text" name="keyword" placeholder="Enter the text here " required>
-						<button type="submit" name="submitfilter" class="btn btn-success">SEARCH</button>
+						<button type="submit" name="submitfilter" class="btn btn-primary"><i class="fa fa-search"></i></button>
+						
 					</form>
-					<?php 
-					if ($flag==null) {
-					?>
-						<a target="_blank" href="<?= base_url(); ?>index.php/testController/GeneratePdf" style="text-decoration: none;"><button name="pdf" class="btn btn-custom4">PDF</button></a>
-					<?php	
-					}
-					?>
+					<a target="_blank" href="<?= base_url(); ?>index.php/testController/GeneratePdf" style="text-decoration: none;"><button name="pdf" class="btn btn-custom4">PDF</button></a>
+					<a target="_blank" href="<?= base_url(); ?>index.php/testController/GenerateSpreadsheet" style="text-decoration: none;"><button name="excel" class="btn btn-success">EXCEL</button></a>
 					<?php 
 					if ($flag) {
 					?>
@@ -114,7 +111,8 @@
 							$msg="";
 						}
 					?>
-				<table align="center" id="student_details" class="table table-border table-striped table-hover">
+				<div class="table-responsive">
+					<table align="center" id="student_details" class="table table-border table-striped table-hover" >
 					<tr>
 						<th>NAME</th>
 						<th>ACTION</th>
@@ -133,7 +131,8 @@
 				            </tr>  
 				         <?php }  
 				         ?>
-				</table>
+					</table>
+				</div>	
 				<br>
 				<div align="center"><?php echo $this->pagination->create_links(); ?></div>
 <?php	}

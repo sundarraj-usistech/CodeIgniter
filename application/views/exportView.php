@@ -24,7 +24,7 @@
         }
     </style>
             <h3>Student Details</h3>
-            <table align="center" id="student_details" class="table table-border table-striped table-hover" width="100%">
+            <table align="center" id="student_details" class="table table-border table-striped table-hover" width="100%" cellpadding="5">
                 <tr>
                     <th>ROLL NO</th>
                     <th>NAME</th>

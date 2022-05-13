@@ -1,4 +1,8 @@
  <?php 
+ 	if (!defined('BASEPATH')) exit('No direct script access allowed');	
+	use PhpOffice\PhpSpreadsheet\Spreadsheet;
+	use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+	
 	class testController extends CI_Controller{
 
 		function __construct()
@@ -289,9 +293,7 @@
 			}		
 		}
 		public function GenerateExcel(){
-			if ($this->session->userdata('username')) { 	
-				$query['data']=$this->testModel->exportView();
-				$this->load->view('exportView',$query);
+			if ($this->session->userdata('username')) { 
 				$this->load->library('Excel');
 				$object=new PHPExcel();
 				$object->setActiveSheetIndex(0);
@@ -301,8 +303,9 @@
 					$object->getActiveSheet()->setCellValueByColumnAndRow($column, 1, $field);
 					$column++;
 				}
+				$data=$this->
 				$excel_row=2;
-				foreach($studentData as $row){
+				foreach($data as $row){
 					$object->getActiveSheet()->setCellValueByColumnAndRow(0,$excel_row,$row->student_roll_no);
 					$object->getActiveSheet()->setCellValueByColumnAndRow(1,$excel_row,$row->student_name);
 					$object->getActiveSheet()->setCellValueByColumnAndRow(2,$excel_row,$row->student_class);
@@ -311,14 +314,26 @@
 					$object->getActiveSheet()->setCellValueByColumnAndRow(5,$excel_row,$row->student_image);
 					$excel_row++;
 				}
-				$object_writer=PHPExcel_IOFactory::createWriter($object,'Excel2007');
-				header('Content-Type:application/vnd.ms-excel');
-				header('Content-Disposition:attachment;fileName="Student Details.xlsx"');
+				$object_writer=PHPExcel_IOFactory::createWriter($object,'Excel5');
+				header('Content-Type: application/vnd.ms-excel');
+				header('Content-Disposition: attachment;fileName="Student Details.xls"');
 				$object_writer->save('php://output');
 			}
 			else{
 				$this->load->view('testView');
 			}
+		}
+		public function GenerateSpreadsheet(){
+
+
+			$this->load->library('PhpOffice/PhpSpreadsheet/Spreadsheet');
+
+			$spreadsheet = new Spreadsheet();
+			$sheet = $spreadsheet->getActiveSheet();
+			$sheet->setCellValue('A1', 'Hello World !');
+
+			$writer = new Xlsx($spreadsheet);
+			$writer->save('hello world.xlsx');
 		}
 	}
  ?>

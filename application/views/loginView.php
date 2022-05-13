@@ -14,7 +14,7 @@
  			vertical-align: middle;
 		}
 		.btn-custom1 {
-    		color: #212529;
+    		color: #ffffff;
     		background-color: #6b8504a3;
     		border-color: #6b8504a3;
 		}

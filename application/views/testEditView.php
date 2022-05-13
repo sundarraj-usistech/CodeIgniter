@@ -14,7 +14,7 @@
  			vertical-align: middle;
 		}
 		.btn-custom3 {
-    		color: #212529;
+    		color: #ffffff;
     		background-color: #adb5bd;
     		border-color: #adb5bd;
 		}

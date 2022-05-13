@@ -13,11 +13,6 @@
   			text-align: center;
  			vertical-align: middle;
 		}
-		.btn-custom3 {
-    		color: #212529;
-    		background-color: #adb5bd;
-    		border-color: #adb5bd;
-		}
 		.border-hide{
 			outline: none;
 			border: none;

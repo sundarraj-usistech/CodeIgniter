@@ -295,6 +295,7 @@
 		public function GenerateExcel(){
 			if ($this->session->userdata('username')) { 
 				$this->load->library('Excel');
+				$this->load->library('PHPExcel_IOFactory');
 				$object=new PHPExcel();
 				$object->setActiveSheetIndex(0);
 				$tableColumns=array("Roll Number","Name","Class","Section","Document","Image");
@@ -303,20 +304,19 @@
 					$object->getActiveSheet()->setCellValueByColumnAndRow($column, 1, $field);
 					$column++;
 				}
-				$data=$this->
-				$excel_row=2;
-				foreach($data as $row){
-					$object->getActiveSheet()->setCellValueByColumnAndRow(0,$excel_row,$row->student_roll_no);
-					$object->getActiveSheet()->setCellValueByColumnAndRow(1,$excel_row,$row->student_name);
-					$object->getActiveSheet()->setCellValueByColumnAndRow(2,$excel_row,$row->student_class);
-					$object->getActiveSheet()->setCellValueByColumnAndRow(3,$excel_row,$row->student_section);
-					$object->getActiveSheet()->setCellValueByColumnAndRow(4,$excel_row,$row->student_document);
-					$object->getActiveSheet()->setCellValueByColumnAndRow(5,$excel_row,$row->student_image);
-					$excel_row++;
-				}
-				$object_writer=PHPExcel_IOFactory::createWriter($object,'Excel5');
+				// $excel_row=2;
+				// foreach($data as $row){
+					$object->getActiveSheet()->setCellValueByColumnAndRow(0,'Hello');
+					$object->getActiveSheet()->setCellValueByColumnAndRow(1,'Hello');
+					$object->getActiveSheet()->setCellValueByColumnAndRow(2,'Hello');
+					$object->getActiveSheet()->setCellValueByColumnAndRow(3,'Hello');
+					$object->getActiveSheet()->setCellValueByColumnAndRow(4,'Hello');
+					$object->getActiveSheet()->setCellValueByColumnAndRow(5,'Hello');
+					// $excel_row++;
+				// }
+				$object_writer=PHPExcel_IOFactory::createWriter($object,'Excel2007');
 				header('Content-Type: application/vnd.ms-excel');
-				header('Content-Disposition: attachment;fileName="Student Details.xls"');
+				header('Content-Disposition: attachment;fileName="StudentDetails.xls"');
 				$object_writer->save('php://output');
 			}
 			else{
@@ -324,14 +324,10 @@
 			}
 		}
 		public function GenerateSpreadsheet(){
-
-
 			$this->load->library('PhpOffice/PhpSpreadsheet/Spreadsheet');
-
 			$spreadsheet = new Spreadsheet();
 			$sheet = $spreadsheet->getActiveSheet();
 			$sheet->setCellValue('A1', 'Hello World !');
-
 			$writer = new Xlsx($spreadsheet);
 			$writer->save('hello world.xlsx');
 		}

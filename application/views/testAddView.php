@@ -15,14 +15,9 @@
  			vertical-align: middle;
 	}
 	.btn-custom1 {
-    		color: #212529;
+    		color: #ffffff;
     		background-color: #fd7e14;
     		border-color: #fd7e14;
-	}
-	.btn-custom3 {
-    		color: #212529;
-    		background-color: #adb5bd;
-    		border-color: #adb5bd;
 	}
 	.border-hide{
 		outline: none;

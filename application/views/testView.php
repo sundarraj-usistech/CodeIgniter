@@ -51,6 +51,10 @@
 		.container{
 			width: 50%;
 		}
+		span{
+			display: inline-block;
+			/*height: 2px;*/
+		}
 	</style>
 	<?php 
 		if ($this->session->userdata('username')) { ?>
@@ -58,8 +62,9 @@
 				<h3 class="mt-5">Student Details</h3>
 				<br>
 				<div align="right">
+					Logged in as 
 					<span class="badge bg-success" >
-						Logged in as <b><?php echo $this->session->userdata('username'); ?></b>  					
+						<b><?php echo $this->session->userdata('username'); ?></b>
 					</span>
 				</div>
 				<br>
@@ -96,7 +101,7 @@
 						<button type="submit" name="submitfilter" class="btn btn-primary"><i class="fa-solid fa-magnifying-glass"></i></button>
 						
 					</form>
-					<a target="_blank" href="<?= base_url(); ?>index.php/testController/GeneratePdf" style="text-decoration: none;"><button name="pdf" class="btn btn-custom4">PDF&nbsp&nbsp<i class="fa-solid fa-file-pdf"></i></button></a>
+					<a target="_blank" href="<?= base_url(); ?>index.php/testController/GeneratePdf" style="text-decoration: none;"><button name="pdf" class="btn btn-custom4"><i class="fa-solid fa-file-pdf"></i></button></a>
 					<!-- <a target="_blank" href="<?= base_url(); ?>index.php/testController/GenerateExcel" style="text-decoration: none;"><button name="excel" class="btn btn-success">EXCEL</button></a> -->
 					<?php 
 					if ($flag) {
@@ -151,7 +156,7 @@
 				</div>
 				<div align="center">
 					<a href="<?= base_url(); ?>index.php/testController/loginView" style="text-decoration: none;"><button name="login" class="btn btn-success">LOGIN</button></a>
-					<br>
+					<br><br>
 					<b>New User &nbsp? &nbsp SignUp Here &nbsp</b><a href="<?= base_url(); ?>index.php/testController/signupView" style="text-decoration: none;"><button type="submit" name="signup" class="btn btn-primary">SIGNUP</button></a>
 				</div>
 			</div>

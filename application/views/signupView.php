@@ -51,7 +51,7 @@
 				<button type="submit" name="login" class="btn btn-primary">SIGNUP</button>
 			</div>
 		</form>
-		<br>
+		<br><br>
 		<p align="center"><b>Existing User &nbsp? &nbsp Login Here &nbsp</b><a href="<?= base_url(); ?>index.php/testController/loginView" style="text-decoration: none;"><button type="submit" name="login" class="btn btn-success">LOGIN</button></a></p>
 	</div>
 </body>

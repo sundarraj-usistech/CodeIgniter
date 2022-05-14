@@ -286,23 +286,23 @@
 				$this->load->view('signupView',$error);
 			}
 		}
-		// public function GeneratePdf(){
-		// 	if ($this->session->userdata('username')) { 
-		// 		$query['data']=$this->testModel->exportView();
-		// 		$this->load->view('exportView',$query);
-		// 		$html = $this->output->get_output();
-		//         // Load pdf library
-		// 		$this->load->library('pdf');
-		// 		$this->pdf->loadHtml($html);
-		// 		$this->pdf->setPaper('A4', 'landscape');
-		// 		$this->pdf->render();
-		// 		// Output the generated PDF (1 = download and 0 = preview)
-		// 		$this->pdf->stream("html_contents.pdf", array("Attachment"=> 0));
-		// 	}
-		// 	else{
-		// 		$this->load->view('testView');
-		// 	}		
-		// }
+		public function GeneratePdf(){
+			if ($this->session->userdata('username')) { 
+				$query['data']=$this->testModel->exportView();
+				$this->load->view('exportView',$query);
+				$html = $this->output->get_output();
+		        // Load pdf library
+				$this->load->library('pdf');
+				$this->pdf->loadHtml($html);
+				$this->pdf->setPaper('A4', 'landscape');
+				$this->pdf->render();
+				// Output the generated PDF (1 = download and 0 = preview)
+				$this->pdf->stream("html_contents.pdf", array("Attachment"=> 0));
+			}
+			else{
+				$this->load->view('testView');
+			}		
+		}
 		// public function GenerateExcel(){
 		// 	if ($this->session->userdata('username')) { 
 		// 		$this->load->library('Excel');

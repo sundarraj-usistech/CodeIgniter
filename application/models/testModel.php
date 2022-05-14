@@ -158,6 +158,18 @@
 			$query=$this->db->get("student_details");
 			return $query;
 		}
+		// public function pictureUpload($insertPicture){
+		// 	if($this->db->insert("images",$insertPicture)){
+		// 		echo "Success";
+		// 	}
+		// 	else{
+		// 		echo "Failed";
+		// 	}
+		// }
+		// public function pictureView(){
+		// 	$query=$this->db->get("images");
+		// 	return $query
+		// }
 	}
  ?>
  

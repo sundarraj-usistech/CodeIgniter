@@ -61,10 +61,13 @@
 			<div class="container">
 				<h3 class="mt-5">Student Details</h3>
 				<br>
-				<div align="right">
-					Logged in as 
-					<span class="badge bg-success" >
+				<div align="right">Logged in as 
+					<span class="badge bg-success" style="padding: 10px;">
 						<b><?php echo $this->session->userdata('username'); ?></b>
+					</span>
+					<br>
+					<span>
+						Logged in on <b><?php echo $this->session->userdata('loginTime'); ?></b>
 					</span>
 				</div>
 				<br>

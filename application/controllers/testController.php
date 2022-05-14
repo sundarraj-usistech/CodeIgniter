@@ -238,7 +238,13 @@
 			);
 			$flag=$this->testModel->loginCheck($data);
 			if ($flag=='a') {
-				$this->session->set_userdata('username',$enteredData['username']); 
+				// $config['sess_expiration']=10;
+				$loginTime= date("d/m/Y (h:i:s A)");
+				$sessionData=array(
+					'username'=>$enteredData['username'],
+					'loginTime'=>$loginTime
+				);
+				$this->session->set_userdata($sessionData); 
 				redirect(base_url()."index.php/testController/view");
 			}
 			else if($flag=='b'){
@@ -266,8 +272,13 @@
 			if($data['password']==$data['confirmpassword']){
 				$flag=$this->testModel->signupInsert($insertData);
 				if ($flag) {
-					$this->session->set_userdata('username',$data['username']);
-					redirect(base_url()."index.php/testController/view?name=".$sessionData['username']);
+					$loginTime= date("d/m/Y (h:i:s A)");
+					$sessionData=array(
+						'username'=>$insertData['username'],
+						'loginTime'=>$loginTime
+					);
+					$this->session->set_userdata($sessionData);
+					redirect(base_url()."index.php/testController/view");
 				}
 			}
 			else{
@@ -275,61 +286,83 @@
 				$this->load->view('signupView',$error);
 			}
 		}
-		public function GeneratePdf(){
-			if ($this->session->userdata('username')) { 
-				$query['data']=$this->testModel->exportView();
-				$this->load->view('exportView',$query);
-				$html = $this->output->get_output();
-		        // Load pdf library
-				$this->load->library('pdf');
-				$this->pdf->loadHtml($html);
-				$this->pdf->setPaper('A4', 'landscape');
-				$this->pdf->render();
-				// Output the generated PDF (1 = download and 0 = preview)
-				$this->pdf->stream("html_contents.pdf", array("Attachment"=> 0));
-			}
-			else{
-				$this->load->view('testView');
-			}		
-		}
-		public function GenerateExcel(){
-			if ($this->session->userdata('username')) { 
-				$this->load->library('Excel');
-				$this->load->library('PHPExcel_IOFactory');
-				$object=new PHPExcel();
-				$object->setActiveSheetIndex(0);
-				$tableColumns=array("Roll Number","Name","Class","Section","Document","Image");
-				$column=0;
-				foreach($table_columns as $field){
-					$object->getActiveSheet()->setCellValueByColumnAndRow($column, 1, $field);
-					$column++;
-				}
-				// $excel_row=2;
-				// foreach($data as $row){
-					$object->getActiveSheet()->setCellValueByColumnAndRow(0,'Hello');
-					$object->getActiveSheet()->setCellValueByColumnAndRow(1,'Hello');
-					$object->getActiveSheet()->setCellValueByColumnAndRow(2,'Hello');
-					$object->getActiveSheet()->setCellValueByColumnAndRow(3,'Hello');
-					$object->getActiveSheet()->setCellValueByColumnAndRow(4,'Hello');
-					$object->getActiveSheet()->setCellValueByColumnAndRow(5,'Hello');
-					// $excel_row++;
-				// }
-				$object_writer=PHPExcel_IOFactory::createWriter($object,'Excel2007');
-				header('Content-Type: application/vnd.ms-excel');
-				header('Content-Disposition: attachment;fileName="StudentDetails.xls"');
-				$object_writer->save('php://output');
-			}
-			else{
-				$this->load->view('testView');
-			}
-		}
-		public function GenerateSpreadsheet(){
-			$this->load->library('PhpOffice/PhpSpreadsheet/Spreadsheet');
-			$spreadsheet = new Spreadsheet();
-			$sheet = $spreadsheet->getActiveSheet();
-			$sheet->setCellValue('A1', 'Hello World !');
-			$writer = new Xlsx($spreadsheet);
-			$writer->save('hello world.xlsx');
-		}
+		// public function GeneratePdf(){
+		// 	if ($this->session->userdata('username')) { 
+		// 		$query['data']=$this->testModel->exportView();
+		// 		$this->load->view('exportView',$query);
+		// 		$html = $this->output->get_output();
+		//         // Load pdf library
+		// 		$this->load->library('pdf');
+		// 		$this->pdf->loadHtml($html);
+		// 		$this->pdf->setPaper('A4', 'landscape');
+		// 		$this->pdf->render();
+		// 		// Output the generated PDF (1 = download and 0 = preview)
+		// 		$this->pdf->stream("html_contents.pdf", array("Attachment"=> 0));
+		// 	}
+		// 	else{
+		// 		$this->load->view('testView');
+		// 	}		
+		// }
+		// public function GenerateExcel(){
+		// 	if ($this->session->userdata('username')) { 
+		// 		$this->load->library('Excel');
+		// 		$this->load->library('PHPExcel_IOFactory');
+		// 		$object=new PHPExcel();
+		// 		$object->setActiveSheetIndex(0);
+		// 		$tableColumns=array("Roll Number","Name","Class","Section","Document","Image");
+		// 		$column=0;
+		// 		foreach($table_columns as $field){
+		// 			$object->getActiveSheet()->setCellValueByColumnAndRow($column, 1, $field);
+		// 			$column++;
+		// 		}
+		// 		// $excel_row=2;
+		// 		// foreach($data as $row){
+		// 			$object->getActiveSheet()->setCellValueByColumnAndRow(0,'Hello');
+		// 			$object->getActiveSheet()->setCellValueByColumnAndRow(1,'Hello');
+		// 			$object->getActiveSheet()->setCellValueByColumnAndRow(2,'Hello');
+		// 			$object->getActiveSheet()->setCellValueByColumnAndRow(3,'Hello');
+		// 			$object->getActiveSheet()->setCellValueByColumnAndRow(4,'Hello');
+		// 			$object->getActiveSheet()->setCellValueByColumnAndRow(5,'Hello');
+		// 			// $excel_row++;
+		// 		// }
+		// 		$object_writer=PHPExcel_IOFactory::createWriter($object,'Excel2007');
+		// 		header('Content-Type: application/vnd.ms-excel');
+		// 		header('Content-Disposition: attachment;fileName="StudentDetails.xls"');
+		// 		$object_writer->save('php://output');
+		// 	}
+		// 	else{
+		// 		$this->load->view('testView');
+		// 	}
+		// }
+		// public function GenerateSpreadsheet(){
+		// 	$this->load->library('PhpOffice/PhpSpreadsheet/Spreadsheet');
+		// 	$spreadsheet = new Spreadsheet();
+		// 	$sheet = $spreadsheet->getActiveSheet();
+		// 	$sheet->setCellValue('A1', 'Hello World !');
+		// 	$writer = new Xlsx($spreadsheet);
+		// 	$writer->save('hello world.xlsx');
+		// }
+		// public function pictureUploadView(){
+		// 	$this->load->view('pictureUploadView');
+		// }
+		// public function pictureUpload(){
+		// 	$data=$this->input->post();
+		// 	$file=$_FILES['picture'];
+		// 	$pictureTempPath=$_FILES['picture']['tmp_name']; 
+  		//  $pictureContent=addslashes(file_get_contents($pictureTempPath));
+		// 	$pictureName=$_FILES['picture']['name'];
+	 	//  $tempName=explode(".", $pictureName);
+		// 	$newPictureName=round(microtime(true)) . '.' . end($tempName);
+  		//  $created_time= date("d/m/Y (h:i:s A)");
+  		//  $insertPicture=array(
+	  	//  'image'=>$pictureContent,
+	  	//  'created_time'=>$created_time
+  		//   );
+		// 	$this->testModel->pictureUpload($insertPicture);
+		// }
+		// public function pictureView(){
+		// 	$query['data']=$this->testModel->pictureView();
+		// 	$this->load->view('pictureView',$query);
+		// }
 	}
  ?>

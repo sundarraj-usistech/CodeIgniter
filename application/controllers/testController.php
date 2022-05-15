@@ -189,7 +189,7 @@
             $tempName=explode(".", $imageName);
 			$newImageName=round(microtime(true)) . '.' . end($tempName);
 			$config['upload_path']='./student_image/';
-            $config['allowed_types']='jpeg|jpg|png';
+            $config['allowed_types']='jpeg|jpg|png|svg';
             $config['max_size']=2000;// PHP installation has its own limit, as specified in the php.ini file. Usually 2 MB (or 2048 KB) by default.
 			$config['file_name']=$data['name'].$newImageName;
 			$config['remove_spaces']= FALSE;
@@ -238,7 +238,6 @@
 			);
 			$flag=$this->testModel->loginCheck($data);
 			if ($flag=='a') {
-				// $config['sess_expiration']=10;
 				$loginTime= date("d/m/Y (h:i:s A)");
 				$sessionData=array(
 					'username'=>$enteredData['username'],
@@ -288,8 +287,8 @@
 		}
 		public function GeneratePdf(){
 			if ($this->session->userdata('username')) { 
-				$query['data']=$this->testModel->exportView();
-				$this->load->view('exportView',$query);
+				$query['data']=$this->testModel->viewAll();
+				$this->load->view('viewAllView',$query);
 				$html = $this->output->get_output();
 		        // Load pdf library
 				$this->load->library('pdf');
@@ -364,5 +363,33 @@
 		// 	$query['data']=$this->testModel->pictureView();
 		// 	$this->load->view('pictureView',$query);
 		// }
+		public function datatable(){
+			$this->load->view('datatableView');
+		}
+		public function get_datatable(){
+	      	$draw=intval($this->input->get("draw"));
+	      	$start=intval($this->input->get("start"));
+	      	$length=intval($this->input->get("length"));
+      		$query=$this->db->get("student_details");
+	      	$data=[];
+	      	foreach($query->result() as$r) {
+	           $data[] =array(
+	                $r->student_roll_no,
+	                $r->student_name,
+	                $r->student_class,
+	                $r->student_section,
+	                $r->student_document,
+	                $r->student_image
+	           );
+	      	}
+	      	$result=array(
+	            "draw"=>$draw,
+                "recordsTotal"=>$query->num_rows(),
+                "recordsFiltered"=>$query->num_rows(),
+                "data"=>$data
+	        );
+	      	echo json_encode($result);
+	      	exit();
+   		}
 	}
  ?>

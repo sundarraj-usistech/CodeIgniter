@@ -1,7 +1,7 @@
  <?php 
- 	if (!defined('BASEPATH')) exit('No direct script access allowed');	
-	use PhpOffice\PhpSpreadsheet\Spreadsheet;
-	use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+ 	// if (!defined('BASEPATH')) exit('No direct script access allowed');	
+	// use PhpOffice\PhpSpreadsheet\Spreadsheet;
+	// use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 	
 	class testController extends CI_Controller{
 

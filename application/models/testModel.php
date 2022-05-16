@@ -1,8 +1,10 @@
 <?php 
 	class testModel extends CI_model{
+
 		public function __construct(){
 			parent::__construct();
 		}
+
 		public function loginCheck($data){
 			$username=$data['username'];
 			$password=$data['password'];
@@ -22,6 +24,7 @@
 				return '3';
 			}
 		}
+
 		public function signup($insertData){
 			if ($this->db->insert("users",$insertData)){
 				return true;
@@ -30,17 +33,20 @@
 				return false;
 			}
 		}
+
 		public function countRows(){
 			$query=$this->db->get('student_details');
 			return $query->num_rows();
 			$this->db->count_all_results();
 		}
+
 		public function pagination($limit, $offset){
 			$this->db->limit($limit);
 			$this->db->offset($offset);
 			$query=$this->db->get("student_details");
 			return $query;
 		}
+
 		public function addUser($new_data){
 			if ($this->db->insert("student_details",$new_data)){
 				return true;
@@ -49,10 +55,12 @@
 				return false;
 			}
 		}
+
 		public function editUserView($roll_no){
 			$query=$this->db->get_where("student_details",array('student_roll_no'=>$roll_no));
 			return $query;
 		}
+
 		public function editUser($edited_data,$old_roll_no){
 			$this->db->set($edited_data);
 			$this->db->where('student_roll_no',$old_roll_no);
@@ -63,10 +71,12 @@
 				return false;
 			}
 		}
+
 		public function deleteUserView($roll_no){
 			$query=$this->db->get_where("student_details",array('student_roll_no'=>$roll_no));
 			return $query;
 		}
+
 		public function deleteUser($roll_no){
 			if ($this->db->delete("student_details" , array('student_roll_no'=>$roll_no))){
 				return true;
@@ -75,6 +85,7 @@
 				return false;
 			}
 		}
+
 		public function viewUserDetails($roll_no){
 			$query=$this->db->get_where("student_details",array('student_roll_no'=>$roll_no));
 			return $query;
@@ -83,6 +94,7 @@
 			$query=$this->db->get_where("student_details",array('student_roll_no'=>$roll_no));
 			return $query;
 		}
+
 		public function fileUpload($roll_no,$docName){
 			$this->db->set('student_document',$docName);
 			$this->db->where('student_roll_no',$roll_no);
@@ -93,10 +105,12 @@
 				return false;
 			}
 		}
+
 		public function imageUploadView($roll_no){
 			$query=$this->db->get_where("student_details",array('student_roll_no'=>$roll_no));
 			return $query;
 		}
+
 		public function imageUpload($roll_no,$imgName){
 			$this->db->set('student_image',$imgName);
 			$this->db->where('student_roll_no',$roll_no);
@@ -107,6 +121,7 @@
 				return false;
 			}
 		}
+
 		public function searchData($keyword){
 			$this->db->select('*');
 			$this->db->from('student_details');
@@ -123,6 +138,7 @@
 				return false;
 			}	
 		}
+		
 		public function GeneratePdf(){
 			$query=$this->db->get("student_details");
 			return $query;
@@ -158,7 +174,7 @@
 		// 	$query=$this->db->get("student_details"); 
 		// 	return $query;			
 		// }
-		
+
 		// public function pictureUpload($insertPicture){
 		// 	if($this->db->insert("images",$insertPicture)){
 		// 		echo "Success";

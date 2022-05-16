@@ -99,7 +99,7 @@
 			$config['per_page']=$perPage;
 			$config['uri_segment']=3;
 
-			//Bootstrap configs for pagination---------------------------------------------
+			//Bootstrap configs for pagination----------------------------------------------
  				$config['full_tag_open'] = '<ul class="pagination justify-content-center">';        
 			    $config['full_tag_close'] = '</ul>';        
 			    $config['first_link'] = 'First';        
@@ -118,7 +118,7 @@
 			    $config['cur_tag_close'] = '</a></li>';        
 			    $config['num_tag_open'] = '<li class="page-item"><span class="page-link">';        
 			    $config['num_tag_close'] = '</span></li>';
-			//-----------------------------------------------------------------------------
+			//------------------------------------------------------------------------------
 
 			$this->pagination->initialize($config);
 			$query['data']=$this->testModel->pagination($config['per_page'],$page);
@@ -392,7 +392,7 @@
   		//   );
 		// 	$this->testModel->pictureUpload($insertPicture);
 		// }
-		
+
 		// public function pictureView(){
 		// 	$query['data']=$this->testModel->pictureView();
 		// 	$this->load->view('pictureView',$query);

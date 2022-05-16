@@ -178,9 +178,11 @@
 				         {  
 				            ?><tr>
 						        <td><?php echo $row->student_name;?></td>  
-						        <td><a href="<?= base_url(); ?>index.php/testController/editUserView?rollno=<?php echo $row->student_roll_no ; ?>" style="text-decoration: none;"><button name="edit" class="btn btn-warning">EDIT</button></a>
-						        	<a href="<?= base_url(); ?>index.php/testController/deleteUserView?rollno=<?php echo $row->student_roll_no; ?>" style="text-decoration: none;"><button name="delete" class="btn btn-danger">DELETE</button></a></td>
+						        <td>
+						        	<a href="<?= base_url(); ?>index.php/testController/editUserView?rollno=<?php echo $row->student_roll_no ; ?>" style="text-decoration: none;"><button name="edit" class="btn btn-warning">EDIT</button></a>
+						        	<a href="<?= base_url(); ?>index.php/testController/deleteUserView?rollno=<?php echo $row->student_roll_no; ?>" style="text-decoration: none;"><button name="delete" class="btn btn-danger">DELETE</button></a>
 						        	<a href="<?= base_url(); ?>index.php/testController/viewUserDetails?rollno=<?php echo $row->student_roll_no ; ?>" style="text-decoration: none;"><button name="view" class="btn btn-primary">VIEW</button></a>
+						        </td>						       
 						        	<td><a href="<?= base_url(); ?>index.php/testController/fileUploadView?rollno=<?php echo $row->student_roll_no ; ?>" style="text-decoration: none;"><button name="fileupload" class="btn btn-info">FILE</button></a>
 						        		<a href="<?= base_url(); ?>index.php/testController/imageUploadView?rollno=<?php echo $row->student_roll_no ; ?>" style="text-decoration: none;"><button name="imageupload" class="btn btn-custom2">IMAGE</button></td>
 				           	</tr>  

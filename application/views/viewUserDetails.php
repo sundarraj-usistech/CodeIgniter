@@ -28,7 +28,7 @@
 		}
 
 		.container{
-			width: 30%;
+			width: 50%;
 		}
 	</style>
 
@@ -51,10 +51,13 @@
 					<td>
 						<?php
 							if ($row->student_document==null) { ?>
+
 								<input  class="border-hide"type="text" name="file" value="<?php echo "No Document found" ?>" readonly>
+								<a href="<?= base_url(); ?>index.php/testController/fileUploadView?rollno=<?php echo $row->student_roll_no ; ?>" style="text-decoration: none;"><span class="btn btn-primary">UPLOAD</span></a>
 					<?php	}
 							else{ ?>
-								<input  class="border-hide"type="text" name="file" value="<?php echo $row->student_document ?>" readonly><a href="\CodeIgniter\student_document\<?php echo $row->student_document; ?>" target="_blank"><span class="btn btn-primary">VIEW</span></a>
+								<input  class="border-hide"type="text" name="file" value="<?php echo $row->student_document ?>" readonly>
+								<a href="\CodeIgniter\student_document\<?php echo $row->student_document; ?>" target="_blank"><span class="btn btn-primary">VIEW</span></a>
 					<?php	}
 						?>
 					</td></tr>
@@ -64,9 +67,11 @@
 						<?php
 							if ($row->student_image==null) { ?>
 								<input  class="border-hide"type="text" name="image" value="<?php echo "No Image found" ?>" readonly>
+								<a href="<?= base_url(); ?>index.php/testController/imageUploadView?rollno=<?php echo $row->student_roll_no ; ?>" style="text-decoration: none;"><span class="btn btn-primary">UPLOAD</span>
 					<?php	}
 							else{ ?>
-								<input  class="border-hide"type="text" name="image" value="<?php echo $row->student_image ?>" readonly><a href="\CodeIgniter\student_image\<?php echo $row->student_image; ?>" target="_blank"><span class="btn btn-primary">VIEW</span></a>
+								<input  class="border-hide"type="text" name="image" value="<?php echo $row->student_image ?>" readonly>
+								<a href="\CodeIgniter\student_image\<?php echo $row->student_image; ?>" target="_blank"><span class="btn btn-primary">VIEW</span></a>
 					<?php	}
 						?>
 					<td></tr>

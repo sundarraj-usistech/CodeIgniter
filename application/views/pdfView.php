@@ -36,9 +36,11 @@
 
 <?php   if ($this->session->userdata('username')) { ?>
 
-            <h3>Student Details</h3>
+            <h3 class="mt-5">Student Details</h3>
 
-            <table align="center" id="student_details" class="table table-border table-striped table-hover" width="100%" cellpadding="5">
+            <div class="container">
+                
+                <table align="center" id="student_details" class="table table-border table-striped table-hover" width="100%" cellpadding="5">
 
                 <tr>
                     <th>ROLL NO</th>
@@ -80,6 +82,8 @@ else{ ?>
 
             </div>
 <?php   } ?>    
-    </div>
+
+        </div>
+            
 </body>
 </html>

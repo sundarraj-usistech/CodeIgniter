@@ -140,7 +140,18 @@
 		}
 		
 		public function GeneratePdf(){
-			$query=$this->db->get("student_details");
+			$this->db->select('*');
+			$this->db->from('student_details');
+			$this->db->order_by('student_roll_no');
+			$query=$this->db->get();
+			return $query;
+		}
+
+		public function datatable(){
+			$this->db->select('*');
+			$this->db->from('student_details');
+			$this->db->order_by('student_roll_no');
+			$query=$this->db->get();
 			return $query;
 		}
 

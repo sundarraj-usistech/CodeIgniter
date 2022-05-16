@@ -37,7 +37,7 @@
 		}
 
 		.container{
-			width: 30%;
+			width: 50%;
 		}
 
 	</style>

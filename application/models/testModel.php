@@ -154,7 +154,7 @@
 				return false;
 			}
 		}
-		public function exportView(){
+		public function viewAll(){
 			$query=$this->db->get("student_details");
 			return $query;
 		}
@@ -170,6 +170,7 @@
 		// 	$query=$this->db->get("images");
 		// 	return $query
 		// }
+
 	}
- ?>
+?>
  

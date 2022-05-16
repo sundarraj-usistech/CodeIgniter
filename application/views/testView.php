@@ -7,7 +7,7 @@
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 	<script defer src="https://use.fontawesome.com/releases/v6.1.1/js/all.js" integrity="sha384-xBXmu0dk1bEoiwd71wOonQLyH+VpgR1XcDH3rtxrLww5ajNTuMvBdL5SOiFZnNdp" crossorigin="anonymous"></script>
-	<title>Students Details</title>
+	<title>Student Details</title>
 </head>
 <body>
 	
@@ -102,10 +102,9 @@
 					<form method="post" action="<?= base_url(); ?>index.php/testController/searchData">
 						<input type="text" name="keyword" placeholder="Search " required>
 						<button type="submit" name="submitfilter" class="btn btn-primary"><i class="fa-solid fa-magnifying-glass"></i></button>
-						
 					</form>
 					<a target="_blank" href="<?= base_url(); ?>index.php/testController/GeneratePdf" style="text-decoration: none;"><button name="pdf" class="btn btn-custom4"><i class="fa-solid fa-file-pdf"></i></button></a>
-					<!-- <a target="_blank" href="<?= base_url(); ?>index.php/testController/GenerateExcel" style="text-decoration: none;"><button name="excel" class="btn btn-success">EXCEL</button></a> -->
+					<a target="_blank" href="<?= base_url(); ?>index.php/testController/datatable" style="text-decoration: none;"><button name="datatable" class="btn btn-success">DATATABLES</button></a>
 					<?php 
 					if ($flag) {
 					?>

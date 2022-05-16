@@ -18,12 +18,15 @@
 			$this->load->library('session');
 			error_reporting(0);
 		}
+
 		public function index(){
 			$this->load->view('loginView');
 		}
-				public function loginView(){
+
+		public function loginView(){
 			$this->load->view('loginView');
 		}
+
 		public function loginCheck(){
 			$enteredData=$this->input->post();
 			$data=array(
@@ -49,13 +52,16 @@
 				$this->load->view('loginView',$error);
 			}
 		}
+
 		public function logout(){
 			$this->session->unset_userdata('username');
 			redirect(base_url()."index.php/testController/loginView");
 		}
+
 		public function signupView(){
 			$this->load->view('signupView');
 		}
+
 		public function signup(){
 			$data=$this->input->post();
 			$insertData=array(
@@ -79,6 +85,7 @@
 				$this->load->view('signupView',$error);
 			}
 		}
+
 		public function view(){
 			$data=$this->input->post();
 			if($data){
@@ -124,6 +131,7 @@
 			$query['data']=$this->testModel->pagination($config['per_page'],$page);
 			$this->load->view('testView',$query);
 		}
+
 	 	public function addUserView(){                              
 			$this->load->view('addUserView');
 			// $this->form_validation->set_rules('roll_no', 'Roll Number', 'required');
@@ -131,6 +139,7 @@
 			// $this->form_validation->set_rules('class', 'Class', 'required');
 			// $this->form_validation->set_rules('section', 'Section', 'required');
 		}
+
 		public function addUser(){
 			$data=$this->input->post();
 			$new_data=array(
@@ -144,11 +153,13 @@
 				redirect(base_url()."index.php/testController/view");
 			}
 		}
+
 		public function editUserView()	{
 			$roll_no=$this->input->get('rollno');
 			$query['data']=$this->testModel->editDataView($roll_no);
 			$this->load->view('editUserView',$query);
 		}
+
 		public function editUser(){
 			$data=$this->input->post();
 			$old_roll_no=$data['old_roll_no'];
@@ -163,11 +174,13 @@
 				redirect(base_url()."index.php/testController/view");
 			}
 		}
+
 		public function deleteUserView(){
 			$roll_no=$this->input->get('rollno');
 			$query['data']=$this->testModel->deleteUserView($roll_no);
 			$this->load->view('testDeleteView',$query);
 		}
+
 		public function deleteUser(){
 			$data=$this->input->post();
 			$roll_no=$data['roll_no'];
@@ -176,11 +189,13 @@
 				redirect(base_url()."index.php/testController/view");
 			}
 		}
+
 		public function fileUploadView(){
 			$roll_no=$this->input->get('rollno');
 			$query['data']=$this->testModel->fileUploadView($roll_no);
 			$this->load->view('fileUploadView',$query);
 		}
+
 		public function fileUpload(){
 			$data=$this->input->post();
 			$fileName=$_FILES['file']['name'];
@@ -208,11 +223,13 @@
                 echo $this->upload->display_errors();
             }		 	
 		}
+
 		public function imageUploadView(){
 			$roll_no=$this->input->get('rollno');
 			$query['data']=$this->testModel->imageUploadView($roll_no);
 			$this->load->view('imageUploadView',$query);
 		}
+
 		public function imageUpload(){
 			$data=$this->input->post();
 			$imageName=$_FILES['image']['name'];
@@ -240,11 +257,13 @@
                 echo $this->upload->display_errors();
             }		 	
 		}
+
 		public function viewUserDetails(){
 			$roll_no=$this->input->get('rollno');
 			$query['data']=$this->testModel->viewUserDetails($roll_no);
 			$this->load->view('ViewUserDetails',$query);
 		}
+
 		public function searchData(){
 			$keyword=$this->input->post('keyword');
 			$query['data']=$this->testModel->searchData($keyword);
@@ -257,6 +276,7 @@
 				$this->load->view('testView',$query);
 			}
 		}
+
 		public function GeneratePdf(){
 			if ($this->session->userdata('username')) { 
 				$query['data']=$this->testModel->GeneratePdf();
@@ -274,9 +294,11 @@
 				$this->load->view('testView');
 			}		
 		}
+
 		public function datatable(){
 			$this->load->view('datatableView');
 		}
+
 		public function get_datatable(){
 	      	$draw=intval($this->input->get("draw"));
 	      	$start=intval($this->input->get("start"));
@@ -397,5 +419,6 @@
 		// 	$query['data']=$this->testModel->pictureView();
 		// 	$this->load->view('pictureView',$query);
 		// }
+		
 	}
  ?>

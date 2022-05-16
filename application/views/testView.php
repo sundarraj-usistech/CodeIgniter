@@ -75,10 +75,10 @@
 
 			<div class="container">
 				<h3 class="mt-5">Student Details</h3>
+
 				<br>
 
 				<div align="right">Logged in as 
-
 					<span class="badge bg-success" style="padding: 10px;">
 						<b><?php echo $this->session->userdata('username'); ?></b>
 					</span>
@@ -88,7 +88,6 @@
 					<span>
 						Logged in on <b><?php echo $this->session->userdata('loginTime'); ?></b>
 					</span>
-
 				</div>
 
 				<br>
@@ -150,9 +149,11 @@
 						if (isset($err_msg)) {
 
 					?>		<div class="alert alert-danger mt-5" align="center">
-				    			<strong><?php echo $err_msg; 
+				    			<strong>
+				    				<?php echo $err_msg; 
 				    				die();
-				    		?></strong>
+				    			?>
+				    			</strong>
 				  			</div>
 
 					<?php	}
@@ -182,10 +183,9 @@
 						        	<a href="<?= base_url(); ?>index.php/testController/viewUserDetails?rollno=<?php echo $row->student_roll_no ; ?>" style="text-decoration: none;"><button name="view" class="btn btn-primary">VIEW</button></a>
 						        	<td><a href="<?= base_url(); ?>index.php/testController/fileUploadView?rollno=<?php echo $row->student_roll_no ; ?>" style="text-decoration: none;"><button name="fileupload" class="btn btn-info">FILE</button></a>
 						        		<a href="<?= base_url(); ?>index.php/testController/imageUploadView?rollno=<?php echo $row->student_roll_no ; ?>" style="text-decoration: none;"><button name="imageupload" class="btn btn-custom2">IMAGE</button></td>
-				            </tr>  
+				           	</tr>  
 				         <?php }  
 				         ?>
-
 					</table>
 
 				</div>	
@@ -204,13 +204,11 @@
 				</div>
 
 				<div align="center">
-
 					<a href="<?= base_url(); ?>index.php/testController/loginView" style="text-decoration: none;"><button name="login" class="btn btn-success">LOGIN</button></a>
 
 					<br><br>
 
 					<b>New User &nbsp? &nbsp SignUp Here &nbsp</b><a href="<?= base_url(); ?>index.php/testController/signupView" style="text-decoration: none;"><button type="submit" name="signup" class="btn btn-primary">SIGNUP</button></a>
-
 				</div>
 
 			</div>

@@ -3,27 +3,39 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
 	<title>View Details</title>
+
 </head>
+
 <body>
+
 	<style type="text/css">
+
 		td {
   			text-align: center;
  			vertical-align: middle;
 		}
+
 		.border-hide{
 			outline: none;
 			border: none;
 			background-color: #f7f7f775;
 		}
+
 		.container{
 			width: 30%;
 		}
 	</style>
+
 	<div class="container">
+
 		<form method="post" action="">
+
 		<table class="table table-borderless mt-5" align="center">
 			<?php 
 				foreach($data->result() as $row){ ?>
@@ -46,6 +58,7 @@
 					<?php	}
 						?>
 					</td></tr>
+
 					<tr><td><label>Image</label></td>
 					<td>
 						<?php
@@ -60,10 +73,14 @@
 		<?php	}
 			?>			
 		</table>
+
 	</form>
+
 		<div align="center">
 			<a href="javascript:window.history.go(-1);"><button name="back" class="btn btn-dark">BACK</button></a>
 		</div>
+
 	</div>
+	
 </body>
 </html>

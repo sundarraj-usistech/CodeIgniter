@@ -38,7 +38,7 @@
 				$data="";
 			}
 		?>
-		<form method="post" action="<?= base_url(); ?>index.php/testController/signupInsert">
+		<form method="post" action="<?= base_url(); ?>index.php/testController/signup">
 			<table class="table table-borderless mt-5" align="center">
 						<tr><td><label>UserName</label></td>
 						<td><input class="border-hide" type="text" name="username" required></td></tr>

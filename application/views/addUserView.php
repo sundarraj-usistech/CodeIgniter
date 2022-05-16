@@ -43,7 +43,7 @@
 	        <li class="breadcrumb-item active" aria-current="page">Add Details</li>
 	      </ol> -->
 	    </nav>
-		<form method="post" action="<?= base_url(); ?>index.php/testController/addData">
+		<form method="post" action="<?= base_url(); ?>index.php/testController/addUser">
 			<?php echo validation_errors(); ?>  
 	        <?php echo form_open('form'); ?>  
 			<table class="table table-borderless mt-5" align="center">

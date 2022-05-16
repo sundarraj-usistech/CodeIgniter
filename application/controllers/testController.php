@@ -21,6 +21,64 @@
 		public function index(){
 			$this->load->view('loginView');
 		}
+				public function loginView(){
+			$this->load->view('loginView');
+		}
+		public function loginCheck(){
+			$enteredData=$this->input->post();
+			$data=array(
+				'username'=>$enteredData['username'],
+				'password'=>$enteredData['password']
+			);
+			$flag=$this->testModel->loginCheck($data);
+			if ($flag=='1') {
+				$loginTime= date("d/m/Y (h:i:s A)");
+				$sessionData=array(
+					'username'=>$enteredData['username'],
+					'loginTime'=>$loginTime
+				);
+				$this->session->set_userdata($sessionData); 
+				redirect(base_url()."index.php/testController/view");
+			}
+			else if($flag=='2'){
+				$error['data']="Incorrect Password";
+				$this->load->view('loginView',$error);
+			}
+			else{ 
+				$error['data']="This Account does not exist";
+				$this->load->view('loginView',$error);
+			}
+		}
+		public function logout(){
+			$this->session->unset_userdata('username');
+			redirect(base_url()."index.php/testController/loginView");
+		}
+		public function signupView(){
+			$this->load->view('signupView');
+		}
+		public function signup(){
+			$data=$this->input->post();
+			$insertData=array(
+				'username'=>$data['username'],
+				'password'=>$data['password']
+			);
+			if($data['password']==$data['confirmpassword']){
+				$flag=$this->testModel->signup($insertData);
+				if ($flag) {
+					$loginTime= date("d/m/Y (h:i:s A)");
+					$sessionData=array(
+						'username'=>$insertData['username'],
+						'loginTime'=>$loginTime
+					);
+					$this->session->set_userdata($sessionData);
+					redirect(base_url()."index.php/testController/view");
+				}
+			}
+			else{
+				$error['data']="Password Mismatch";
+				$this->load->view('signupView',$error);
+			}
+		}
 		public function view(){
 			$data=$this->input->post();
 			if($data){
@@ -66,14 +124,14 @@
 			$query['data']=$this->testModel->pagination($config['per_page'],$page);
 			$this->load->view('testView',$query);
 		}
-	 	public function addDataView(){                              
-			$this->load->view('testAddView');
-			$this->form_validation->set_rules('roll_no', 'Roll Number', 'required');
-			$this->form_validation->set_rules('name', 'Name', 'required');
-			$this->form_validation->set_rules('class', 'Class', 'required');
-			$this->form_validation->set_rules('section', 'Section', 'required');
+	 	public function addUserView(){                              
+			$this->load->view('addUserView');
+			// $this->form_validation->set_rules('roll_no', 'Roll Number', 'required');
+			// $this->form_validation->set_rules('name', 'Name', 'required');
+			// $this->form_validation->set_rules('class', 'Class', 'required');
+			// $this->form_validation->set_rules('section', 'Section', 'required');
 		}
-		public function addData(){
+		public function addUser(){
 			$data=$this->input->post();
 			$new_data=array(
 				'student_roll_no'=>$data['roll_no'],
@@ -81,17 +139,17 @@
 				'student_class'=>$data['class'],
 				'student_section'=>$data['section']
 			);
-			$flag=$this->testModel->addData($new_data);
+			$flag=$this->testModel->addUser($new_data);
 			if ($flag) {
 				redirect(base_url()."index.php/testController/view");
 			}
 		}
-		public function editDataView()	{
+		public function editUserView()	{
 			$roll_no=$this->input->get('rollno');
 			$query['data']=$this->testModel->editDataView($roll_no);
-			$this->load->view('testEditView',$query);
+			$this->load->view('editUserView',$query);
 		}
-		public function editData(){
+		public function editUser(){
 			$data=$this->input->post();
 			$old_roll_no=$data['old_roll_no'];
 			$edited_data=array(
@@ -100,56 +158,28 @@
 				'student_class'=>$data['class'],
 				'student_section'=>$data['section']
 			);
-			$flag=$this->testModel->editData($edited_data,$old_roll_no);
+			$flag=$this->testModel->editUser($edited_data,$old_roll_no);
 			if ($flag) {
 				redirect(base_url()."index.php/testController/view");
 			}
 		}
-		public function deleteDataView(){
+		public function deleteUserView(){
 			$roll_no=$this->input->get('rollno');
-			$query['data']=$this->testModel->deleteDataView($roll_no);
+			$query['data']=$this->testModel->deleteUserView($roll_no);
 			$this->load->view('testDeleteView',$query);
 		}
-		public function deleteData(){
+		public function deleteUser(){
 			$data=$this->input->post();
 			$roll_no=$data['roll_no'];
-			$flag=$this->testModel->deleteData($roll_no);
+			$flag=$this->testModel->deleteUser($roll_no);
 			if ($flag) {
 				redirect(base_url()."index.php/testController/view");
 			}
 		}
-		// public function sortTable(){
-		// 	$data=$this->input->post();
-		// 	$sortOption=$data['sort'];
-		// 	if ($sortOption=='sortrollnoasc') {
-		// 		$query['data']=$this->testModel->sortRollNoAsc();
-		// 		$this->load->view('testView',$query);
-		// 	}
-		// 	elseif ($sortOption=='sortrollnodesc'){
-		// 		$query['data']=$this->testModel->sortRollNoDesc();
-		// 		$this->load->view('testView',$query);	
-		// 	}
-		// 	elseif ($sortOption=='sortnameasc'){
-		// 		$query['data']=$this->testModel->sortNameAsc();
-		// 		$this->load->view('testView',$query);	
-		// 	}
-		// 	elseif ($sortOption=='sortnamedesc'){
-		// 		$query['data']=$this->testModel->sortNameDesc();
-		// 		$this->load->view('testView',$query);	
-		// 	}
-		// 	elseif ($sortOption=='sortclassasc'){
-		// 		$query['data']=$this->testModel->sortClassAsc();
-		// 		$this->load->view('testView',$query);	
-		// 	}
-		// 	elseif ($sortOption=='sortclassdesc'){
-		// 		$query['data']=$this->testModel->sortClassDesc();
-		// 		$this->load->view('testView',$query);	
-		// 	}
-		// }
 		public function fileUploadView(){
 			$roll_no=$this->input->get('rollno');
 			$query['data']=$this->testModel->fileUploadView($roll_no);
-			$this->load->view('testFileUploadView',$query);
+			$this->load->view('fileUploadView',$query);
 		}
 		public function fileUpload(){
 			$data=$this->input->post();
@@ -181,7 +211,7 @@
 		public function imageUploadView(){
 			$roll_no=$this->input->get('rollno');
 			$query['data']=$this->testModel->imageUploadView($roll_no);
-			$this->load->view('testImageUploadView',$query);
+			$this->load->view('imageUploadView',$query);
 		}
 		public function imageUpload(){
 			$data=$this->input->post();
@@ -210,16 +240,16 @@
                 echo $this->upload->display_errors();
             }		 	
 		}
-		public function viewAllDetails(){
+		public function viewUserDetails(){
 			$roll_no=$this->input->get('rollno');
-			$query['data']=$this->testModel->viewAllDetails($roll_no);
-			$this->load->view('testViewAllDetails',$query);
+			$query['data']=$this->testModel->viewUserDetails($roll_no);
+			$this->load->view('ViewUserDetails',$query);
 		}
 		public function searchData(){
 			$keyword=$this->input->post('keyword');
 			$query['data']=$this->testModel->searchData($keyword);
 			$query['flag']=true;
-			if ($query['data']=='false') {
+			if ($query['data']==false) {
 				$query['err_msg']="No Data Found";
 				$this->load->view('testView',$query);
 			}
@@ -227,68 +257,10 @@
 				$this->load->view('testView',$query);
 			}
 		}
-		public function loginView(){
-			$this->load->view('loginView');
-		}
-		public function loginCheck(){
-			$enteredData=$this->input->post();
-			$data=array(
-				'username'=>$enteredData['username'],
-				'password'=>$enteredData['password']
-			);
-			$flag=$this->testModel->loginCheck($data);
-			if ($flag=='a') {
-				$loginTime= date("d/m/Y (h:i:s A)");
-				$sessionData=array(
-					'username'=>$enteredData['username'],
-					'loginTime'=>$loginTime
-				);
-				$this->session->set_userdata($sessionData); 
-				redirect(base_url()."index.php/testController/view");
-			}
-			else if($flag=='b'){
-				$error['data']="Incorrect Password";
-				$this->load->view('loginView',$error);
-			}
-			else{ 
-				$error['data']="This Account does not exist";
-				$this->load->view('loginView',$error);
-			}
-		}
-		public function logout(){
-			$this->session->unset_userdata('username');
-			redirect(base_url()."index.php/testController/loginView");
-		}
-		public function signupView(){
-			$this->load->view('signupView');
-		}
-		public function signupInsert(){
-			$data=$this->input->post();
-			$insertData=array(
-				'username'=>$data['username'],
-				'password'=>$data['password']
-			);
-			if($data['password']==$data['confirmpassword']){
-				$flag=$this->testModel->signupInsert($insertData);
-				if ($flag) {
-					$loginTime= date("d/m/Y (h:i:s A)");
-					$sessionData=array(
-						'username'=>$insertData['username'],
-						'loginTime'=>$loginTime
-					);
-					$this->session->set_userdata($sessionData);
-					redirect(base_url()."index.php/testController/view");
-				}
-			}
-			else{
-				$error['data']="Password Mismatch";
-				$this->load->view('signupView',$error);
-			}
-		}
 		public function GeneratePdf(){
 			if ($this->session->userdata('username')) { 
-				$query['data']=$this->testModel->viewAll();
-				$this->load->view('viewAllView',$query);
+				$query['data']=$this->testModel->GeneratePdf();
+				$this->load->view('pdfView',$query);
 				$html = $this->output->get_output();
 		        // Load pdf library
 				$this->load->library('pdf');
@@ -302,67 +274,6 @@
 				$this->load->view('testView');
 			}		
 		}
-		// public function GenerateExcel(){
-		// 	if ($this->session->userdata('username')) { 
-		// 		$this->load->library('Excel');
-		// 		$this->load->library('PHPExcel_IOFactory');
-		// 		$object=new PHPExcel();
-		// 		$object->setActiveSheetIndex(0);
-		// 		$tableColumns=array("Roll Number","Name","Class","Section","Document","Image");
-		// 		$column=0;
-		// 		foreach($table_columns as $field){
-		// 			$object->getActiveSheet()->setCellValueByColumnAndRow($column, 1, $field);
-		// 			$column++;
-		// 		}
-		// 		// $excel_row=2;
-		// 		// foreach($data as $row){
-		// 			$object->getActiveSheet()->setCellValueByColumnAndRow(0,'Hello');
-		// 			$object->getActiveSheet()->setCellValueByColumnAndRow(1,'Hello');
-		// 			$object->getActiveSheet()->setCellValueByColumnAndRow(2,'Hello');
-		// 			$object->getActiveSheet()->setCellValueByColumnAndRow(3,'Hello');
-		// 			$object->getActiveSheet()->setCellValueByColumnAndRow(4,'Hello');
-		// 			$object->getActiveSheet()->setCellValueByColumnAndRow(5,'Hello');
-		// 			// $excel_row++;
-		// 		// }
-		// 		$object_writer=PHPExcel_IOFactory::createWriter($object,'Excel2007');
-		// 		header('Content-Type: application/vnd.ms-excel');
-		// 		header('Content-Disposition: attachment;fileName="StudentDetails.xls"');
-		// 		$object_writer->save('php://output');
-		// 	}
-		// 	else{
-		// 		$this->load->view('testView');
-		// 	}
-		// }
-		// public function GenerateSpreadsheet(){
-		// 	$this->load->library('PhpOffice/PhpSpreadsheet/Spreadsheet');
-		// 	$spreadsheet = new Spreadsheet();
-		// 	$sheet = $spreadsheet->getActiveSheet();
-		// 	$sheet->setCellValue('A1', 'Hello World !');
-		// 	$writer = new Xlsx($spreadsheet);
-		// 	$writer->save('hello world.xlsx');
-		// }
-		// public function pictureUploadView(){
-		// 	$this->load->view('pictureUploadView');
-		// }
-		// public function pictureUpload(){
-		// 	$data=$this->input->post();
-		// 	$file=$_FILES['picture'];
-		// 	$pictureTempPath=$_FILES['picture']['tmp_name']; 
-  		//  $pictureContent=addslashes(file_get_contents($pictureTempPath));
-		// 	$pictureName=$_FILES['picture']['name'];
-	 	//  $tempName=explode(".", $pictureName);
-		// 	$newPictureName=round(microtime(true)) . '.' . end($tempName);
-  		//  $created_time= date("d/m/Y (h:i:s A)");
-  		//  $insertPicture=array(
-	  	//  'image'=>$pictureContent,
-	  	//  'created_time'=>$created_time
-  		//   );
-		// 	$this->testModel->pictureUpload($insertPicture);
-		// }
-		// public function pictureView(){
-		// 	$query['data']=$this->testModel->pictureView();
-		// 	$this->load->view('pictureView',$query);
-		// }
 		public function datatable(){
 			$this->load->view('datatableView');
 		}
@@ -391,5 +302,100 @@
 	      	echo json_encode($result);
 	      	exit();
    		}
+
+		// public function sortTable(){
+		// 	$data=$this->input->post();
+		// 	$sortOption=$data['sort'];
+		// 	if ($sortOption=='sortrollnoasc') {
+		// 		$query['data']=$this->testModel->sortRollNoAsc();
+		// 		$this->load->view('testView',$query);
+		// 	}
+		// 	elseif ($sortOption=='sortrollnodesc'){
+		// 		$query['data']=$this->testModel->sortRollNoDesc();
+		// 		$this->load->view('testView',$query);	
+		// 	}
+		// 	elseif ($sortOption=='sortnameasc'){
+		// 		$query['data']=$this->testModel->sortNameAsc();
+		// 		$this->load->view('testView',$query);	
+		// 	}
+		// 	elseif ($sortOption=='sortnamedesc'){
+		// 		$query['data']=$this->testModel->sortNameDesc();
+		// 		$this->load->view('testView',$query);	
+		// 	}
+		// 	elseif ($sortOption=='sortclassasc'){
+		// 		$query['data']=$this->testModel->sortClassAsc();
+		// 		$this->load->view('testView',$query);	
+		// 	}
+		// 	elseif ($sortOption=='sortclassdesc'){
+		// 		$query['data']=$this->testModel->sortClassDesc();
+		// 		$this->load->view('testView',$query);	
+		// 	}
+		// }
+
+		// public function GenerateExcel(){
+		// 	if ($this->session->userdata('username')) { 
+		// 		$this->load->library('Excel');
+		// 		$this->load->library('PHPExcel_IOFactory');
+		// 		$object=new PHPExcel();
+		// 		$object->setActiveSheetIndex(0);
+		// 		$tableColumns=array("Roll Number","Name","Class","Section","Document","Image");
+		// 		$column=0;
+		// 		foreach($table_columns as $field){
+		// 			$object->getActiveSheet()->setCellValueByColumnAndRow($column, 1, $field);
+		// 			$column++;
+		// 		}
+		// 		$excel_row=2;
+		// 		foreach($data as $row){
+		// 			$object->getActiveSheet()->setCellValueByColumnAndRow(0,'Hello');
+		// 			$object->getActiveSheet()->setCellValueByColumnAndRow(1,'Hello');
+		// 			$object->getActiveSheet()->setCellValueByColumnAndRow(2,'Hello');
+		// 			$object->getActiveSheet()->setCellValueByColumnAndRow(3,'Hello');
+		// 			$object->getActiveSheet()->setCellValueByColumnAndRow(4,'Hello');
+		// 			$object->getActiveSheet()->setCellValueByColumnAndRow(5,'Hello');
+		// 			$excel_row++;
+		// 		}
+		// 		$object_writer=PHPExcel_IOFactory::createWriter($object,'Excel2007');
+		// 		header('Content-Type: application/vnd.ms-excel');
+		// 		header('Content-Disposition: attachment;fileName="StudentDetails.xls"');
+		// 		$object_writer->save('php://output');
+		// 	}
+		// 	else{
+		// 		$this->load->view('testView');
+		// 	}
+		// }
+
+		// public function GenerateSpreadsheet(){
+		// 	$this->load->library('PhpOffice/PhpSpreadsheet/Spreadsheet');
+		// 	$spreadsheet = new Spreadsheet();
+		// 	$sheet = $spreadsheet->getActiveSheet();
+		// 	$sheet->setCellValue('A1', 'Hello World !');
+		// 	$writer = new Xlsx($spreadsheet);
+		// 	$writer->save('hello world.xlsx');
+		// }
+
+		// public function pictureUploadView(){
+		// 	$this->load->view('pictureUploadView');
+		// }
+
+		// public function pictureUpload(){
+		// 	$data=$this->input->post();
+		// 	$file=$_FILES['picture'];
+		// 	$pictureTempPath=$_FILES['picture']['tmp_name']; 
+  		//  $pictureContent=addslashes(file_get_contents($pictureTempPath));
+		// 	$pictureName=$_FILES['picture']['name'];
+	 	//  $tempName=explode(".", $pictureName);
+		// 	$newPictureName=round(microtime(true)) . '.' . end($tempName);
+  		//  $created_time= date("d/m/Y (h:i:s A)");
+  		//  $insertPicture=array(
+	  	//  'image'=>$pictureContent,
+	  	//  'created_time'=>$created_time
+  		//   );
+		// 	$this->testModel->pictureUpload($insertPicture);
+		// }
+		
+		// public function pictureView(){
+		// 	$query['data']=$this->testModel->pictureView();
+		// 	$this->load->view('pictureView',$query);
+		// }
 	}
  ?>

@@ -3,34 +3,27 @@
 		public function __construct(){
 			parent::__construct();
 		}
-		public function addData($new_data){
-			if ($this->db->insert("student_details",$new_data)){
-				return true;
+		public function loginCheck($data){
+			$username=$data['username'];
+			$password=$data['password'];
+			$this->db->select('password');
+			$this->db->from("users");
+			$this->db->where('username',$username);
+			$query=$this->db->get()->row_array();
+			if ($query) {
+				if (strcmp($password, $query['password'])==0) {
+					return '1';
+				}
+				else{
+					return '2';
+				}
 			}
 			else{
-				return false;
+				return '3';
 			}
 		}
-		public function editDataView($roll_no){
-			$query=$this->db->get_where("student_details",array('student_roll_no'=>$roll_no));
-			return $query;
-		}
-		public function editData($edited_data,$old_roll_no){
-			$this->db->set($edited_data);
-			$this->db->where('student_roll_no',$old_roll_no);
-			if ($this->db->update('student_details',$edited_data)){
-				return true;
-			}
-			else{
-				return false;
-			}
-		}
-		public function deleteDataView($roll_no){
-			$query=$this->db->get_where("student_details",array('student_roll_no'=>$roll_no));
-			return $query;
-		}
-		public function deleteData($roll_no){
-			if ($this->db->delete("student_details" , array('student_roll_no'=>$roll_no))){
+		public function signup($insertData){
+			if ($this->db->insert("users",$insertData)){
 				return true;
 			}
 			else{
@@ -48,6 +41,93 @@
 			$query=$this->db->get("student_details");
 			return $query;
 		}
+		public function addUser($new_data){
+			if ($this->db->insert("student_details",$new_data)){
+				return true;
+			}
+			else{
+				return false;
+			}
+		}
+		public function editUserView($roll_no){
+			$query=$this->db->get_where("student_details",array('student_roll_no'=>$roll_no));
+			return $query;
+		}
+		public function editUser($edited_data,$old_roll_no){
+			$this->db->set($edited_data);
+			$this->db->where('student_roll_no',$old_roll_no);
+			if ($this->db->update('student_details',$edited_data)){
+				return true;
+			}
+			else{
+				return false;
+			}
+		}
+		public function deleteUserView($roll_no){
+			$query=$this->db->get_where("student_details",array('student_roll_no'=>$roll_no));
+			return $query;
+		}
+		public function deleteUser($roll_no){
+			if ($this->db->delete("student_details" , array('student_roll_no'=>$roll_no))){
+				return true;
+			}
+			else{
+				return false;
+			}
+		}
+		public function viewUserDetails($roll_no){
+			$query=$this->db->get_where("student_details",array('student_roll_no'=>$roll_no));
+			return $query;
+		}
+		public function fileUploadView($roll_no){
+			$query=$this->db->get_where("student_details",array('student_roll_no'=>$roll_no));
+			return $query;
+		}
+		public function fileUpload($roll_no,$docName){
+			$this->db->set('student_document',$docName);
+			$this->db->where('student_roll_no',$roll_no);
+			if ($this->db->update('student_details')){
+				return true;
+			}
+			else{
+				return false;
+			}
+		}
+		public function imageUploadView($roll_no){
+			$query=$this->db->get_where("student_details",array('student_roll_no'=>$roll_no));
+			return $query;
+		}
+		public function imageUpload($roll_no,$imgName){
+			$this->db->set('student_image',$imgName);
+			$this->db->where('student_roll_no',$roll_no);
+			if ($this->db->update('student_details')){
+				return true;
+			}
+			else{
+				return false;
+			}
+		}
+		public function searchData($keyword){
+			$this->db->select('*');
+			$this->db->from('student_details');
+			$this->db->like('student_name',$keyword);
+			$this->db->or_like('student_roll_no',$keyword);
+			$this->db->or_like('student_class',$keyword);
+			$this->db->or_like('student_section',$keyword);
+			$query=$this->db->get();
+			$rows=$query->row_array();
+			if ($rows) {
+				return $query;
+			}
+			else{
+				return false;
+			}	
+		}
+		public function GeneratePdf(){
+			$query=$this->db->get("student_details");
+			return $query;
+		}
+
 		// public function sortRollNoAsc(){
 		// 	$this->db->order_by('student_roll_no');
 		// 	$query=$this->db->get("student_details"); 
@@ -78,86 +158,7 @@
 		// 	$query=$this->db->get("student_details"); 
 		// 	return $query;			
 		// }
-		public function fileUploadView($roll_no){
-			$query=$this->db->get_where("student_details",array('student_roll_no'=>$roll_no));
-			return $query;
-		}
-		public function fileUpload($roll_no,$docName){
-			$this->db->set('student_document',$docName);
-			$this->db->where('student_roll_no',$roll_no);
-			if ($this->db->update('student_details')){
-				return true;
-			}
-			else{
-				return false;
-			}
-		}
-		public function imageUploadView($roll_no){
-			$query=$this->db->get_where("student_details",array('student_roll_no'=>$roll_no));
-			return $query;
-		}
-		public function imageUpload($roll_no,$imgName){
-			$this->db->set('student_image',$imgName);
-			$this->db->where('student_roll_no',$roll_no);
-			if ($this->db->update('student_details')){
-				return true;
-			}
-			else{
-				return false;
-			}
-		}
-		public function viewAllDetails($roll_no){
-			$query=$this->db->get_where("student_details",array('student_roll_no'=>$roll_no));
-			return $query;
-		}
-		public function searchData($keyword){
-			$this->db->select('*');
-			$this->db->from('student_details');
-			$this->db->like('student_name',$keyword);
-			$this->db->or_like('student_roll_no',$keyword);
-			$this->db->or_like('student_class',$keyword);
-			$this->db->or_like('student_section',$keyword);
-			$query=$this->db->get();
-			$rows=$query->row_array();
-			if ($rows) {
-				return $query;
-			}
-			else{
-				return 'false';
-			}
-				
-		}
-		public function loginCheck($data){
-			$username=$data['username'];
-			$password=$data['password'];
-			$this->db->select('password');
-			$this->db->from("users");
-			$this->db->where('username',$username);
-			$query=$this->db->get()->row_array();
-			if ($query) {
-				if (strcmp($password, $query['password'])==0) {
-					return 'a';
-				}
-				else{
-					return 'b';
-				}
-			}
-			else{
-				return 'c';
-			}
-		}
-		public function signupInsert($insertData){
-			if ($this->db->insert("users",$insertData)){
-				return true;
-			}
-			else{
-				return false;
-			}
-		}
-		public function viewAll(){
-			$query=$this->db->get("student_details");
-			return $query;
-		}
+		
 		// public function pictureUpload($insertPicture){
 		// 	if($this->db->insert("images",$insertPicture)){
 		// 		echo "Success";
@@ -166,6 +167,7 @@
 		// 		echo "Failed";
 		// 	}
 		// }
+
 		// public function pictureView(){
 		// 	$query=$this->db->get("images");
 		// 	return $query

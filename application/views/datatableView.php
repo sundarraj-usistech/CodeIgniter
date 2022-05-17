@@ -18,13 +18,22 @@
 </head>
 
 <body>
+<style type="text/css">
+  
+  .container{
+      width: 50%;
+    }
+
+</style>
 
 <?php   
 if ($this->session->userdata('username')) { ?>
 
   <div class="container">
 
-    <h2>Student Details</h2>
+    <h3 class="mt-5">Student Details</h3>
+
+    <br>
 
     <table id="student-list"class="table table-bordered table-striped table-hover">
 

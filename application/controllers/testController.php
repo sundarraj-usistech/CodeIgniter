@@ -135,10 +135,6 @@
 
 	 	public function addUserView(){                              
 			$this->load->view('addUserView');
-			// $this->form_validation->set_rules('roll_no', 'Roll Number', 'required');
-			// $this->form_validation->set_rules('name', 'Name', 'required');
-			// $this->form_validation->set_rules('class', 'Class', 'required');
-			// $this->form_validation->set_rules('section', 'Section', 'required');
 		}
 
 		public function addUser(){
@@ -157,7 +153,7 @@
 
 		public function editUserView()	{
 			$roll_no=$this->input->get('rollno');
-			$query['data']=$this->testModel->editDataView($roll_no);
+			$query['data']=$this->testModel->editUserView($roll_no);
 			$this->load->view('editUserView',$query);
 		}
 
@@ -179,7 +175,7 @@
 		public function deleteUserView(){
 			$roll_no=$this->input->get('rollno');
 			$query['data']=$this->testModel->deleteUserView($roll_no);
-			$this->load->view('testDeleteView',$query);
+			$this->load->view('deleteUserView',$query);
 		}
 
 		public function deleteUser(){
@@ -304,7 +300,7 @@
 	      	$draw=intval($this->input->get("draw"));
 	      	$start=intval($this->input->get("start"));
 	      	$length=intval($this->input->get("length"));
-      		$query=$this->db->get("student_details");
+      		$query=$this->testModel->datatable();
 	      	$data=[];
 	      	foreach($query->result() as$r) {
 	           $data[] =array(

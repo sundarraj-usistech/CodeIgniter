@@ -30,7 +30,7 @@
         }
 
         td{
-            height: 40px;
+            height: 35px;
         }
     </style>
 

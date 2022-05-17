@@ -41,15 +41,15 @@
 
 	<div class="container">
 		<?php
-			if (isset($data)) {
+			if (isset($err_msg)) {
 
 		?>		<div class="alert alert-warning mt-5">
-	    			<strong><?php echo $data; ?></strong>
+	    			<strong><?php echo $err_msg; ?></strong>
 	  			</div>
 
 		<?php	}
 			else{
-				$data="";
+				$err_msg="";
 			}
 		?>
 		<form method="post" action="<?= base_url(); ?>index.php/testController/loginCheck">

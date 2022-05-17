@@ -45,11 +45,11 @@
 				redirect(base_url()."index.php/testController/view");
 			}
 			else if($flag=='2'){
-				$error['data']="Incorrect Password";
+				$error['err_msg']="Incorrect Password";
 				$this->load->view('loginView',$error);
 			}
 			else{ 
-				$error['data']="This Account does not exist";
+				$error['err_msg']="This Account does not exist";
 				$this->load->view('loginView',$error);
 			}
 		}
@@ -82,7 +82,7 @@
 				}
 			}
 			else{
-				$error['data']="Password Mismatch";
+				$error['err_msg']="Password Mismatch";
 				$this->load->view('signupView',$error);
 			}
 		}
@@ -126,7 +126,7 @@
 			    $config['cur_tag_close'] = '</a></li>';        
 			    $config['num_tag_open'] = '<li class="page-item"><span class="page-link">';        
 			    $config['num_tag_close'] = '</span></li>';
-			//------------------------------------------------------------------------------
+			//-------------------------------------------------------------------------------
 
 			$this->pagination->initialize($config);
 			$query['data']=$this->testModel->pagination($config['per_page'],$page);
@@ -213,11 +213,13 @@
             		redirect(base_url()."index.php/testController/view");
             	}
             	else{
-            		echo "Upload Error";
+            		$error['err_msg']="Upload Error";
+            		$this->load->view('fileUploadView',$error);
             	}  
             }
             else{
-                echo $this->upload->display_errors();
+				$error['err_msg']=$this->upload->display_errors();
+				$this->load->view('fileUploadView',$error);               
             }		 	
 		}
 
@@ -247,11 +249,13 @@
             		redirect(base_url()."index.php/testController/view");
             	}
             	else{
-            		echo "Upload Error";
+            		$error['err_msg']="Upload Error";
+            		$this->load->view('fileUploadView',$error);
             	}  
             }
             else{
-                echo $this->upload->display_errors();
+                $error['err_msg']=$this->upload->display_errors();
+				$this->load->view('fileUploadView',$error);
             }		 	
 		}
 

@@ -40,6 +40,23 @@
 
 	<div class="container">
 
+		<?php  
+			if (isset($err_msg)) {
+		?>		<div class="alert alert-danger mt-5" align="center">
+	    			<strong><?php echo $err_msg; ?></strong>
+	  			</div>
+
+	  			<div align="right" class="mt-5">
+	  				<a href="javascript:window.history.go(-1);" style="text-decoration: none;"><button name="back" class="btn btn-dark">BACK</button></a>
+	  			</div>
+		<?php
+				exit();
+			}
+			else{
+				$err_msg="";
+			}
+		?>
+
 		<div align="right" class="mt-5">
 	  		<a href="javascript:window.history.go(-1);" style="text-decoration: none;"><button name="back" class="btn btn-dark">BACK</button></a>
 	  	</div>

@@ -47,7 +47,6 @@
 		public function countRows(){
 			$query=$this->db->get('student_details');
 			return $query->num_rows();
-			$this->db->count_all_results();
 		}
 
 		public function pagination($limit, $offset){

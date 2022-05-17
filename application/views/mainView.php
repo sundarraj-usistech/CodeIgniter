@@ -64,7 +64,7 @@
 		}
 
 		.container{
-			width: 50%;
+			width: 70%;
 		}
 
 	</style>
@@ -102,7 +102,7 @@
 
 				<div class="method">
 
-					<!-- <form method="post" action="http://localhost/CodeIgniter/index.php/testController/index">
+					<form method="post" action="<?= base_url(); ?>index.php/testController/customPagination">
 							<label>Number of Rows to display</label>
 							<select name="per_page">
 								<option>5</option>
@@ -110,7 +110,7 @@
 								<option>15</option>
 							</select>
 							<button  type="submit" name="submitrows" class="btn btn-success">SELECT</button>
-					</form> -->
+					</form>
 			   <!-- <form method="post" action="http://localhost/CodeIgniter/index.php/testController/sortTable">
 						<label>Choose a Sorting Method</label>
 						<select name="sort">

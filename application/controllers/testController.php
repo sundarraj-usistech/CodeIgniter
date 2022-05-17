@@ -90,13 +90,8 @@
 		}
 
 		public function view(){
-			$data=$this->input->post();
-			if($data){
-				$perPage=$data['per_page'];	
-			}
-			else{
-				$perPage=5;
-			}
+			$perPage=5;
+
 			if($this->uri->segment(3)){
 				$page=$this->uri->segment(3);
 			}
@@ -422,6 +417,31 @@
 		// 	$query['data']=$this->testModel->pictureView();
 		// 	$this->load->view('pictureView',$query);
 		// }
-		
+   		public function customPagination(){
+   			$data=$this->input->post();
+			if($data){
+				$perPage=$data['per_page'];	
+			}
+			else{
+				$perPage=5;
+			}
+			$page=$this->input->get('page');
+			if($page){
+				$currentPage=$page;
+			}
+			else{
+				$currentPage=1;
+			}
+			$startFrom=($currentPage-1)*$perPage;
+			$rowCount=$this->testModel->countRows();
+			$totalPages=ceil($rowCount/$perPage);
+			$query['data']=$this->testModel->pagination($perPage,$currentPage);
+			$this->load->view('mainView',$query);
+			for ($i=1; $i<=$totalPages; $i++) {
+			?>
+    			<a href="<?= base_url(); ?>index.php/testController/customPagination&page=<?= $i ?>&pages=<?= $perPage ?>"><button><?= $i ?></button></a>
+<?php			}
+   		}
+	
 	}
  ?>

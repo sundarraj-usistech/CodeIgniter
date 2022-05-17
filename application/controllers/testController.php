@@ -16,6 +16,7 @@
 			$this->load->library('upload');
 			$this->load->library('form_validation');
 			$this->load->library('session');
+			date_default_timezone_set("Asia/Kolkata");   //India time (GMT+5:30)
 			error_reporting(0);
 		}
 
@@ -129,7 +130,7 @@
 
 			$this->pagination->initialize($config);
 			$query['data']=$this->testModel->pagination($config['per_page'],$page);
-			$this->load->view('testView',$query);
+			$this->load->view('mainView',$query);
 		}
 
 	 	public function addUserView(){                              
@@ -270,10 +271,10 @@
 			$query['flag']=true;
 			if ($query['data']==false) {
 				$query['err_msg']="No Data Found";
-				$this->load->view('testView',$query);
+				$this->load->view('mainView',$query);
 			}
 			else{
-				$this->load->view('testView',$query);
+				$this->load->view('mainView',$query);
 			}
 		}
 
@@ -291,7 +292,7 @@
 				$this->pdf->stream("html_contents.pdf", array("Attachment"=> 0));
 			}
 			else{
-				$this->load->view('testView');
+				$this->load->view('mainView');
 			}		
 		}
 
@@ -330,27 +331,27 @@
 		// 	$sortOption=$data['sort'];
 		// 	if ($sortOption=='sortrollnoasc') {
 		// 		$query['data']=$this->testModel->sortRollNoAsc();
-		// 		$this->load->view('testView',$query);
+		// 		$this->load->view('mainView',$query);
 		// 	}
 		// 	elseif ($sortOption=='sortrollnodesc'){
 		// 		$query['data']=$this->testModel->sortRollNoDesc();
-		// 		$this->load->view('testView',$query);	
+		// 		$this->load->view('mainView',$query);	
 		// 	}
 		// 	elseif ($sortOption=='sortnameasc'){
 		// 		$query['data']=$this->testModel->sortNameAsc();
-		// 		$this->load->view('testView',$query);	
+		// 		$this->load->view('mainView',$query);	
 		// 	}
 		// 	elseif ($sortOption=='sortnamedesc'){
 		// 		$query['data']=$this->testModel->sortNameDesc();
-		// 		$this->load->view('testView',$query);	
+		// 		$this->load->view('mainView',$query);	
 		// 	}
 		// 	elseif ($sortOption=='sortclassasc'){
 		// 		$query['data']=$this->testModel->sortClassAsc();
-		// 		$this->load->view('testView',$query);	
+		// 		$this->load->view('mainView',$query);	
 		// 	}
 		// 	elseif ($sortOption=='sortclassdesc'){
 		// 		$query['data']=$this->testModel->sortClassDesc();
-		// 		$this->load->view('testView',$query);	
+		// 		$this->load->view('mainView',$query);	
 		// 	}
 		// }
 
@@ -382,7 +383,7 @@
 		// 		$object_writer->save('php://output');
 		// 	}
 		// 	else{
-		// 		$this->load->view('testView');
+		// 		$this->load->view('mainView');
 		// 	}
 		// }
 

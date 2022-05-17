@@ -86,7 +86,7 @@
 					<br>
 
 					<span>
-						Logged in on <b><?php echo $this->session->userdata('loginTime'); ?></b>
+						Logged in on <b><?php echo $this->session->userdata('last_login'); ?></b>
 					</span>
 				</div>
 

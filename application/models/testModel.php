@@ -25,6 +25,16 @@
 			}
 		}
 
+		public function updateLastLogin($sessionData){
+			$username=$sessionData['username'];
+			$updateData=array(
+				'last_login'=>$sessionData['last_login']
+			);
+			$this->db->set($updateData);
+			$this->db->where('username',$username);
+			$this->db->update('users',$updateData);
+		}
+
 		public function signup($insertData){
 			if ($this->db->insert("users",$insertData)){
 				return true;

@@ -39,9 +39,10 @@
 				$loginTime= date("d/m/Y (h:i:s A)");
 				$sessionData=array(
 					'username'=>$enteredData['username'],
-					'loginTime'=>$loginTime
+					'last_login'=>$loginTime
 				);
 				$this->session->set_userdata($sessionData); 
+				$this->testModel->updateLastLogin($sessionData);
 				redirect(base_url()."index.php/testController/view");
 			}
 			else if($flag=='2'){
@@ -75,9 +76,10 @@
 					$loginTime= date("d/m/Y (h:i:s A)");
 					$sessionData=array(
 						'username'=>$insertData['username'],
-						'loginTime'=>$loginTime
+						'last_login'=>$loginTime
 					);
 					$this->session->set_userdata($sessionData);
+					$this->testModel->updateLastLogin($sessionData);
 					redirect(base_url()."index.php/testController/view");
 				}
 			}

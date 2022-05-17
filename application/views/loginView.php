@@ -18,7 +18,6 @@
 
 		td {
   			text-align: center;
- 			vertical-align: middle;
 		}
 
 		.btn-custom1 {
@@ -40,6 +39,8 @@
 	</style>
 
 	<div class="container">
+		
+		<div class="container">
 		<?php
 			if (isset($err_msg)) {
 
@@ -55,7 +56,7 @@
 		<form method="post" action="<?= base_url(); ?>index.php/testController/loginCheck">
 
 			<table class="table table-borderless mt-5" align="center">
-						<tr><td><label>UserName</label></td>
+						<tr><td><label>User Name</label></td>
 						<td><input class="border-hide" type="text" name="username" required></td></tr>
 						<tr><td><label>Password</label></td>
 						<td><input class="border-hide" type="password" name="password" required></td></tr>	
@@ -69,6 +70,8 @@
 			<br><br>
 
 			<p align="center"><b>New User &nbsp? &nbsp SignUp Here &nbsp</b><a href="<?= base_url(); ?>index.php/testController/signupView" style="text-decoration: none;"><button type="submit" name="signup" class="btn btn-primary">SIGNUP</button></a></p>
+
+		</div>
 
 	</div>
 	

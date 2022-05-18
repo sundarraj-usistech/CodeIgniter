@@ -132,7 +132,7 @@
 			//-------------------------------------------------------------------------------
 
 			$this->pagination->initialize($config);
-			$query['data']=$this->mainModel->pagination($config['per_page'],$page);
+			$query['data']=$this->mainModel->mainView($config['per_page'],$page);
 			$this->load->view('mainView',$query);
 		}
 
@@ -349,9 +349,25 @@
                 "recordsFiltered"=>$query->num_rows(),
                 "data"=>$data
 	        );
-	        
+
 	      	echo json_encode($result);
 	      	exit();
+   		}
+
+   		public function sortByName(){
+   			$action=$this->input->get('action');
+
+   			if($action=='asc'){
+   			    $query['data']=$this->mainModel->sortNameAsc();
+   			    $query['flag']=true;
+   			}
+   			else{
+   			    $query['data']=$this->mainModel->sortNameDesc();
+   			    $query['flag']=true;
+   			}
+   			
+			$this->load->view('mainView',$query);	
+
    		}
 
 		// public function sortTable(){

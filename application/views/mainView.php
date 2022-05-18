@@ -103,13 +103,14 @@
 				<div class="method">
 
 					<form method="get" action="<?= base_url(); ?>index.php/mainController/customPagination">
-							<label>Number of Rows to display</label>
+							<label>Display</label>
 							<select name="perPage">
+								<option></option>
 								<option>5</option>
 								<option>10</option>
 								<option>15</option>
-								<option>20</option>
 							</select>
+							<label>Entries&nbsp</label>
 							<button  type="submit" name="submitrows" class="btn btn-success">SELECT</button>
 					</form>
 
@@ -135,7 +136,7 @@
 
 					<a target="_blank" href="<?= base_url(); ?>index.php/mainController/GeneratePdf" style="text-decoration: none;"><button name="pdf" class="btn btn-custom4"><i class="fa-solid fa-file-pdf"></i></button></a>
 
-					<a target="_blank" href="<?= base_url(); ?>index.php/mainController/datatable" style="text-decoration: none;"><button name="datatable" class="btn btn-success">DATATABLES</button></a>
+					<a target="_blank" href="<?= base_url(); ?>index.php/mainController/datatable" style="text-decoration: none;"><button name="datatable" class="btn btn-success"><i class="fa-solid fa-table-cells"></i>&nbspDATATABLES</button></a>
 
 					<?php 
 					if ($flag) {
@@ -170,7 +171,21 @@
 					<table align="center" id="student_details" class="table table-border table-striped table-hover" >
 
 					<tr>
-						<th>NAME</th>
+
+						<?php 
+
+							$action=$this->input->get('action');
+
+							if($action=='asc'){
+							      $action='desc';
+							}
+							else{
+							      $action='asc';
+							}
+
+						 ?>
+
+						<th><a href="<?= base_url(); ?>index.php/mainController/sortByName?action=<?= $action ?>" class="text-decoration-none text-dark">NAME</th>
 						<th>ACTION</th>
 						<th>UPLOAD</th>
 					</tr>

@@ -9,7 +9,7 @@
 		{
 			parent::__construct();
 			$this->load->database('student');
-			$this->load->model('testModel');
+			$this->load->model('mainModel');
 			$this->load->helper('url');
 			$this->load->helper('form');
 			$this->load->library('pagination');
@@ -21,7 +21,12 @@
 		}
 
 		public function index(){
-			$this->load->view('loginView');
+			if ($this->session->userdata('username')) {
+				$this->view();
+			}
+			else{
+				$this->load->view('loginView');
+			}
 		}
 
 		public function loginView(){
@@ -34,7 +39,7 @@
 				'username'=>$enteredData['username'],
 				'password'=>$enteredData['password']
 			);
-			$flag=$this->testModel->loginCheck($data);
+			$flag=$this->mainModel->loginCheck($data);
 			if ($flag=='1') {
 				$loginTime= date("d/m/Y (h:i:s A)");
 				$sessionData=array(
@@ -42,7 +47,7 @@
 					'last_login'=>$loginTime
 				);
 				$this->session->set_userdata($sessionData); 
-				$this->testModel->updateLastLogin($sessionData);
+				$this->mainModel->updateLastLogin($sessionData);
 				redirect(base_url()."index.php/testController/view");
 			}
 			else if($flag=='2'){
@@ -71,7 +76,7 @@
 				'password'=>$data['password']
 			);
 			if($data['password']==$data['confirmpassword']){
-				$flag=$this->testModel->signup($insertData);
+				$flag=$this->mainModel->signup($insertData);
 				if ($flag) {
 					$loginTime= date("d/m/Y (h:i:s A)");
 					$sessionData=array(
@@ -79,7 +84,7 @@
 						'last_login'=>$loginTime
 					);
 					$this->session->set_userdata($sessionData);
-					$this->testModel->updateLastLogin($sessionData);
+					$this->mainModel->updateLastLogin($sessionData);
 					redirect(base_url()."index.php/testController/view");
 				}
 			}
@@ -98,9 +103,10 @@
 			else{
 				$page=0;
 			}
+
 			$config = array();
 			$config['base_url']=base_url()."index.php/testController/view";
-			$config['total_rows']=$this->testModel->countRows();
+			$config['total_rows']=$this->mainModel->countRows();
 			$config['per_page']=$perPage;
 			$config['uri_segment']=3;
 
@@ -126,7 +132,7 @@
 			//-------------------------------------------------------------------------------
 
 			$this->pagination->initialize($config);
-			$query['data']=$this->testModel->pagination($config['per_page'],$page);
+			$query['data']=$this->mainModel->pagination($config['per_page'],$page);
 			$this->load->view('mainView',$query);
 		}
 
@@ -142,7 +148,7 @@
 				'student_class'=>$data['class'],
 				'student_section'=>$data['section']
 			);
-			$flag=$this->testModel->addUser($new_data);
+			$flag=$this->mainModel->addUser($new_data);
 			if ($flag) {
 				redirect(base_url()."index.php/testController/view");
 			}
@@ -150,7 +156,7 @@
 
 		public function editUserView()	{
 			$roll_no=$this->input->get('rollno');
-			$query['data']=$this->testModel->editUserView($roll_no);
+			$query['data']=$this->mainModel->editUserView($roll_no);
 			$this->load->view('editUserView',$query);
 		}
 
@@ -163,7 +169,7 @@
 				'student_class'=>$data['class'],
 				'student_section'=>$data['section']
 			);
-			$flag=$this->testModel->editUser($edited_data,$old_roll_no);
+			$flag=$this->mainModel->editUser($edited_data,$old_roll_no);
 			if ($flag) {
 				redirect(base_url()."index.php/testController/view");
 			}
@@ -171,22 +177,28 @@
 
 		public function deleteUserView(){
 			$roll_no=$this->input->get('rollno');
-			$query['data']=$this->testModel->deleteUserView($roll_no);
+			$query['data']=$this->mainModel->deleteUserView($roll_no);
 			$this->load->view('deleteUserView',$query);
 		}
 
 		public function deleteUser(){
 			$data=$this->input->post();
 			$roll_no=$data['roll_no'];
-			$flag=$this->testModel->deleteUser($roll_no);
+			$flag=$this->mainModel->deleteUser($roll_no);
 			if ($flag) {
 				redirect(base_url()."index.php/testController/view");
 			}
 		}
 
+		public function viewUserDetails(){
+			$roll_no=$this->input->get('rollno');
+			$query['data']=$this->mainModel->viewUserDetails($roll_no);
+			$this->load->view('ViewUserDetails',$query);
+		}
+
 		public function fileUploadView(){
 			$roll_no=$this->input->get('rollno');
-			$query['data']=$this->testModel->fileUploadView($roll_no);
+			$query['data']=$this->mainModel->fileUploadView($roll_no);
 			$this->load->view('fileUploadView',$query);
 		}
 
@@ -205,7 +217,7 @@
 			$roll_no=$data['roll_no'];    
 			if ($this->upload->do_upload('file')){
             	$data = array('upload_data' => $this->upload->data());
-            	$flag=$this->testModel->fileUpload($roll_no,$docName);
+            	$flag=$this->mainModel->fileUpload($roll_no,$docName);
             	if ($flag) {
             		redirect(base_url()."index.php/testController/view");
             	}
@@ -222,7 +234,7 @@
 
 		public function imageUploadView(){
 			$roll_no=$this->input->get('rollno');
-			$query['data']=$this->testModel->imageUploadView($roll_no);
+			$query['data']=$this->mainModel->imageUploadView($roll_no);
 			$this->load->view('imageUploadView',$query);
 		}
 
@@ -241,7 +253,7 @@
 			$roll_no=$data['roll_no'];    
 			if ($this->upload->do_upload('image')){
             	$data = array('upload_data' => $this->upload->data());
-            	$flag=$this->testModel->imageUpload($roll_no,$imgName);
+            	$flag=$this->mainModel->imageUpload($roll_no,$imgName);
             	if ($flag) {
             		redirect(base_url()."index.php/testController/view");
             	}
@@ -256,15 +268,32 @@
             }		 	
 		}
 
-		public function viewUserDetails(){
-			$roll_no=$this->input->get('rollno');
-			$query['data']=$this->testModel->viewUserDetails($roll_no);
-			$this->load->view('ViewUserDetails',$query);
-		}
+		public function customPagination(){
+   			$data=$this->input->get('perPage');
+			if($data){
+				$perPage=$data;	
+			}
+			$page=$this->input->get('page');
+			if($page){
+				$currentPage=$page;
+			}
+			else{
+				$currentPage=1;
+			}
+			$startFrom=($currentPage-1)*$perPage;
+			$rowCount=$this->mainModel->countRows();
+			$totalPages=ceil($rowCount/$perPage);
+			$query['data']=$this->mainModel->customPagination($perPage,$startFrom);
+			$query['custompage']=true;
+			$query['totalPages']=$totalPages;
+			$query['perPage']=$perPage;
+			$query['flag']=true;
+			$this->load->view('mainView',$query);
+   		}
 
 		public function searchData(){
 			$keyword=$this->input->post('keyword');
-			$query['data']=$this->testModel->searchData($keyword);
+			$query['data']=$this->mainModel->searchData($keyword);
 			$query['flag']=true;
 			if ($query['data']==false) {
 				$query['err_msg']="No Data Found";
@@ -277,7 +306,7 @@
 
 		public function GeneratePdf(){
 			if ($this->session->userdata('username')) { 
-				$query['data']=$this->testModel->GeneratePdf();
+				$query['data']=$this->mainModel->GeneratePdf();
 				$this->load->view('pdfView',$query);
 				$html = $this->output->get_output();
 		        // Load pdf library
@@ -301,7 +330,7 @@
 	      	$draw=intval($this->input->get("draw"));
 	      	$start=intval($this->input->get("start"));
 	      	$length=intval($this->input->get("length"));
-      		$query=$this->testModel->datatable();
+      		$query=$this->mainModel->datatable();
 	      	$data=[];
 	      	foreach($query->result() as$r) {
 	           $data[] =array(
@@ -313,12 +342,14 @@
 	                $r->student_image
 	           );
 	      	}
+
 	      	$result=array(
 	            "draw"=>$draw,
                 "recordsTotal"=>$query->num_rows(),
                 "recordsFiltered"=>$query->num_rows(),
                 "data"=>$data
 	        );
+	        
 	      	echo json_encode($result);
 	      	exit();
    		}
@@ -327,27 +358,27 @@
 		// 	$data=$this->input->post();
 		// 	$sortOption=$data['sort'];
 		// 	if ($sortOption=='sortrollnoasc') {
-		// 		$query['data']=$this->testModel->sortRollNoAsc();
+		// 		$query['data']=$this->mainModel->sortRollNoAsc();
 		// 		$this->load->view('mainView',$query);
 		// 	}
 		// 	elseif ($sortOption=='sortrollnodesc'){
-		// 		$query['data']=$this->testModel->sortRollNoDesc();
+		// 		$query['data']=$this->mainModel->sortRollNoDesc();
 		// 		$this->load->view('mainView',$query);	
 		// 	}
 		// 	elseif ($sortOption=='sortnameasc'){
-		// 		$query['data']=$this->testModel->sortNameAsc();
+		// 		$query['data']=$this->mainModel->sortNameAsc();
 		// 		$this->load->view('mainView',$query);	
 		// 	}
 		// 	elseif ($sortOption=='sortnamedesc'){
-		// 		$query['data']=$this->testModel->sortNameDesc();
+		// 		$query['data']=$this->mainModel->sortNameDesc();
 		// 		$this->load->view('mainView',$query);	
 		// 	}
 		// 	elseif ($sortOption=='sortclassasc'){
-		// 		$query['data']=$this->testModel->sortClassAsc();
+		// 		$query['data']=$this->mainModel->sortClassAsc();
 		// 		$this->load->view('mainView',$query);	
 		// 	}
 		// 	elseif ($sortOption=='sortclassdesc'){
-		// 		$query['data']=$this->testModel->sortClassDesc();
+		// 		$query['data']=$this->mainModel->sortClassDesc();
 		// 		$this->load->view('mainView',$query);	
 		// 	}
 		// }
@@ -410,38 +441,14 @@
 	  	//  'image'=>$pictureContent,
 	  	//  'created_time'=>$created_time
   		//   );
-		// 	$this->testModel->pictureUpload($insertPicture);
+		// 	$this->mainModel->pictureUpload($insertPicture);
 		// }
 
 		// public function pictureView(){
-		// 	$query['data']=$this->testModel->pictureView();
+		// 	$query['data']=$this->mainModel->pictureView();
 		// 	$this->load->view('pictureView',$query);
 		// }
-   		public function customPagination(){
-   			$data=$this->input->post();
-			if($data){
-				$perPage=$data['per_page'];	
-			}
-			else{
-				$perPage=5;
-			}
-			$page=$this->input->get('page');
-			if($page){
-				$currentPage=$page;
-			}
-			else{
-				$currentPage=1;
-			}
-			$startFrom=($currentPage-1)*$perPage;
-			$rowCount=$this->testModel->countRows();
-			$totalPages=ceil($rowCount/$perPage);
-			$query['data']=$this->testModel->pagination($perPage,$currentPage);
-			$this->load->view('mainView',$query);
-			for ($i=1; $i<=$totalPages; $i++) {
-			?>
-    			<a href="<?= base_url(); ?>index.php/testController/customPagination&page=<?= $i ?>&pages=<?= $perPage ?>"><button><?= $i ?></button></a>
-<?php			}
-   		}
+
 	
 	}
  ?>

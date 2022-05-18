@@ -102,15 +102,17 @@
 
 				<div class="method">
 
-					<form method="post" action="<?= base_url(); ?>index.php/testController/customPagination">
+					<form method="get" action="<?= base_url(); ?>index.php/testController/customPagination">
 							<label>Number of Rows to display</label>
-							<select name="per_page">
+							<select name="perPage">
 								<option>5</option>
 								<option>10</option>
 								<option>15</option>
+								<option>20</option>
 							</select>
 							<button  type="submit" name="submitrows" class="btn btn-success">SELECT</button>
 					</form>
+
 			   <!-- <form method="post" action="http://localhost/CodeIgniter/index.php/testController/sortTable">
 						<label>Choose a Sorting Method</label>
 						<select name="sort">
@@ -184,7 +186,8 @@
 						        	<a href="<?= base_url(); ?>index.php/testController/viewUserDetails?rollno=<?php echo $row->student_roll_no ; ?>" style="text-decoration: none;"><button name="view" class="btn btn-primary">VIEW</button></a>
 						        </td>						       
 						        	<td><a href="<?= base_url(); ?>index.php/testController/fileUploadView?rollno=<?php echo $row->student_roll_no ; ?>" style="text-decoration: none;"><button name="fileupload" class="btn btn-info">FILE</button></a>
-						        		<a href="<?= base_url(); ?>index.php/testController/imageUploadView?rollno=<?php echo $row->student_roll_no ; ?>" style="text-decoration: none;"><button name="imageupload" class="btn btn-custom2">IMAGE</button></td>
+						        		<a href="<?= base_url(); ?>index.php/testController/imageUploadView?rollno=<?php echo $row->student_roll_no ; ?>" style="text-decoration: none;"><button name="imageupload" class="btn btn-custom2">IMAGE</button>
+						        </td>
 				           	</tr>  
 				         <?php }  
 				         ?>
@@ -194,8 +197,29 @@
 
 				<br>
 
-				<div align="center"><?php echo $this->pagination->create_links(); ?></div>
-<?php	}
+				<?php 
+					if($custompage){
+				?>		
+
+						<div align="center">
+
+				<?php		for ($i=1; $i<=$totalPages; $i++) {
+					?>
+   								<a href="<?= base_url(); ?>index.php/testController/customPagination?page=<?= $i ?>&perPage=<?= $perPage ?>" style="text-decoration: none;"><span class="btn btn-primary"><?= $i ?></span></a> 							
+				<?php		}
+
+				?>
+						</div>
+
+			<?php	}
+					else{
+				?>
+						<div align="center"><?php echo $this->pagination->create_links(); ?></div>
+
+			<?php	}
+
+				
+		}
 
 		else{ ?>
 

@@ -1,5 +1,5 @@
 <?php 
-	class testModel extends CI_model{
+	class mainModel extends CI_model{
 
 		public function __construct(){
 			parent::__construct();
@@ -129,6 +129,15 @@
 			else{
 				return false;
 			}
+		}
+
+		public function customPagination($limit, $startFrom){
+			$this->db->select('*');
+			$this->db->from('student_details');
+			$this->db->order_by('student_roll_no');
+			$this->db->limit($limit, $startFrom);
+			$query=$this->db->get();
+			return $query;
 		}
 
 		public function searchData($keyword){

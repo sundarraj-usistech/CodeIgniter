@@ -104,7 +104,7 @@
 
 					<form method="get" action="<?= base_url(); ?>index.php/mainController/customPagination">
 							<label>Display</label>
-							<select name="perPage">
+							<select name="perPage" required>
 								<option></option>
 								<option>5</option>
 								<option>10</option>

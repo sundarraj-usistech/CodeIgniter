@@ -273,6 +273,9 @@
 			if($data){
 				$perPage=$data;	
 			}
+			else{
+				$perPage=5;
+			}
 			$page=$this->input->get('page');
 			if($page){
 				$currentPage=$page;
@@ -355,14 +358,15 @@
    		}
 
    		public function sortByName(){
+
    			$action=$this->input->get('action');
 
    			if($action=='asc'){
-   			    $query['data']=$this->mainModel->sortNameAsc();
+   			    $query['data']=$this->mainModel->sortNameAsc($config['per_page'],$page);
    			    $query['flag']=true;
    			}
    			else{
-   			    $query['data']=$this->mainModel->sortNameDesc();
+   			    $query['data']=$this->mainModel->sortNameDesc($config['per_page'],$page);
    			    $query['flag']=true;
    			}
    			

@@ -52,6 +52,7 @@
 		public function mainView($limit, $offset){
 			$this->db->limit($limit);
 			$this->db->offset($offset);
+			$this->db->order_by('student_roll_no');
 			$query=$this->db->get("student_details");
 			return $query;
 		}
@@ -173,13 +174,17 @@
 			return $query;
 		}
 
-		public function sortNameAsc(){
+		public function sortNameAsc($limit,$offset){
+			$this->db->limit($limit);
+			$this->db->offset($offset);
 			$this->db->order_by('student_name');
 			$query=$this->db->get("student_details"); 
 			return $query;			
 		}
 
-		public function sortNameDesc(){
+		public function sortNameDesc($limit,$offset){
+			$this->db->limit($limit);
+			$this->db->offset($offset);
 			$this->db->order_by('student_name','DESC');
 			$query=$this->db->get("student_details"); 
 			return $query;			

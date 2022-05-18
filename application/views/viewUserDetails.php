@@ -53,7 +53,7 @@
 							if ($row->student_document==null) { ?>
 
 								<input  class="border-hide"type="text" name="file" value="<?php echo "No Document found" ?>" readonly>
-								<a href="<?= base_url(); ?>index.php/testController/fileUploadView?rollno=<?php echo $row->student_roll_no ; ?>" style="text-decoration: none;"><span class="btn btn-primary">UPLOAD</span></a>
+								<a href="<?= base_url(); ?>index.php/mainController/fileUploadView?rollno=<?php echo $row->student_roll_no ; ?>" style="text-decoration: none;"><span class="btn btn-primary">UPLOAD</span></a>
 					<?php	}
 							else{ ?>
 								<input  class="border-hide"type="text" name="file" value="<?php echo $row->student_document ?>" readonly>
@@ -67,7 +67,7 @@
 						<?php
 							if ($row->student_image==null) { ?>
 								<input  class="border-hide"type="text" name="image" value="<?php echo "No Image found" ?>" readonly>
-								<a href="<?= base_url(); ?>index.php/testController/imageUploadView?rollno=<?php echo $row->student_roll_no ; ?>" style="text-decoration: none;"><span class="btn btn-primary">UPLOAD</span>
+								<a href="<?= base_url(); ?>index.php/mainController/imageUploadView?rollno=<?php echo $row->student_roll_no ; ?>" style="text-decoration: none;"><span class="btn btn-primary">UPLOAD</span>
 					<?php	}
 							else{ ?>
 								<input  class="border-hide"type="text" name="image" value="<?php echo $row->student_image ?>" readonly>

@@ -47,7 +47,7 @@
 	  		<a href="javascript:window.history.go(-1);" style="text-decoration: none;"><button name="back" class="btn btn-dark">BACK</button></a>
 	  	</div>
 
-		<form method="post" action="<?= base_url(); ?>index.php/testController/editUser">
+		<form method="post" action="<?= base_url(); ?>index.php/mainController/editUser">
 
 			<table class="table table-borderless mt-5" align="center">
 				<?php 

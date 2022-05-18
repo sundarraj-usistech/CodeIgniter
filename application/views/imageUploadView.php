@@ -61,7 +61,7 @@
 	  		<a href="javascript:window.history.go(-1);" style="text-decoration: none;"><button name="back" class="btn btn-dark">BACK</button></a>
 	  	</div>
 
-		<form method="post" action="<?= base_url(); ?>index.php/testController/imageUpload" enctype="multipart/form-data">
+		<form method="post" action="<?= base_url(); ?>index.php/mainController/imageUpload" enctype="multipart/form-data">
 
 			<table class="table table-borderless mt-5" align="center">
 				<?php 

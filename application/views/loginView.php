@@ -53,7 +53,7 @@
 				$err_msg="";
 			}
 		?>
-		<form method="post" action="<?= base_url(); ?>index.php/testController/loginCheck">
+		<form method="post" action="<?= base_url(); ?>index.php/mainController/loginCheck">
 
 			<table class="table table-borderless mt-5" align="center">
 						<tr><td><label>User Name</label></td>
@@ -69,7 +69,7 @@
 
 			<br><br>
 
-			<p align="center"><b>New User &nbsp? &nbsp SignUp Here &nbsp</b><a href="<?= base_url(); ?>index.php/testController/signupView" style="text-decoration: none;"><button type="submit" name="signup" class="btn btn-primary">SIGNUP</button></a></p>
+			<p align="center"><b>New User &nbsp? &nbsp SignUp Here &nbsp</b><a href="<?= base_url(); ?>index.php/mainController/signupView" style="text-decoration: none;"><button type="submit" name="signup" class="btn btn-primary">SIGNUP</button></a></p>
 
 		</div>
 

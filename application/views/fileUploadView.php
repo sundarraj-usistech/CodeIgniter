@@ -65,7 +65,7 @@
 	  	</div>
 
 
-		<form method="post" action="<?= base_url(); ?>index.php/testController/fileUpload" enctype="multipart/form-data">
+		<form method="post" action="<?= base_url(); ?>index.php/mainController/fileUpload" enctype="multipart/form-data">
 
 			<table class="table table-borderless mt-5" align="center">
 				<?php 

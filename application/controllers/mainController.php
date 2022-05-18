@@ -3,7 +3,7 @@
 	// use PhpOffice\PhpSpreadsheet\Spreadsheet;
 	// use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 	
-	class testController extends CI_Controller{
+	class mainController extends CI_Controller{
 
 		function __construct()
 		{
@@ -48,7 +48,7 @@
 				);
 				$this->session->set_userdata($sessionData); 
 				$this->mainModel->updateLastLogin($sessionData);
-				redirect(base_url()."index.php/testController/view");
+				redirect(base_url()."index.php/mainController/view");
 			}
 			else if($flag=='2'){
 				$error['err_msg']="Incorrect Password";
@@ -62,7 +62,7 @@
 
 		public function logout(){
 			$this->session->unset_userdata('username');
-			redirect(base_url()."index.php/testController/loginView");
+			redirect(base_url()."index.php/mainController/loginView");
 		}
 
 		public function signupView(){
@@ -85,7 +85,7 @@
 					);
 					$this->session->set_userdata($sessionData);
 					$this->mainModel->updateLastLogin($sessionData);
-					redirect(base_url()."index.php/testController/view");
+					redirect(base_url()."index.php/mainController/view");
 				}
 			}
 			else{
@@ -105,7 +105,7 @@
 			}
 
 			$config = array();
-			$config['base_url']=base_url()."index.php/testController/view";
+			$config['base_url']=base_url()."index.php/mainController/view";
 			$config['total_rows']=$this->mainModel->countRows();
 			$config['per_page']=$perPage;
 			$config['uri_segment']=3;
@@ -150,7 +150,7 @@
 			);
 			$flag=$this->mainModel->addUser($new_data);
 			if ($flag) {
-				redirect(base_url()."index.php/testController/view");
+				redirect(base_url()."index.php/mainController/view");
 			}
 		}
 
@@ -171,7 +171,7 @@
 			);
 			$flag=$this->mainModel->editUser($edited_data,$old_roll_no);
 			if ($flag) {
-				redirect(base_url()."index.php/testController/view");
+				redirect(base_url()."index.php/mainController/view");
 			}
 		}
 
@@ -186,7 +186,7 @@
 			$roll_no=$data['roll_no'];
 			$flag=$this->mainModel->deleteUser($roll_no);
 			if ($flag) {
-				redirect(base_url()."index.php/testController/view");
+				redirect(base_url()."index.php/mainController/view");
 			}
 		}
 
@@ -219,7 +219,7 @@
             	$data = array('upload_data' => $this->upload->data());
             	$flag=$this->mainModel->fileUpload($roll_no,$docName);
             	if ($flag) {
-            		redirect(base_url()."index.php/testController/view");
+            		redirect(base_url()."index.php/mainController/view");
             	}
             	else{
             		$error['err_msg']="Upload Error";
@@ -255,7 +255,7 @@
             	$data = array('upload_data' => $this->upload->data());
             	$flag=$this->mainModel->imageUpload($roll_no,$imgName);
             	if ($flag) {
-            		redirect(base_url()."index.php/testController/view");
+            		redirect(base_url()."index.php/mainController/view");
             	}
             	else{
             		$error['err_msg']="Upload Error";

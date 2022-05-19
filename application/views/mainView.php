@@ -102,7 +102,7 @@
 
 				<div class="method">
 
-					<form method="get" action="<?= base_url(); ?>index.php/mainController/customPagination">
+					<form method="post" action="<?= base_url(); ?>index.php/mainController/customPagination">
 							<label>Display</label>
 							<select name="perPage" required>
 								<option></option>

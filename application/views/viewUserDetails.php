@@ -32,60 +32,81 @@
 		}
 	</style>
 
-	<div class="container">
+<?php 	if ($this->session->userdata('username')) { ?>
 
-		<form method="post" action="">
+			<div class="container">
 
-		<table class="table table-borderless mt-5" align="center">
-			<?php 
-				foreach($data->result() as $row){ ?>
-					<tr><td><label>Roll Number</label></td>
-					<td><input class="border-hide" type="text" name="roll_no" value="<?php echo $row->student_roll_no ?>" readonly></td></tr>
-					<tr><td><label>Name</label></td>
-					<td><input class="border-hide" type="text" name="name" value="<?php echo $row->student_name ?>" readonly></td></tr>
-					<tr><td><label>Class</label></td>
-					<td><input class="border-hide" type="text" name="class" value="<?php echo $row->student_class ?>" readonly></td></tr>
-					<tr><td><label>Section</label></td>
-					<td><input class="border-hide" type="text" name="section" value="<?php echo $row->student_section ?>" readonly></td></tr>
-					<tr><td><label>Document</label></td>
-					<td>
-						<?php
-							if ($row->student_document==null) { ?>
+				<form method="post" action="">
 
-								<input  class="border-hide"type="text" name="file" value="<?php echo "No Document found" ?>" readonly>
-								<a href="<?= base_url(); ?>index.php/mainController/fileUploadView?rollno=<?php echo $row->student_roll_no ; ?>" style="text-decoration: none;"><span class="btn btn-primary">UPLOAD</span></a>
-					<?php	}
-							else{ ?>
-								<input  class="border-hide"type="text" name="file" value="<?php echo $row->student_document ?>" readonly>
-								<a href="\CodeIgniter\student_document\<?php echo $row->student_document; ?>" target="_blank"><span class="btn btn-primary">VIEW</span></a>
-					<?php	}
-						?>
-					</td></tr>
+				<table class="table table-borderless mt-5" align="center">
+					<?php 
+						foreach($data->result() as $row){ ?>
+							<tr><td><label>Roll Number</label></td>
+							<td><input class="border-hide" type="text" name="roll_no" value="<?php echo $row->student_roll_no ?>" readonly></td></tr>
+							<tr><td><label>Name</label></td>
+							<td><input class="border-hide" type="text" name="name" value="<?php echo $row->student_name ?>" readonly></td></tr>
+							<tr><td><label>Class</label></td>
+							<td><input class="border-hide" type="text" name="class" value="<?php echo $row->student_class ?>" readonly></td></tr>
+							<tr><td><label>Section</label></td>
+							<td><input class="border-hide" type="text" name="section" value="<?php echo $row->student_section ?>" readonly></td></tr>
+							<tr><td><label>Document</label></td>
+							<td>
+								<?php
+									if ($row->student_document==null) { ?>
 
-					<tr><td><label>Image</label></td>
-					<td>
-						<?php
-							if ($row->student_image==null) { ?>
-								<input  class="border-hide"type="text" name="image" value="<?php echo "No Image found" ?>" readonly>
-								<a href="<?= base_url(); ?>index.php/mainController/imageUploadView?rollno=<?php echo $row->student_roll_no ; ?>" style="text-decoration: none;"><span class="btn btn-primary">UPLOAD</span>
-					<?php	}
-							else{ ?>
-								<input  class="border-hide"type="text" name="image" value="<?php echo $row->student_image ?>" readonly>
-								<a href="\CodeIgniter\student_image\<?php echo $row->student_image; ?>" target="_blank"><span class="btn btn-primary">VIEW</span></a>
-					<?php	}
-						?>
-					<td></tr>
-		<?php	}
-			?>			
-		</table>
+										<input  class="border-hide"type="text" name="file" value="<?php echo "No Document found" ?>" readonly>
+										<a href="<?= base_url(); ?>index.php/mainController/fileUploadView?rollno=<?php echo $row->student_roll_no ; ?>" style="text-decoration: none;"><span class="btn btn-primary">UPLOAD</span></a>
+							<?php	}
+									else{ ?>
+										<input  class="border-hide"type="text" name="file" value="<?php echo $row->student_document ?>" readonly>
+										<a href="\CodeIgniter\student_document\<?php echo $row->student_document; ?>" target="_blank"><span class="btn btn-primary">VIEW</span></a>
+							<?php	}
+								?>
+							</td></tr>
 
-	</form>
+							<tr><td><label>Image</label></td>
+							<td>
+								<?php
+									if ($row->student_image==null) { ?>
+										<input  class="border-hide"type="text" name="image" value="<?php echo "No Image found" ?>" readonly>
+										<a href="<?= base_url(); ?>index.php/mainController/imageUploadView?rollno=<?php echo $row->student_roll_no ; ?>" style="text-decoration: none;"><span class="btn btn-primary">UPLOAD</span>
+							<?php	}
+									else{ ?>
+										<input  class="border-hide"type="text" name="image" value="<?php echo $row->student_image ?>" readonly>
+										<a href="\CodeIgniter\student_image\<?php echo $row->student_image; ?>" target="_blank"><span class="btn btn-primary">VIEW</span></a>
+							<?php	}
+								?>
+							<td></tr>
+				<?php	}
+					?>			
+				</table>
 
-		<div align="center">
-			<a href="javascript:window.history.go(-1);"><button name="back" class="btn btn-dark">BACK</button></a>
-		</div>
+			</form>
 
-	</div>
+				<div align="center">
+					<a href="javascript:window.history.go(-1);"><button name="back" class="btn btn-dark">BACK</button></a>
+				</div>
+
+			</div>
+<?php   } 
+        else{ ?>
+            <div class="container" align="center">
+
+                <div class="alert alert-danger mt-5">
+                    <strong><?php echo "Not Logged in !"?></strong>
+                </div>
+
+                <div align="center">
+                    <a href="<?= base_url(); ?>index.php/mainController/loginView" style="text-decoration: none;"><button name="login" class="btn btn-success">LOGIN</button></a>
+
+                    <br><br>
+                    
+                    <b>New User &nbsp? &nbsp SignUp Here &nbsp</b><a href="<?= base_url(); ?>index.php/mainController/signupView" style="text-decoration: none;"><button type="submit" name="signup" class="btn btn-primary">SIGNUP</button></a>
+                </div>
+
+            </div>
+<?php   } ?>  
+
 	
 </body>
 </html>

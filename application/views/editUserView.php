@@ -11,19 +11,20 @@
 	<title>Edit Details</title>
 
 </head>
+
 <body>
 
 	<style type="text/css">
 
 		td {
-  			text-align: center;
- 			vertical-align: middle;
+				text-align: center;
+				vertical-align: middle;
 		}
 
 		.btn-custom3 {
-    		color: #ffffff;
-    		background-color: #adb5bd;
-    		border-color: #adb5bd;
+			color: #ffffff;
+			background-color: #adb5bd;
+			border-color: #adb5bd;
 		}
 
 		.border-hide{
@@ -37,43 +38,65 @@
 		}
 	</style>
 
-	<div class="container">
+<?php 	if ($this->session->userdata('username')) { ?>
+	
+			<div class="container">
 
-		<div class="alert alert-warning mt-5" align="center">
-    		<strong>You are about to Edit this Person's Details !</strong>
-  		</div>
+				<div class="alert alert-warning mt-5" align="center">
+		    		<strong>You are about to Edit this Person's Details !</strong>
+		  		</div>
 
-  		<div align="right">
-	  		<a href="javascript:window.history.go(-1);" style="text-decoration: none;"><button name="back" class="btn btn-dark">BACK</button></a>
-	  	</div>
+		  		<div align="right">
+			  		<a href="javascript:window.history.go(-1);" style="text-decoration: none;"><button name="back" class="btn btn-dark">BACK</button></a>
+			  	</div>
 
-		<form method="post" action="<?= base_url(); ?>index.php/mainController/editUser">
+				<form method="post" action="<?= base_url(); ?>index.php/mainController/editUser">
 
-			<table class="table table-borderless mt-5" align="center">
-				<?php 
-					foreach($data->result() as $row){ ?>
-						<tr><td><input class="border-hide" type="hidden" name="old_roll_no" value="<?php echo $row->student_roll_no ?>" readonly ></td></tr>
-						<tr><td><label>Roll Number</label></td>
-						<td><input class="border-hide" type="text" name="roll_no" value="<?php echo $row->student_roll_no ?>" required></td></tr>
-						<tr><td><label>Name</label></td>
-						<td><input class="border-hide" type="text" name="name" value="<?php echo $row->student_name ?>" required></td></tr>
-						<tr><td><label>Class</label></td>
-						<td><input class="border-hide" type="text" name="class" value="<?php echo $row->student_class ?>" required></td></tr>
-						<tr><td><label>Section</label></td>
-						<td><input class="border-hide" type="text" name="section" value="<?php echo $row->student_section ?>" required></td></tr>
-			<?php	}
-				?>			
-			</table>
+					<table class="table table-borderless mt-5" align="center">
+						<?php 
+							foreach($data->result() as $row){ ?>
+								<tr><td><input class="border-hide" type="hidden" name="old_roll_no" value="<?php echo $row->student_roll_no ?>" readonly ></td></tr>
+								<tr><td><label>Roll Number</label></td>
+								<td><input class="border-hide" type="text" name="roll_no" value="<?php echo $row->student_roll_no ?>" required></td></tr>
+								<tr><td><label>Name</label></td>
+								<td><input class="border-hide" type="text" name="name" value="<?php echo $row->student_name ?>" required></td></tr>
+								<tr><td><label>Class</label></td>
+								<td><input class="border-hide" type="text" name="class" value="<?php echo $row->student_class ?>" required></td></tr>
+								<tr><td><label>Section</label></td>
+								<td><input class="border-hide" type="text" name="section" value="<?php echo $row->student_section ?>" required></td></tr>
+					<?php	}
+						?>			
+					</table>
 
-			<br>
+					<br>
 
-			<div align="center">
-				<button type="submit" name="update" class="btn btn-warning">UPDATE</button>
+					<div align="center">
+						<button type="submit" name="update" class="btn btn-warning">UPDATE</button>
+					</div>
+
+				</form>
+				
+			</div>
+<?php   }
+		else{ ?>
+
+			<div class="container" align="center">
+
+				<div class="alert alert-danger mt-5">
+					<strong><?php echo "Not Logged in !"?></strong>
+				</div>
+
+				<div align="center">
+					<a href="<?= base_url(); ?>index.php/mainController/loginView" style="text-decoration: none;"><button name="login" class="btn btn-success">LOGIN</button></a>
+
+					<br><br>
+
+					<b>New User &nbsp? &nbsp SignUp Here &nbsp</b><a href="<?= base_url(); ?>index.php/mainController/signupView" style="text-decoration: none;"><button type="submit" name="signup" class="btn btn-primary">SIGNUP</button></a>
+				</div>
+
 			</div>
 
-		</form>
-		
-	</div>
+<?php 	} ?>	
 	
 </body>
 </html>

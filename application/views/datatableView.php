@@ -18,76 +18,73 @@
 </head>
 
 <body>
-<style type="text/css">
-  
-  .container{
-      width: 50%;
-    }
+  <style type="text/css">
+    
+    .container{
+        width: 50%;
+      }
 
-</style>
+  </style>
 
-<?php   
-if ($this->session->userdata('username')) { ?>
+<?php if ($this->session->userdata('username')) { ?>
 
-  <div class="container">
+          <div class="container">
 
-    <h3 class="mt-5">Student Details</h3>
+            <h3 class="mt-5">Student Details</h3>
 
-    <br>
+            <br>
 
-    <table id="student-list"class="table table-bordered table-striped table-hover">
+            <table id="student-list"class="table table-bordered table-striped table-hover">
 
-      <thead>
+              <thead>
 
-        <tr>
-          <th>Roll No</th>
-          <th>Name</th>
-          <th>Class</th>
-          <th>Section</th>
-          <th>Document</th>
-          <th>Image</th>
-        </tr>
+                <tr>
+                  <th>Roll No</th>
+                  <th>Name</th>
+                  <th>Class</th>
+                  <th>Section</th>
+                  <th>Document</th>
+                  <th>Image</th>
+                </tr>
 
-      </thead>
-      
-      <tbody>
-      </tbody>
+              </thead>
+              
+              <tbody>
+              </tbody>
 
-    </table>
+            </table>
 
-  </div>
+          </div>
 
-  <script>
-      $('#student-list').DataTable({
-          "ajax": {
-              url :"<?php echo base_url(); ?>index.php/mainController/get_datatable",
-              type :'GET'
-          },
-      });
-  </script>
+          <script>
+              $('#student-list').DataTable({
+                  "ajax": {
+                      url :"<?php echo base_url(); ?>index.php/mainController/get_datatable",
+                      type :'GET'
+                  },
+              });
+          </script>
 
 <?php }
 
-else{ ?>
-      <div class="container" align="center">
+      else{ ?>
+            <div class="container" align="center">
 
-          <div class="alert alert-danger mt-5">
-              <strong><?php echo "Not Logged in !"?></strong>
-          </div>
+                <div class="alert alert-danger mt-5">
+                    <strong><?php echo "Not Logged in !"?></strong>
+                </div>
 
-          <div align="center">
-              <a href="<?= base_url(); ?>index.php/mainController/loginView" style="text-decoration: none;"><button name="login" class="btn btn-success">LOGIN</button></a>
+                <div align="center">
+                    <a href="<?= base_url(); ?>index.php/mainController/loginView" style="text-decoration: none;"><button name="login" class="btn btn-success">LOGIN</button></a>
 
-              <br><br>
+                    <br><br>
 
-              <b>New User &nbsp? &nbsp SignUp Here &nbsp</b><a href="<?= base_url(); ?>index.php/mainController/signupView" style="text-decoration: none;"><button type="submit" name="signup" class="btn btn-primary">SIGNUP</button></a>
-          </div>
+                    <b>New User &nbsp? &nbsp SignUp Here &nbsp</b><a href="<?= base_url(); ?>index.php/mainController/signupView" style="text-decoration: none;"><button type="submit" name="signup" class="btn btn-primary">SIGNUP</button></a>
+                </div>
 
-      </div>
+            </div>
 
-<?php   } ?>    
-    </div>
+  <?php   } ?>    
 
 </body>
-
 </html>

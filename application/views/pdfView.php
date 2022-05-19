@@ -63,9 +63,12 @@
                         </tr>  
                      <?php }  
                      ?>
-            </table>
-<?php } 
-else{ ?>
+                </table>
+                
+            </div>
+
+<?php   } 
+        else{ ?>
             <div class="container" align="center">
 
                 <div class="alert alert-danger mt-5">
@@ -82,8 +85,6 @@ else{ ?>
 
             </div>
 <?php   } ?>    
-
-        </div>
             
 </body>
 </html>

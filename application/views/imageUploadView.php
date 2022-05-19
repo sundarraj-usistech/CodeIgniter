@@ -11,6 +11,7 @@
 	<title>Image Upload Details</title>
 
 </head>
+
 <style type="text/css">
 
 	td {
@@ -38,57 +39,79 @@
 
 <body>
 
-	<div class="container">
+<?php 	if ($this->session->userdata('username')) { ?>
 
-		<?php  
-			if (isset($err_msg)) {
-		?>		<div class="alert alert-danger mt-5" align="center">
-	    			<strong><?php echo $err_msg; ?></strong>
-	  			</div>
+			<div class="container">
 
-	  			<div align="right" class="mt-5">
-	  				<a href="javascript:window.history.go(-1);" style="text-decoration: none;"><button name="back" class="btn btn-dark">BACK</button></a>
-	  			</div>
-		<?php
-				exit();
-			}
-			else{
-				$err_msg="";
-			}
-		?>
+				<?php  
+					if (isset($err_msg)) {
+				?>		<div class="alert alert-danger mt-5" align="center">
+			    			<strong><?php echo $err_msg; ?></strong>
+			  			</div>
 
-		<div align="right" class="mt-5">
-	  		<a href="javascript:window.history.go(-1);" style="text-decoration: none;"><button name="back" class="btn btn-dark">BACK</button></a>
-	  	</div>
+			  			<div align="right" class="mt-5">
+			  				<a href="javascript:window.history.go(-1);" style="text-decoration: none;"><button name="back" class="btn btn-dark">BACK</button></a>
+			  			</div>
+				<?php
+						exit();
+					}
+					else{
+						$err_msg="";
+					}
+				?>
 
-		<form method="post" action="<?= base_url(); ?>index.php/mainController/imageUpload" enctype="multipart/form-data">
+				<div align="right" class="mt-5">
+			  		<a href="javascript:window.history.go(-1);" style="text-decoration: none;"><button name="back" class="btn btn-dark">BACK</button></a>
+			  	</div>
 
-			<table class="table table-borderless mt-5" align="center">
-				<?php 
-					foreach($data->result() as $row){ ?>
-						<tr><td><label>Roll Number</label></td>
-						<td><input class="border-hide" type="text" name="roll_no" value="<?php echo $row->student_roll_no ?>" readonly></td></tr>
-						<tr><td><label>Name</label></td>
-						<td><input class="border-hide" type="text" name="name" value="<?php echo $row->student_name ?>" readonly></td></tr>
-						<tr><td><label>Class</label></td>
-						<td><input class="border-hide" type="text" name="class" value="<?php echo $row->student_class ?>" readonly></td></tr>
-						<tr><td><label>Section</label></td>
-						<td><input class="border-hide" type="text" name="section" value="<?php echo $row->student_section ?>" readonly></td></tr>
-			<?php	}
-				?>	
-				<tr><td><label>Image to Upload</label></td>
-				<td><input class="border-hide" type="file" name="image" align="center" required></td></tr>		
-			</table>
+				<form method="post" action="<?= base_url(); ?>index.php/mainController/imageUpload" enctype="multipart/form-data">
 
-		<br>
+					<table class="table table-borderless mt-5" align="center">
+						<?php 
+							foreach($data->result() as $row){ ?>
+								<tr><td><label>Roll Number</label></td>
+								<td><input class="border-hide" type="text" name="roll_no" value="<?php echo $row->student_roll_no ?>" readonly></td></tr>
+								<tr><td><label>Name</label></td>
+								<td><input class="border-hide" type="text" name="name" value="<?php echo $row->student_name ?>" readonly></td></tr>
+								<tr><td><label>Class</label></td>
+								<td><input class="border-hide" type="text" name="class" value="<?php echo $row->student_class ?>" readonly></td></tr>
+								<tr><td><label>Section</label></td>
+								<td><input class="border-hide" type="text" name="section" value="<?php echo $row->student_section ?>" readonly></td></tr>
+					<?php	}
+						?>	
+						<tr><td><label>Image to Upload</label></td>
+						<td><input class="border-hide" type="file" name="image" align="center" required></td></tr>		
+					</table>
 
-		<div align="center">
-			<button type="submit" class="btn btn-custom2">UPLOAD</button>
-		</div>
+				<br>
 
-		</form>
+				<div align="center">
+					<button type="submit" class="btn btn-custom2">UPLOAD</button>
+				</div>
 
-	</div>
+				</form>
+
+			</div>
+<?php   }
+		else{ ?>
+
+			<div class="container" align="center">
+
+				<div class="alert alert-danger mt-5">
+					<strong><?php echo "Not Logged in !"?></strong>
+				</div>
+
+				<div align="center">
+					<a href="<?= base_url(); ?>index.php/mainController/loginView" style="text-decoration: none;"><button name="login" class="btn btn-success">LOGIN</button></a>
+
+					<br><br>
+
+					<b>New User &nbsp? &nbsp SignUp Here &nbsp</b><a href="<?= base_url(); ?>index.php/mainController/signupView" style="text-decoration: none;"><button type="submit" name="signup" class="btn btn-primary">SIGNUP</button></a>
+				</div>
+
+			</div>
+
+<?php 	} ?>	
 
 </body>
 </html>

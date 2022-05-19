@@ -133,6 +133,7 @@
 
 			$this->pagination->initialize($config);
 			$query['data']=$this->mainModel->mainView($config['per_page'],$page);
+			$query['links']=$this->pagination->create_links();
 			$this->load->view('mainView',$query);
 		}
 
@@ -373,6 +374,60 @@
 			$this->load->view('mainView',$query);	
 
    		}
+
+   		public function test(){
+   			$co=$this->mainPagination();
+
+   			print_r($query);
+   		}
+
+		public function mainPagination(){
+			$perPage=5;
+
+			if($this->uri->segment(3)){
+				$page=$this->uri->segment(3);
+			}
+			else{
+				$page=0;
+			}
+
+			$config = array();
+			$config['base_url']=base_url()."index.php/mainController/view";
+			$config['total_rows']=$this->mainModel->countRows();
+			$config['per_page']=$perPage;
+			$config['uri_segment']=3;
+
+			//Bootstrap configs for pagination----------------------------------------------
+ 				$config['full_tag_open'] = '<ul class="pagination justify-content-center">';        
+			    $config['full_tag_close'] = '</ul>';        
+			    $config['first_link'] = 'First';        
+			    $config['last_link'] = 'Last';        
+			    $config['first_tag_open'] = '<li class="page-item"><span class="page-link">';        
+			    $config['first_tag_close'] = '</span></li>';        
+			    $config['prev_link'] = 'Previous';        
+			    $config['prev_tag_open'] = '<li class="page-item"><span class="page-link">';        
+			    $config['prev_tag_close'] = '</span></li>';        
+			    $config['next_link'] = 'Next';        
+			    $config['next_tag_open'] = '<li class="page-item"><span class="page-link">';        
+			    $config['next_tag_close'] = '</span></li>';        
+			    $config['last_tag_open'] = '<li class="page-item"><span class="page-link">';        
+			    $config['last_tag_close'] = '</span></li>';        
+			    $config['cur_tag_open'] = '<li class="page-item active"><a class="page-link">';        
+			    $config['cur_tag_close'] = '</a></li>';        
+			    $config['num_tag_open'] = '<li class="page-item"><span class="page-link">';        
+			    $config['num_tag_close'] = '</span></li>';
+			//-------------------------------------------------------------------------------
+
+			$this->pagination->initialize($config);
+
+			$configData=array(
+
+				'perPage'=>$config['per_page'],
+				'page'=>$page,
+
+			);
+			return $configData;
+		}   		
 
 		// public function sortTable(){
 		// 	$data=$this->input->post();

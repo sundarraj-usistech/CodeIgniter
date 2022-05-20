@@ -20,12 +20,6 @@
  			vertical-align: middle;
 		}
 
-		.btn-custom3 {
-    		color: #ffffff;
-    		background-color: #adb5bd;
-    		border-color: #adb5bd;
-		}
-
 		.btn-info{
 			color: #ffffff;
 		}
@@ -90,7 +84,7 @@
 				<br>
 
 				<div align="center">
-					<button type="submit" class="btn btn-info">UPLOAD</button>
+					<button type="submit" class="btn btn-primary">UPLOAD</button>
 				</div>
 
 				</form>

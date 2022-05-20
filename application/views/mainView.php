@@ -31,38 +31,12 @@
 			justify-content: space-between;
 		}
 
-		.btn-custom1 {
-    		color: #ffffff;
-    		background-color: #fd7e14;
-    		border-color: #fd7e14;
-		}
-
-		.btn-custom2 {
-    		color: #ffffff;
-    		background-color: #3ddf9494;
-    		border-color: #3ddf9494;
-		}
-
 		.btn-custom3 {
     		color: #ffffff;
     		background-color: #adb5bd;
     		border-color: #adb5bd;
 		}
-
-		.btn-custom4{
-			color: #ffffff;
-    		background-color: #dc3535ed;
-    		border-color: #dc3535ed;
-		}
-
-		.btn-warning{
-			color: #ffffff;
-		}
-
-		.btn-info{
-			color: #ffffff;
-		}
-
+		
 		.container{
 			width: 60%;
 		}
@@ -79,8 +53,8 @@
 				<br>
 
 				<div align="right">Logged in as 
-					<span class="badge bg-success" style="padding: 10px;">
-						<b><?php echo $this->session->userdata('username'); ?></b>
+					<span class="badge bg-success" style="padding: 3px 2px 0px 2px;">
+						<h6><b><?php echo $this->session->userdata('username'); ?></b></h6>
 					</span>
 
 					<br>
@@ -93,7 +67,7 @@
 				<br>
 
 				<div class="method">
-					<a href="<?= base_url(); ?>index.php/mainController/addUserView" style="text-decoration: none;"><button class="btn btn-custom1">Add New Student&nbsp&nbsp<i class="fa-solid fa-plus"></i></button></a>
+					<a href="<?= base_url(); ?>index.php/mainController/addUserView" style="text-decoration: none;"><button class="btn btn-primary">Add New Student&nbsp&nbsp<i class="fa-solid fa-plus"></i></button></a>
 
 					<a href="<?= base_url(); ?>index.php/mainController/logout" style="text-decoration: none;"><button class="btn btn-custom3">LOGOUT&nbsp&nbsp<i class="fa-solid fa-right-from-bracket"></i></button></a>
 				</div>
@@ -102,7 +76,7 @@
 
 				<div class="method">
 
-					<form method="post" action="<?= base_url(); ?>index.php/mainController/customPagination">
+					<form method="get" action="<?= base_url(); ?>index.php/mainController/customPagination">
 							<label>Display</label>
 							<select name="perPage" required>
 								<option></option>
@@ -134,7 +108,7 @@
 						<button type="submit" name="submitfilter" class="btn btn-primary"><i class="fa-solid fa-magnifying-glass"></i></button>
 					</form>
 
-					<a target="_blank" href="<?= base_url(); ?>index.php/mainController/GeneratePdf" style="text-decoration: none;"><button name="pdf" class="btn btn-custom4"><i class="fa-solid fa-file-pdf"></i></button></a>
+					<a target="_blank" href="<?= base_url(); ?>index.php/mainController/GeneratePdf" style="text-decoration: none;"><button name="pdf" class="btn btn-danger"><i class="fa-solid fa-file-pdf"></i></button></a>
 
 					<a target="_blank" href="<?= base_url(); ?>index.php/mainController/datatable" style="text-decoration: none;"><button name="datatable" class="btn btn-success"><i class="fa-solid fa-table-cells"></i>&nbspDATATABLES</button></a>
 
@@ -200,8 +174,8 @@
 						        	<a href="<?= base_url(); ?>index.php/mainController/deleteUserView?rollno=<?php echo $row->student_roll_no; ?>" style="text-decoration: none;"><button name="delete" class="btn btn-danger">DELETE</button></a>
 						        	<a href="<?= base_url(); ?>index.php/mainController/viewUserDetails?rollno=<?php echo $row->student_roll_no ; ?>" style="text-decoration: none;"><button name="view" class="btn btn-primary">VIEW</button></a>
 						        </td>						       
-						        	<td><a href="<?= base_url(); ?>index.php/mainController/fileUploadView?rollno=<?php echo $row->student_roll_no ; ?>" style="text-decoration: none;"><button name="fileupload" class="btn btn-info">FILE</button></a>
-						        		<a href="<?= base_url(); ?>index.php/mainController/imageUploadView?rollno=<?php echo $row->student_roll_no ; ?>" style="text-decoration: none;"><button name="imageupload" class="btn btn-custom2">IMAGE</button>
+						        	<td><a href="<?= base_url(); ?>index.php/mainController/fileUploadView?rollno=<?php echo $row->student_roll_no ; ?>" style="text-decoration: none;"><button name="fileupload" class="btn btn-primary">FILE</button></a>
+						        		<a href="<?= base_url(); ?>index.php/mainController/imageUploadView?rollno=<?php echo $row->student_roll_no ; ?>" style="text-decoration: none;"><button name="imageupload" class="btn btn-primary">IMAGE</button>
 						        </td>
 				           	</tr>  
 				         <?php }  

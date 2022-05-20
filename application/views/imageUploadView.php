@@ -19,12 +19,6 @@
  			vertical-align: middle;
 	}
 
-	.btn-custom2 {
-    		color: #ffffff;
-    		background-color: #3ddf9494;
-    		border-color: #3ddf9494;
-	}
-
 	.border-hide{
 			outline: none;
 			border: none;
@@ -86,7 +80,7 @@
 				<br>
 
 				<div align="center">
-					<button type="submit" class="btn btn-custom2">UPLOAD</button>
+					<button type="submit" class="btn btn-primary">UPLOAD</button>
 				</div>
 
 				</form>

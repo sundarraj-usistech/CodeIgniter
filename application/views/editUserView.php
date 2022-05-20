@@ -21,12 +21,6 @@
 				vertical-align: middle;
 		}
 
-		.btn-custom3 {
-			color: #ffffff;
-			background-color: #adb5bd;
-			border-color: #adb5bd;
-		}
-
 		.border-hide{
 			outline: none;
 			border: none;
@@ -71,7 +65,7 @@
 					<br>
 
 					<div align="center">
-						<button type="submit" name="update" class="btn btn-warning">UPDATE</button>
+						<button type="submit" name="update" class="btn btn-primary">UPDATE</button>
 					</div>
 
 				</form>

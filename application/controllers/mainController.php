@@ -193,7 +193,8 @@
    			$this->load->view('mainView',$query);
 		}
 
-	 	public function addUserView(){                              
+	 	public function addUserView(){  
+	 		$this->session->set_flashdata("alert", "You are about to create a New User Details !");                        
 			$this->load->view('addUserView');
 		}
 
@@ -212,6 +213,7 @@
 		}
 
 		public function editUserView()	{
+			$this->session->set_flashdata("alert", "You are about to Edit this Person's Details !");
 			$roll_no=$this->input->get('rollno');
 			$query['data']=$this->mainModel->editUserView($roll_no);
 			$this->load->view('editUserView',$query);
@@ -233,6 +235,7 @@
 		}
 
 		public function deleteUserView(){
+			$this->session->set_flashdata("alert", "You are about to Delete this Person's Details !");
 			$roll_no=$this->input->get('rollno');
 			$query['data']=$this->mainModel->deleteUserView($roll_no);
 			$this->load->view('deleteUserView',$query);

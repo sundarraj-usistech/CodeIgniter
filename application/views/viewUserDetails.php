@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -84,7 +85,7 @@
 			</form>
 
 				<div align="center">
-					<a href="javascript:window.history.go(-1);"><button name="back" class="btn btn-dark">BACK</button></a>
+					<a href="javascript:window.history.go(-1);"><span name="back"  class="btn btn-dark">BACK</span></a>
 				</div>
 
 			</div>

@@ -20,12 +20,6 @@
 				vertical-align: middle;
 		}
 
-		.btn-custom3 {
-			color: #ffffff;
-			background-color: #adb5bd;
-			border-color: #adb5bd;
-		}
-
 		.border-hide{
 			outline: none;
 			border: none;

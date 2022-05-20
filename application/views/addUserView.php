@@ -20,12 +20,6 @@
 	 			vertical-align: middle;
 		}
 
-		.btn-custom1 {
-	    		color: #ffffff;
-	    		background-color: #fd7e14;
-	    		border-color: #fd7e14;
-		}
-
 		.border-hide{
 			outline: none;
 			border: none;
@@ -51,16 +45,16 @@
 			  		<a href="javascript:window.history.go(-1);" style="text-decoration: none;"><button name="back" class="btn btn-dark">BACK</button></a>
 			  	</div>
 
-			  	<!-- <nav class="pb-5" style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
+			  	<nav class="pb-5" style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
 			      <ol class="breadcrumb">
 			        <li class="breadcrumb-item"><a class="fw-bold text-dark" href="<?= base_url(); ?>index.php/mainController/view">HOME</a></li>
 			        <li class="breadcrumb-item active" aria-current="page">Add Details</li>
 			      </ol>
-			    </nav> -->
+			    </nav>
 
 				<form method="post" action="<?= base_url(); ?>index.php/mainController/addUser">
 
-					<table class="table table-borderless mt-5" align="center">
+					<table class="table table-borderless mt-5" align="center">          
 								<tr><td><label>Roll Number</label></td>
 								<td><input class="border-hide" type="text" name="roll_no" required></td></tr>
 								<tr><td><label>Name</label></td>
@@ -74,7 +68,7 @@
 					<br>
 
 					<div align="center">
-						<button type="submit" name="add" class="btn btn-custom1">ADD</button>
+						<button type="submit" name="add" class="btn btn-primary">ADD</button>
 					</div>
 
 				</form>

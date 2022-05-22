@@ -30,7 +30,12 @@
 		}
 
 		public function loginView(){
-			$this->load->view('loginView');
+			$this->form_validation->set_rules('username','User Name','required');
+			$this->form_validation->set_rules('password','Password','required');
+			if ($this->form_validation->run() == FALSE){
+					$this->load->view('loginView');
+
+            }
 		}
 
 		public function loginCheck(){
@@ -66,7 +71,13 @@
 		}
 
 		public function signupView(){
-			$this->load->view('signupView');
+			$this->form_validation->set_rules('username','User Name','required|min_length[5]|max_length[	15]|is_unique[users.username]|regex_match[/^[A-Z a-z 0-9 _]+$/]');
+			$this->form_validation->set_rules('password','Password','required');
+			$this->form_validation->set_rules('confirmpassword','Confirm Password', 'required|matches[password]');
+			if ($this->form_validation->run() == FALSE){
+				$this->load->view('signupView');
+			}
+
 		}
 
 		public function signup(){
@@ -435,11 +446,20 @@
    		}
 
    		public function test(){
-   			$configData=$this->mainPagination();
-   			$limit=$configData['perPage'];
-   			$offset=$configData['page'];
-   			$query['data']=$this->mainModel->mainView($limit,$offset);
-   			$this->load->view('mainView',$query);
+   			$this->form_validation->set_rules('username', 'Username', 'required|min_length[5]|max_length[	12]|is_unique[users.username]');
+            $this->form_validation->set_rules('password', 'Password', 'required',
+                    array('required' => 'You must provide a %s')
+            );
+            $this->form_validation->set_rules('passconf', 'Password Confirmation', 'required');
+   			if ($this->form_validation->run() == FALSE)
+                {
+                    $this->load->view('testView');
+
+                }
+                else
+                {
+                    echo "Success	";
+                }
    		}
 
 		// public function sortTable(){

@@ -21,12 +21,6 @@
  			vertical-align: middle;
 		}
 
-		.btn-custom1 {
-    		color: #212529;
-    		background-color: #6b8504a3;
-    		border-color: #6b8504a3;
-		}
-
 		.border-hide{
 			outline: none;
 			border: none;
@@ -55,7 +49,7 @@
 		<form method="post" action="<?= base_url(); ?>index.php/mainController/signup">
 
 			<table class="table table-borderless mt-5" align="center">
-						<tr><td><label>UserName</label></td>
+						<tr><td><label>User Name</label></td>
 						<td><input class="border-hide" type="text" name="username" required></td></tr>
 						<tr><td><label>Password</label></td>
 						<td><input class="border-hide" type="password" name="password" required></td></tr>

@@ -20,12 +20,6 @@
   			text-align: center;
 		}
 
-		.btn-custom1 {
-    		color: #ffffff;
-    		background-color: #6b8504a3;
-    		border-color: #6b8504a3;
-		}
-
 		.border-hide{
 			outline: none;
 			border: none;

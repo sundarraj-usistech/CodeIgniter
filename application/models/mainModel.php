@@ -174,19 +174,21 @@
 			return $query;
 		}
 
-		public function sortNameAsc($limit,$offset){
-			$this->db->limit($limit);
-			$this->db->offset($offset);
-			$this->db->order_by('student_name');
-			$query=$this->db->get("student_details"); 
+		public function sortNameAsc($start,$limit){
+			$this->db->select('*');
+			$this->db->from('student_details');
+			$this->db->limit($start,$limit);
+			$query=$this->db->order_by('student_name');
+			// $query=$this->db->get("student_details"); 
 			return $query;			
 		}
 
-		public function sortNameDesc($limit,$offset){
-			$this->db->limit($limit);
-			$this->db->offset($offset);
-			$this->db->order_by('student_name','DESC');
-			$query=$this->db->get("student_details"); 
+		public function sortNameDesc($start,$limit){
+			$this->db->select('*');
+			$this->db->from('student_details');
+			$this->db->limit($start,$limit);
+			$query=$this->db->order_by('student_name','DESC');
+			// $query=$this->db->get("student_details"); 
 			return $query;			
 		}
 

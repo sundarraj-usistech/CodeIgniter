@@ -357,12 +357,19 @@
 			$startFrom=($currentPage-1)*$perPage;
 			$rowCount=$this->mainModel->countRows();
 			$totalPages=ceil($rowCount/$perPage);
-			$query['data']=$this->mainModel->customPagination($perPage,$startFrom);
-			$query['custompage']=true;
-			$query['totalPages']=$totalPages;
-			$query['perPage']=$perPage;
-			$query['flag']=true;
-			$this->load->view('mainView',$query);
+			// $query['data']=$this->mainModel->customPagination($perPage,$startFrom);
+			// $query['custompage']=true;
+			// $query['totalPages']=$totalPages;
+			// $query['perPage']=$perPage;
+			// $query['flag']=true;			
+			// $this->load->view('mainView',$query);
+			$pageConfig=array(
+
+				'startFrom'=>$startFrom,
+				'perPage'=>$perPage
+
+			);
+			return $pageConfig;
    		}
 
 		public function searchData(){
@@ -431,17 +438,25 @@
    		public function sortByName(){
 
    			$action=$this->input->get('action');
+   			$pageConfig=$this->customPagination();
+
+   			$startFrom=$pageConfig['startFrom'];
+   			$perPage=$pageConfig['perPage'];
 
    			if($action=='asc'){
-   			    $query['data']=$this->mainModel->sortNameAsc($config['per_page'],$page);
+   			    $query['data']=$this->mainModel->sortNameAsc($startFrom,$perPage);
    			    $query['flag']=true;
+   			    $query['custompage']=true;
    			}
    			else{
-   			    $query['data']=$this->mainModel->sortNameDesc($config['per_page'],$page);
+   			    $query['data']=$this->mainModel->sortNameDesc($startFrom,$perPage);
    			    $query['flag']=true;
+   			    $query['custompage']=true;
    			}
-   			
-			$this->load->view('mainView',$query);	
+			// $this->load->view('mainView',$query);
+			$result=$query['data']->result();	
+			print_r($result);
+			exit;
 
    		}
 

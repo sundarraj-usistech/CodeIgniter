@@ -141,13 +141,14 @@
 			return $query;
 		}
 
-		public function searchData($keyword){
+		public function searchData($keyword, $limit, $startFrom){
 			$this->db->select('*');
 			$this->db->from('student_details');
 			$this->db->like('student_name',$keyword);
 			$this->db->or_like('student_roll_no',$keyword);
 			$this->db->or_like('student_class',$keyword);
 			$this->db->or_like('student_section',$keyword);
+			$this->db->limit($limit, $startFrom);
 			$query=$this->db->get();
 			$rows=$query->row_array();
 			if ($rows) {
@@ -174,21 +175,19 @@
 			return $query;
 		}
 
-		public function sortNameAsc($start,$limit){
+		public function sortNameAsc(){
 			$this->db->select('*');
 			$this->db->from('student_details');
-			$this->db->limit($start,$limit);
-			$query=$this->db->order_by('student_name');
-			// $query=$this->db->get("student_details"); 
+			$this->db->order_by('student_name');
+			$query=$this->db->get(); 
 			return $query;			
 		}
 
-		public function sortNameDesc($start,$limit){
+		public function sortNameDesc(){
 			$this->db->select('*');
-			$this->db->from('student_details');
-			$this->db->limit($start,$limit);
-			$query=$this->db->order_by('student_name','DESC');
-			// $query=$this->db->get("student_details"); 
+			$this->db->from('student_details');                                
+			$this->db->order_by('student_name','DESC');
+			$query=$this->db->get(); 
 			return $query;			
 		}
 

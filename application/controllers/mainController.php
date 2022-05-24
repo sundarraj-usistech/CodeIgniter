@@ -357,30 +357,56 @@
 			$startFrom=($currentPage-1)*$perPage;
 			$rowCount=$this->mainModel->countRows();
 			$totalPages=ceil($rowCount/$perPage);
-			// $query['data']=$this->mainModel->customPagination($perPage,$startFrom);
-			// $query['custompage']=true;
-			// $query['totalPages']=$totalPages;
-			// $query['perPage']=$perPage;
-			// $query['flag']=true;			
-			// $this->load->view('mainView',$query);
-			$pageConfig=array(
+			$query['data']=$this->mainModel->customPagination($perPage,$startFrom);
+			$query['custompage']=true;
+			$query['totalPages']=$totalPages;
+			$query['perPage']=$perPage;
+			$query['flag']=true;			
+			$this->load->view('mainView',$query);
+			// $pageConfig=array(
 
-				'startFrom'=>$startFrom,
-				'perPage'=>$perPage
+			// 	'startFrom'=>$startFrom,
+			// 	'perPage'=>$perPage
 
-			);
-			return $pageConfig;
+			// );
+			// return $pageConfig;
    		}
 
 		public function searchData(){
 			$keyword=$this->input->post('keyword');
-			$query['data']=$this->mainModel->searchData($keyword);
+			$query['data']=$this->mainModel->searchData($keyword, $perPage, $startFrom);
 			$query['flag']=true;
 			if ($query['data']==false) {
 				$query['err_msg']="No Data Found";
 				$this->load->view('mainView',$query);
 			}
 			else{
+	   			$data=$this->input->get('perPage');
+
+				if($data){
+					$perPage=$data;	
+				}
+				else{
+					$perPage=5;
+				}
+
+				$page=$this->input->get('page');
+
+				if($page){
+					$currentPage=$page;
+				}
+				else{
+					$currentPage=1;
+				}
+
+				$startFrom=($currentPage-1)*$perPage;
+				$rowCount=$this->$query['data']->row_array();
+				$totalPages=ceil($rowCount/$perPage);
+
+				$query['custompage']=true;
+				$query['totalPages']=$totalPages;
+				$query['perPage']=$perPage;
+
 				$this->load->view('mainView',$query);
 			}
 		}
@@ -413,7 +439,7 @@
 	      	$length=intval($this->input->get("length"));
       		$query=$this->mainModel->datatable();
 	      	$data=[];
-	      	foreach($query->result() as$r) {
+	      	foreach($query->result() as $r) {
 	           $data[] =array(
 	                $r->student_roll_no,
 	                $r->student_name,
@@ -438,25 +464,21 @@
    		public function sortByName(){
 
    			$action=$this->input->get('action');
-   			$pageConfig=$this->customPagination();
 
    			$startFrom=$pageConfig['startFrom'];
    			$perPage=$pageConfig['perPage'];
 
    			if($action=='asc'){
-   			    $query['data']=$this->mainModel->sortNameAsc($startFrom,$perPage);
+   			    $query['data']=$this->mainModel->sortNameAsc();
    			    $query['flag']=true;
    			    $query['custompage']=true;
    			}
    			else{
-   			    $query['data']=$this->mainModel->sortNameDesc($startFrom,$perPage);
+   			    $query['data']=$this->mainModel->sortNameDesc();
    			    $query['flag']=true;
    			    $query['custompage']=true;
    			}
-			// $this->load->view('mainView',$query);
-			$result=$query['data']->result();	
-			print_r($result);
-			exit;
+			$this->load->view('mainView',$query);
 
    		}
 

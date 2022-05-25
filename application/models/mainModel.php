@@ -150,7 +150,7 @@
 			$this->db->or_like('student_section',$keyword);
 			$this->db->limit($limit, $startFrom);
 			$query=$this->db->get();
-			$rows=$query->row_array();
+			$rows=$query->num_rows();
 			if ($rows) {
 				return $query;
 			}

@@ -375,7 +375,8 @@
 		public function searchData(){
 			$keyword=$this->input->post('keyword');
 			$query['data']=$this->mainModel->searchData($keyword, $perPage, $startFrom);
-			$query['flag']=true;
+			
+
 			if ($query['data']==false) {
 				$query['err_msg']="No Data Found";
 				$this->load->view('mainView',$query);
@@ -399,13 +400,15 @@
 					$currentPage=1;
 				}
 
+				$rowCount=$query['data']->num_rows();
 				$startFrom=($currentPage-1)*$perPage;
-				$rowCount=$this->$query['data']->row_array();
 				$totalPages=ceil($rowCount/$perPage);
 
+				$query['flag']=true;
 				$query['custompage']=true;
 				$query['totalPages']=$totalPages;
 				$query['perPage']=$perPage;
+				$query['function']='searchData';
 
 				$this->load->view('mainView',$query);
 			}

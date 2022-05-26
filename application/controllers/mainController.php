@@ -363,13 +363,6 @@
 			$query['perPage']=$perPage;
 			$query['flag']=true;			
 			$this->load->view('mainView',$query);
-			// $pageConfig=array(
-
-			// 	'startFrom'=>$startFrom,
-			// 	'perPage'=>$perPage
-
-			// );
-			// return $pageConfig;
    		}
 
 		public function searchData(){
@@ -405,10 +398,8 @@
 				$totalPages=ceil($rowCount/$perPage);
 
 				$query['flag']=true;
-				$query['custompage']=true;
 				$query['totalPages']=$totalPages;
 				$query['perPage']=$perPage;
-				$query['function']='searchData';
 
 				$this->load->view('mainView',$query);
 			}
@@ -442,15 +433,16 @@
 	      	$length=intval($this->input->get("length"));
       		$query=$this->mainModel->datatable();
 	      	$data=[];
+
 	      	foreach($query->result() as $r) {
 	           $data[] =array(
 	                $r->student_roll_no,
 	                $r->student_name,
 	                $r->student_class,
 	                $r->student_section,
-	                $r->student_document,
-	                $r->student_image
-	           );
+	               	'<a href="/CodeIgniter/student_document/'.$r->student_document.'" target="_blank" style="text-decoration: none;">'.$r->student_document.'</a>',
+	               	'<a href="/CodeIgniter/student_image/'.$r->student_image.'" target="_blank" style="text-decoration: none;">'.$r->student_image.'</a>'
+	 	           );
 	      	}
 
 	      	$result=array(
@@ -486,7 +478,7 @@
    		}
 
    		public function test(){
-   			$this->form_validation->set_rules('username', 'Username', 'required|min_length[5]|max_length[	12]|is_unique[users.username]');
+   			$this->form_validation->set_rules('username', 'Username', 'required|min_length[5]|max_length[12]|is_unique[users.username]');
             $this->form_validation->set_rules('password', 'Password', 'required',
                     array('required' => 'You must provide a %s')
             );

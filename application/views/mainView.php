@@ -88,7 +88,7 @@
 							<button  type="submit" name="submitrows" class="btn btn-success">SELECT</button>
 					</form>
 
-			   <!-- <form method="post" action="http://localhost/CodeIgniter/index.php/mainController/sortTable">
+			   		<!-- <form method="post" action="http://localhost/CodeIgniter/index.php/mainController/sortTable">
 						<label>Choose a Sorting Method</label>
 						<select name="sort">
 							<option></option>
@@ -174,7 +174,17 @@
 						        	<a href="<?= base_url(); ?>index.php/mainController/deleteUserView?rollno=<?php echo $row->student_roll_no; ?>" style="text-decoration: none;"><button name="delete" class="btn btn-danger">DELETE</button></a>
 						        	<a href="<?= base_url(); ?>index.php/mainController/viewUserDetails?rollno=<?php echo $row->student_roll_no ; ?>" style="text-decoration: none;"><button name="view" class="btn btn-primary">VIEW</button></a>
 						        </td>						       
-						        	<td><a href="<?= base_url(); ?>index.php/mainController/fileUploadView?rollno=<?php echo $row->student_roll_no ; ?>" style="text-decoration: none;"><button name="fileupload" class="btn btn-primary">FILE</button></a>
+						        	<td>
+						        		<?php
+							        		if(empty($row->student_document)){
+												
+							        		?><a href="<?= base_url(); ?>index.php/mainController/fileUploadView?rollno=<?php echo $row->student_roll_no ; ?>" style="text-decoration: none;"><span class="btn btn-primary">UPLOAD</span></a>
+										<?php }
+											else{
+												
+											}
+										?>
+						        		<a href="<?= base_url(); ?>index.php/mainController/fileUploadView?rollno=<?php echo $row->student_roll_no ; ?>" style="text-decoration: none;"><button name="fileupload" class="btn btn-primary">FILE</button></a>
 						        		<a href="<?= base_url(); ?>index.php/mainController/imageUploadView?rollno=<?php echo $row->student_roll_no ; ?>" style="text-decoration: none;"><button name="imageupload" class="btn btn-primary">IMAGE</button>
 						        </td>
 				           	</tr>  

@@ -100,6 +100,7 @@
 			$query=$this->db->get_where("student_details",array('student_roll_no'=>$roll_no));
 			return $query;
 		}
+		
 		public function fileUploadView($roll_no){
 			$query=$this->db->get_where("student_details",array('student_roll_no'=>$roll_no));
 			return $query;

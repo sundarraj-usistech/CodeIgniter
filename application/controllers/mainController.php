@@ -71,7 +71,7 @@
 		}
 
 		public function signupView(){
-			$this->form_validation->set_rules('username','User Name','required|min_length[5]|max_length[	15]|is_unique[users.username]|regex_match[/^[A-Z a-z 0-9 _]+$/]');
+			$this->form_validation->set_rules('username','User Name','required|min_length[5]|max_length[15]|is_unique[users.username]|regex_match[/^[A-Z a-z 0-9 _]+$/]');
 			$this->form_validation->set_rules('password','Password','required');
 			$this->form_validation->set_rules('confirmpassword','Confirm Password', 'required|matches[password]');
 			if ($this->form_validation->run() == FALSE){

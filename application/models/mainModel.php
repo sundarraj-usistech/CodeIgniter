@@ -192,6 +192,13 @@
 			return $query;			
 		}
 
+		public function api(){
+			$this->db->select('*');
+			$this->db->from('student_details');
+			$query=$this->db->get();
+			return $query->result();
+		}
+
 		// public function sortRollNoAsc(){
 		// 	$this->db->order_by('student_roll_no');
 		// 	$query=$this->db->get("student_details"); 
@@ -209,7 +216,7 @@
 		// 	$query=$this->db->get("student_details"); 
 		// 	return $query;			
 		// }
-		
+
 		// public function sortClassDesc(){
 		// 	$this->db->order_by('student_class','DESC');
 		// 	$query=$this->db->get("student_details"); 

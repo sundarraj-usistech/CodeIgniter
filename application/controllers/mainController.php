@@ -494,6 +494,10 @@
                 }
    		}
 
+   		public function api(){
+   			$data=$this->mainModel->api();
+   			echo json_encode($data);
+   		}
 		// public function sortTable(){
 		// 	$data=$this->input->post();
 		// 	$sortOption=$data['sort'];

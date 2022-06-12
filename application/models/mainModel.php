@@ -197,18 +197,19 @@
 		// 	$query=$this->db->get("student_details"); 
 		// 	return $query;			
 		// }
+
 		// public function sortRollNoDesc(){
 		// 	$this->db->order_by('student_roll_no','DESC');
 		// 	$query=$this->db->get("student_details"); 
 		// 	return $query;			
 		// }
 		
-	
 		// public function sortClassAsc(){
 		// 	$this->db->order_by('student_class');
 		// 	$query=$this->db->get("student_details"); 
 		// 	return $query;			
 		// }
+		
 		// public function sortClassDesc(){
 		// 	$this->db->order_by('student_class','DESC');
 		// 	$query=$this->db->get("student_details"); 

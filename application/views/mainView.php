@@ -38,7 +38,7 @@
 		}
 		
 		.container{
-			width: 60%;
+			width: 70%;
 		}
 
 	</style>
@@ -140,7 +140,7 @@
 						}
 					?>
 
-				<div class="table-responsive">
+				<div class="container">
 
 					<table align="center" id="student_details" class="table table-border table-striped table-hover" >
 
@@ -161,7 +161,8 @@
 
 						<th><a href="<?= base_url(); ?>index.php/mainController/sortByName?action=<?= $action ?>" class="text-decoration-none text-dark">NAME</th>
 						<th>ACTION</th>
-						<th>UPLOAD</th>
+						<th>FILE</th>
+						<th>IMAGE</th>
 					</tr>
 
 						<?php  
@@ -181,12 +182,21 @@
 							        		?><a href="<?= base_url(); ?>index.php/mainController/fileUploadView?rollno=<?php echo $row->student_roll_no ; ?>" style="text-decoration: none;"><span class="btn btn-primary">UPLOAD</span></a>
 										<?php }
 											else{
-												
-											}
+											?><a href="\CodeIgniter\student_document\<?php echo $row->student_document; ?>" target="_blank"><span class="btn btn-primary">VIEW</span></a>
+									<?php	}
 										?>
-						        		<a href="<?= base_url(); ?>index.php/mainController/fileUploadView?rollno=<?php echo $row->student_roll_no ; ?>" style="text-decoration: none;"><button name="fileupload" class="btn btn-primary">FILE</button></a>
-						        		<a href="<?= base_url(); ?>index.php/mainController/imageUploadView?rollno=<?php echo $row->student_roll_no ; ?>" style="text-decoration: none;"><button name="imageupload" class="btn btn-primary">IMAGE</button>
-						        </td>
+						        	</td>
+						        	<td>
+						        		<?php
+							        		if(empty($row->student_image)){
+												
+							        		?><a href="<?= base_url(); ?>index.php/mainController/imageUploadView?rollno=<?php echo $row->student_roll_no ; ?>" style="text-decoration: none;"><span class="btn btn-primary">UPLOAD</span>
+										<?php }
+											else{
+											?><a href="\CodeIgniter\student_image\<?php echo $row->student_image; ?>" target="_blank"><span class="btn btn-primary">VIEW</span></a>
+									<?php	}
+										?>
+						           	</td>
 				           	</tr>  
 				         <?php }  
 				         ?>

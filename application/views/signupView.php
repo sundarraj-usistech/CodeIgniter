@@ -46,7 +46,7 @@
 				$data="";
 			}
 		?>
-		<form method="post" action="<?= base_url(); ?>index.php/mainController/signup">
+		<form method="post" action="<?= base_url(); ?>mainController/signup">
 
 			<table class="table table-borderless mt-5" align="center">
 						<tr><td><label>User Name</label></td>
@@ -65,7 +65,7 @@
 
 		<br><br>
 
-		<p align="center"><b>Existing User &nbsp? &nbsp Login Here &nbsp</b><a href="<?= base_url(); ?>index.php/mainController/loginView" style="text-decoration: none;"><button type="submit" name="login" class="btn btn-success">LOGIN</button></a></p>
+		<p align="center"><b>Existing User &nbsp? &nbsp Login Here &nbsp</b><a href="<?= base_url(); ?>mainController/loginView" style="text-decoration: none;"><button type="submit" name="login" class="btn btn-success">LOGIN</button></a></p>
 
 	</div>
 	

@@ -56,7 +56,7 @@
 									if ($row->student_document==null) { ?>
 
 										<input  class="border-hide"type="text" name="file" value="<?php echo "No Document found" ?>" readonly>
-										<a href="<?= base_url(); ?>index.php/mainController/fileUploadView?rollno=<?php echo $row->student_roll_no ; ?>" style="text-decoration: none;"><span class="btn btn-primary">UPLOAD</span></a>
+										<a href="<?= base_url(); ?>mainController/fileUploadView?rollno=<?php echo $row->student_roll_no ; ?>" style="text-decoration: none;"><span class="btn btn-primary">UPLOAD</span></a>
 							<?php	}
 									else{ ?>
 										<input  class="border-hide"type="text" name="file" value="<?php echo $row->student_document ?>" readonly>
@@ -70,7 +70,7 @@
 								<?php
 									if ($row->student_image==null) { ?>
 										<input  class="border-hide"type="text" name="image" value="<?php echo "No Image found" ?>" readonly>
-										<a href="<?= base_url(); ?>index.php/mainController/imageUploadView?rollno=<?php echo $row->student_roll_no ; ?>" style="text-decoration: none;"><span class="btn btn-primary">UPLOAD</span>
+										<a href="<?= base_url(); ?>mainController/imageUploadView?rollno=<?php echo $row->student_roll_no ; ?>" style="text-decoration: none;"><span class="btn btn-primary">UPLOAD</span>
 							<?php	}
 									else{ ?>
 										<input  class="border-hide"type="text" name="image" value="<?php echo $row->student_image ?>" readonly>
@@ -98,11 +98,11 @@
                 </div>
 
                 <div align="center">
-                    <a href="<?= base_url(); ?>index.php/mainController/loginView" style="text-decoration: none;"><button name="login" class="btn btn-success">LOGIN</button></a>
+                    <a href="<?= base_url(); ?>mainController/loginView" style="text-decoration: none;"><button name="login" class="btn btn-success">LOGIN</button></a>
 
                     <br><br>
                     
-                    <b>New User &nbsp? &nbsp SignUp Here &nbsp</b><a href="<?= base_url(); ?>index.php/mainController/signupView" style="text-decoration: none;"><button type="submit" name="signup" class="btn btn-primary">SIGNUP</button></a>
+                    <b>New User &nbsp? &nbsp SignUp Here &nbsp</b><a href="<?= base_url(); ?>mainController/signupView" style="text-decoration: none;"><button type="submit" name="signup" class="btn btn-primary">SIGNUP</button></a>
                 </div>
 
             </div>

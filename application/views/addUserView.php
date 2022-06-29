@@ -47,12 +47,12 @@
 
 			  <!-- 	<nav class="pb-5" style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns= 'http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath' d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34';);" aria-label="breadcrumb">
 			      <ol class="breadcrumb">
-			        <li class="breadcrumb-item"><a class="fw-bold text-dark" href="<?= base_url(); ?>index.php/mainController/view">HOME</a></li>
+			        <li class="breadcrumb-item"><a class="fw-bold text-dark" href="<?= base_url(); ?>mainController/view">HOME</a></li>
 			        <li class="breadcrumb-item active" aria-current="page">Add Details</li>
 			      </ol>
 			    </nav>
  -->
-				<form method="post" action="<?= base_url(); ?>index.php/mainController/addUser">
+				<form method="post" action="<?= base_url(); ?>mainController/addUser">
 
 					<table class="table table-borderless mt-5" align="center">          
 								<tr><td><label>Roll Number</label></td>
@@ -84,11 +84,11 @@
 				</div>
 
 				<div align="center">
-					<a href="<?= base_url(); ?>index.php/mainController/loginView" style="text-decoration: none;"><button name="login" class="btn btn-success">LOGIN</button></a>
+					<a href="<?= base_url(); ?>mainController/loginView" style="text-decoration: none;"><button name="login" class="btn btn-success">LOGIN</button></a>
 
 					<br><br>
 
-					<b>New User &nbsp? &nbsp SignUp Here &nbsp</b><a href="<?= base_url(); ?>index.php/mainController/signupView" style="text-decoration: none;"><button type="submit" name="signup" class="btn btn-primary">SIGNUP</button></a>
+					<b>New User &nbsp? &nbsp SignUp Here &nbsp</b><a href="<?= base_url(); ?>mainController/signupView" style="text-decoration: none;"><button type="submit" name="signup" class="btn btn-primary">SIGNUP</button></a>
 				</div>
 
 			</div>

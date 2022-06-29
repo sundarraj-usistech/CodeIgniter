@@ -67,16 +67,16 @@
 				<br>
 
 				<div class="method">
-					<a href="<?= base_url(); ?>index.php/mainController/addUserView" style="text-decoration: none;"><button class="btn btn-primary">Add New Student&nbsp&nbsp<i class="fa-solid fa-plus"></i></button></a>
+					<a href="<?= base_url(); ?>mainController/addUserView" style="text-decoration: none;"><button class="btn btn-primary">Add New Student&nbsp&nbsp<i class="fa-solid fa-plus"></i></button></a>
 
-					<a href="<?= base_url(); ?>index.php/mainController/logout" style="text-decoration: none;"><button class="btn btn-custom3">LOGOUT&nbsp&nbsp<i class="fa-solid fa-right-from-bracket"></i></button></a>
+					<a href="<?= base_url(); ?>mainController/logout" style="text-decoration: none;"><button class="btn btn-custom3">LOGOUT&nbsp&nbsp<i class="fa-solid fa-right-from-bracket"></i></button></a>
 				</div>
 
 				<br><br>
 
 				<div class="method">
 
-					<form method="get" action="<?= base_url(); ?>index.php/mainController/customPagination">
+					<form method="get" action="<?= base_url(); ?>mainController/customPagination">
 							<label>Display</label>
 							<select name="perPage" required>
 								<option></option>
@@ -88,7 +88,7 @@
 							<button  type="submit" name="submitrows" class="btn btn-success">SELECT</button>
 					</form>
 
-			   		<!-- <form method="post" action="http://localhost/CodeIgniter/index.php/mainController/sortTable">
+			   		<!-- <form method="post" action="http://localhost/CodeIgniter/mainController/sortTable">
 						<label>Choose a Sorting Method</label>
 						<select name="sort">
 							<option></option>
@@ -102,15 +102,15 @@
 						<button type="submit" name="submitsort" class="btn btn-success">SUBMIT</button>
 					</form> -->
 
-					<form method="post" action="<?= base_url(); ?>index.php/mainController/searchData">
+					<form method="post" action="<?= base_url(); ?>mainController/searchData">
 						<input type="text" name="keyword" placeholder="Search " required>
 
 						<button type="submit" name="submitfilter" class="btn btn-primary"><i class="fa-solid fa-magnifying-glass"></i></button>
 					</form>
 
-					<a target="_blank" href="<?= base_url(); ?>index.php/mainController/GeneratePdf" style="text-decoration: none;"><button name="pdf" class="btn btn-danger"><i class="fa-solid fa-file-pdf"></i></button></a>
+					<a target="_blank" href="<?= base_url(); ?>mainController/GeneratePdf" style="text-decoration: none;"><button name="pdf" class="btn btn-danger"><i class="fa-solid fa-file-pdf"></i></button></a>
 
-					<a target="_blank" href="<?= base_url(); ?>index.php/mainController/datatable" style="text-decoration: none;"><button name="datatable" class="btn btn-success"><i class="fa-solid fa-table-cells"></i>&nbspDATATABLES</button></a>
+					<a target="_blank" href="<?= base_url(); ?>mainController/datatable" style="text-decoration: none;"><button name="datatable" class="btn btn-success"><i class="fa-solid fa-table-cells"></i>&nbspDATATABLES</button></a>
 
 					<?php 
 					if ($flag) {
@@ -159,7 +159,7 @@
 
 						 ?>
 
-						<th><a href="<?= base_url(); ?>index.php/mainController/sortByName?action=<?= $action ?>" class="text-decoration-none text-dark">NAME</th>
+						<th><a href="<?= base_url(); ?>mainController/sortByName?action=<?= $action ?>" class="text-decoration-none text-dark">NAME</th>
 						<th>ACTION</th>
 						<th>FILE</th>
 						<th>IMAGE</th>
@@ -171,15 +171,15 @@
 				            ?><tr>
 						        <td><?php echo $row->student_name;?></td>  
 						        <td>
-						        	<a href="<?= base_url(); ?>index.php/mainController/editUserView?rollno=<?php echo $row->student_roll_no ; ?>" style="text-decoration: none;"><button name="edit" class="btn btn-warning">EDIT</button></a>
-						        	<a href="<?= base_url(); ?>index.php/mainController/deleteUserView?rollno=<?php echo $row->student_roll_no; ?>" style="text-decoration: none;"><button name="delete" class="btn btn-danger">DELETE</button></a>
-						        	<a href="<?= base_url(); ?>index.php/mainController/viewUserDetails?rollno=<?php echo $row->student_roll_no ; ?>" style="text-decoration: none;"><button name="view" class="btn btn-primary">VIEW</button></a>
+						        	<a href="<?= base_url(); ?>mainController/editUserView?rollno=<?php echo $row->student_roll_no ; ?>" style="text-decoration: none;"><button name="edit" class="btn btn-warning">EDIT</button></a>
+						        	<a href="<?= base_url(); ?>mainController/deleteUserView?rollno=<?php echo $row->student_roll_no; ?>" style="text-decoration: none;"><button name="delete" class="btn btn-danger">DELETE</button></a>
+						        	<a href="<?= base_url(); ?>mainController/viewUserDetails?rollno=<?php echo $row->student_roll_no ; ?>" style="text-decoration: none;"><button name="view" class="btn btn-primary">VIEW</button></a>
 						        </td>						       
 						        	<td>
 						        		<?php
 							        		if(empty($row->student_document)){
 												
-							        		?><a href="<?= base_url(); ?>index.php/mainController/fileUploadView?rollno=<?php echo $row->student_roll_no ; ?>" style="text-decoration: none;"><span class="btn btn-primary">UPLOAD</span></a>
+							        		?><a href="<?= base_url(); ?>mainController/fileUploadView?rollno=<?php echo $row->student_roll_no ; ?>" style="text-decoration: none;"><span class="btn btn-primary">UPLOAD</span></a>
 										<?php }
 											else{
 											?><a href="\CodeIgniter\student_document\<?php echo $row->student_document; ?>" target="_blank"><span class="btn btn-primary">VIEW</span></a>
@@ -190,7 +190,7 @@
 						        		<?php
 							        		if(empty($row->student_image)){
 												
-							        		?><a href="<?= base_url(); ?>index.php/mainController/imageUploadView?rollno=<?php echo $row->student_roll_no ; ?>" style="text-decoration: none;"><span class="btn btn-primary">UPLOAD</span>
+							        		?><a href="<?= base_url(); ?>mainController/imageUploadView?rollno=<?php echo $row->student_roll_no ; ?>" style="text-decoration: none;"><span class="btn btn-primary">UPLOAD</span>
 										<?php }
 											else{
 											?><a href="\CodeIgniter\student_image\<?php echo $row->student_image; ?>" target="_blank"><span class="btn btn-primary">VIEW</span></a>
@@ -214,7 +214,7 @@
 
 				<?php		for ($i=1; $i<=$totalPages; $i++) {
 					?>
-   								<a href="<?= base_url(); ?>index.php/mainController/customPagination?page=<?= $i ?>&perPage=<?= $perPage ?>" style="text-decoration: none;"><span class="btn btn-primary"><?= $i ?></span></a> 							
+   								<a href="<?= base_url(); ?>mainController/customPagination?page=<?= $i ?>&perPage=<?= $perPage ?>" style="text-decoration: none;"><span class="btn btn-primary"><?= $i ?></span></a> 							
 				<?php		}
 
 				?>
@@ -239,11 +239,11 @@
 				</div>
 
 				<div align="center">
-					<a href="<?= base_url(); ?>index.php/mainController/loginView" style="text-decoration: none;"><button name="login" class="btn btn-success">LOGIN</button></a>
+					<a href="<?= base_url(); ?>mainController/loginView" style="text-decoration: none;"><button name="login" class="btn btn-success">LOGIN</button></a>
 
 					<br><br>
 
-					<b>New User &nbsp? &nbsp SignUp Here &nbsp</b><a href="<?= base_url(); ?>index.php/mainController/signupView" style="text-decoration: none;"><button type="submit" name="signup" class="btn btn-primary">SIGNUP</button></a>
+					<b>New User &nbsp? &nbsp SignUp Here &nbsp</b><a href="<?= base_url(); ?>mainController/signupView" style="text-decoration: none;"><button type="submit" name="signup" class="btn btn-primary">SIGNUP</button></a>
 				</div>
 
 			</div>
